@@ -157,13 +157,17 @@ Six `custom:button-card` tiles, one per temperature sensor (master bed, bed 1–
 - All bedroom sensors (`sensor.bedroom_temperature`, `sensor.bedroom_1–4_temperature`) → `climate.bedroom`
 - `sensor.office_temperature` → `climate.office`
 
-**Color thresholds (deviation from live setpoint, both directions):**
+**Color thresholds (signed deviation — direction matters):**
 
-| Deviation | Color | Meaning |
-|---|---|---|
-| ≤ 1.5°F | Green | Within spec |
-| 1.5–3°F | Orange | Slightly off target |
-| > 3°F | Red | Significantly off target |
+| Deviation | Color | Summer meaning | Winter meaning |
+|---|---|---|---|
+| ≤ −3°F | Deep blue | Great — very cool | Bad — too cold |
+| −3 to −1.5°F | Light blue | Good — below setpoint | Slightly under |
+| −1.5 to +1.5°F | Green | On target | On target |
+| +1.5 to +3°F | Orange | Slightly warm | Good — above setpoint |
+| > +3°F | Red | Bad — too warm | Great — extra warm |
+
+Negative = cooler than setpoint. Positive = warmer than setpoint. Color always encodes direction; interpretation flips by season — in summer blue is desirable, in winter red is desirable.
 
 **Label format:** `75.6°F (+0.6°F)` — current temp plus signed deviation from setpoint. Positive = warmer than setpoint, negative = cooler.
 
