@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; [[ \"$f\" == /Users/pk/homeassistant/*.md ]] && git -C /Users/pk/homeassistant add \"$f\" && { git -C /Users/pk/homeassistant diff --cached --quiet || git -C /Users/pk/homeassistant commit -m \"auto: update $(basename \"$f\") $(date +%Y-%m-%d)\" && git -C /Users/pk/homeassistant push origin main; }; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
