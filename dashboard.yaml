@@ -1,0 +1,692 @@
+##############################################################################
+# Whole-Home Dashboard
+# 5 views: Overview · Climate · Security · Energy · Media
+#
+# HACS Cards required for best experience (install via HACS → Frontend):
+#   - mushroom              (beautiful entity/person/cover cards)
+#   - mini-graph-card       (sparkline graphs)
+#   - auto-entities         (dynamic entity lists)
+#   - card-mod              (custom CSS)
+#
+# Works without HACS using fallback built-in cards — just less pretty.
+##############################################################################
+
+title: Home
+views:
+
+  ##############################################################################
+  # VIEW 1: OVERVIEW — Command Center
+  ##############################################################################
+  - title: Overview
+    path: overview
+    icon: mdi:home-variant
+
+    cards:
+
+      # ── Presence Chips ──────────────────────────────────────────────────────
+      - type: custom:mushroom-chips-card
+        alignment: center
+        chips:
+          - type: entity
+            entity: person.louis_alexander
+            content_info: state
+            use_entity_picture: true
+          - type: entity
+            entity: person.lindsay
+            content_info: state
+            use_entity_picture: true
+          - type: spacer
+          - type: template
+            icon: mdi:garage
+            icon_color: >-
+              {% if is_state('cover.left_garage_door_opener_garage_door', 'closed')
+                 and is_state('cover.right_garage_door_opener_garage_door', 'closed') %}
+                green
+              {% else %}
+                red
+              {% endif %}
+            content: >-
+              {% set l = states('cover.left_garage_door_opener_garage_door') %}
+              {% set r = states('cover.right_garage_door_opener_garage_door') %}
+              {% if l == 'closed' and r == 'closed' %}Closed{% else %}OPEN{% endif %}
+          - type: entity
+            entity: binary_sensor.eero_wan_status
+            icon: mdi:web
+            icon_color: "{% if is_state('binary_sensor.eero_wan_status', 'on') %}green{% else %}red{% endif %}"
+            content_info: none
+
+      # ── Weather ─────────────────────────────────────────────────────────────
+      - type: weather-forecast
+        entity: weather.forecast_home
+        show_forecast: true
+        forecast_type: daily
+
+      # ── Garage Doors ────────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-cover-card
+            entity: cover.left_garage_door_opener_garage_door
+            name: Left Garage
+            show_buttons_control: true
+            icon: mdi:garage
+          - type: custom:mushroom-cover-card
+            entity: cover.right_garage_door_opener_garage_door
+            name: Right Garage
+            show_buttons_control: true
+            icon: mdi:garage
+
+      # ── Climate Snapshot ────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.bedroom_temperature
+            name: Bedroom
+            icon: mdi:thermometer
+            icon_color: orange
+          - type: custom:mushroom-entity-card
+            entity: sensor.bedroom_1_temperature
+            name: Bedroom 1
+            icon: mdi:thermometer
+            icon_color: blue
+          - type: custom:mushroom-entity-card
+            entity: sensor.office_temperature
+            name: Office
+            icon: mdi:thermometer
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: sensor.bedroom_humidity
+            name: Humidity
+            icon: mdi:water-percent
+            icon_color: teal
+          - type: custom:mushroom-entity-card
+            entity: sensor.bedroom_air_quality_index
+            name: Bedroom AQI
+            icon: mdi:air-filter
+            icon_color: >-
+              {% set aqi = states('sensor.bedroom_air_quality_index') | int %}
+              {% if aqi < 50 %}green{% elif aqi < 100 %}yellow{% else %}red{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: sensor.office_air_quality_index
+            name: Office AQI
+            icon: mdi:air-filter
+            icon_color: >-
+              {% set aqi = states('sensor.office_air_quality_index') | int %}
+              {% if aqi < 50 %}green{% elif aqi < 100 %}yellow{% else %}red{% endif %}
+
+      # ── Leak Alert (only shows when a sensor fires) ─────────────────────────
+      - type: entity-filter
+        show_empty: false
+        entities:
+          - entity: binary_sensor.kitchen_sink_leak_detector
+            name: Kitchen Sink
+          - entity: binary_sensor.butlers_kitchen_sink
+            name: Butler's Kitchen Sink
+          - entity: binary_sensor.laundry_room_leak_sensor
+            name: Laundry Room
+          - entity: binary_sensor.master_bathroom_left_sink_leak_detector
+            name: Master Bath — Left Sink
+          - entity: binary_sensor.master_bathroom_right_sink_leak_detector
+            name: Master Bath — Right Sink
+          - entity: binary_sensor.second_floor_hall_bathroom_left_sink
+            name: 2nd Floor Hall Bath — Left
+          - entity: binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+            name: 2nd Floor Hall Bath — Right
+          - entity: binary_sensor.powder_room_leak_sensor
+            name: Powder Room
+          - entity: binary_sensor.office_sink_leak_detector
+            name: Office Sink
+          - entity: binary_sensor.bedroom_3_sink_leak_detector
+            name: Bedroom 3 Sink
+        state_filter:
+          - "on"
+        card:
+          type: entities
+          title: "⚠️ LEAK DETECTED"
+
+      # ── Phone Batteries ─────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.louis_iphone_battery_level
+            name: Louis
+            icon: mdi:cellphone
+            secondary_info: last-changed
+            icon_color: >-
+              {% if states('sensor.louis_iphone_battery_level') | int < 20 %}red
+              {% elif states('sensor.louis_iphone_battery_level') | int < 50 %}orange
+              {% else %}green{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: sensor.lindsays_iphone_battery_level
+            name: Lindsay
+            icon: mdi:cellphone
+            icon_color: >-
+              {% if states('sensor.lindsays_iphone_battery_level') | int < 20 %}red
+              {% elif states('sensor.lindsays_iphone_battery_level') | int < 50 %}orange
+              {% else %}green{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: sensor.pk_s_pad_2_battery_level
+            name: iPad
+            icon: mdi:tablet
+            icon_color: >-
+              {% if states('sensor.pk_s_pad_2_battery_level') | int < 20 %}red
+              {% elif states('sensor.pk_s_pad_2_battery_level') | int < 50 %}orange
+              {% else %}green{% endif %}
+
+
+  ##############################################################################
+  # VIEW 2: CLIMATE & AIR QUALITY
+  ##############################################################################
+  - title: Climate
+    path: climate
+    icon: mdi:thermometer-lines
+
+    cards:
+
+      # ── Thermostats ──────────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: thermostat
+            entity: climate.bedroom
+            name: Bedroom Ecobee
+          - type: thermostat
+            entity: climate.office
+            name: Office Ecobee
+
+      # ── Temperature by Zone ──────────────────────────────────────────────────
+      - type: entities
+        title: Temperature by Zone
+        entities:
+          - entity: sensor.bedroom_temperature
+            name: Master Bedroom (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_1_temperature
+            name: Bedroom 1 (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.office_temperature
+            name: Louis' Office (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_2_temperature
+            name: Bedroom 2 (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_3_temperature
+            name: Bedroom 3 (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.bedroom_4_temperature
+            name: Bedroom 4 (Ecobee)
+            icon: mdi:thermometer
+          - entity: sensor.louis_s_echo_temperature
+            name: Office (Echo)
+            icon: mdi:thermometer
+
+      # ── Temperature History Graph ────────────────────────────────────────────
+      - type: custom:mini-graph-card
+        name: Temperature — 24 Hours
+        hours_to_show: 24
+        points_per_hour: 4
+        line_width: 2
+        entities:
+          - entity: sensor.bedroom_temperature
+            name: Master Bedroom
+            color: "#e74c3c"
+          - entity: sensor.bedroom_1_temperature
+            name: Bedroom 1
+            color: "#3498db"
+          - entity: sensor.bedroom_2_temperature
+            name: Bedroom 2
+            color: "#2ecc71"
+          - entity: sensor.bedroom_3_temperature
+            name: Bedroom 3
+            color: "#9b59b6"
+          - entity: sensor.bedroom_4_temperature
+            name: Bedroom 4
+            color: "#1abc9c"
+          - entity: sensor.office_temperature
+            name: Louis' Office
+            color: "#f39c12"
+
+      # ── Air Quality — Master Bedroom ─────────────────────────────────────────
+      - type: entities
+        title: Air Quality — Master Bedroom
+        entities:
+          - entity: sensor.bedroom_air_quality_index
+            name: Air Quality Index
+            icon: mdi:air-filter
+          - entity: sensor.bedroom_carbon_dioxide
+            name: CO₂ (ppm)
+            icon: mdi:molecule-co2
+          - entity: sensor.bedroom_volatile_organic_compounds
+            name: VOCs (ppb)
+            icon: mdi:chemical-weapon
+          - entity: sensor.bedroom_humidity
+            name: Humidity (%)
+            icon: mdi:water-percent
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            name: Bedroom CO₂
+            entities:
+              - entity: sensor.bedroom_carbon_dioxide
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#e67e22"
+            line_width: 2
+            font_size: 75
+          - type: custom:mini-graph-card
+            name: Bedroom VOCs
+            entities:
+              - entity: sensor.bedroom_volatile_organic_compounds
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#9b59b6"
+            line_width: 2
+            font_size: 75
+          - type: custom:mini-graph-card
+            name: Bedroom Humidity
+            entities:
+              - entity: sensor.bedroom_humidity
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#1abc9c"
+            line_width: 2
+            font_size: 75
+
+      # ── Air Quality — Office ──────────────────────────────────────────────────
+      - type: entities
+        title: Air Quality — Louis' Office
+        entities:
+          - entity: sensor.office_air_quality_index
+            name: Air Quality Index
+            icon: mdi:air-filter
+          - entity: sensor.office_carbon_dioxide
+            name: CO₂ (ppm)
+            icon: mdi:molecule-co2
+          - entity: sensor.office_volatile_organic_compounds
+            name: VOCs (ppb)
+            icon: mdi:chemical-weapon
+          - entity: sensor.office_humidity
+            name: Humidity (%)
+            icon: mdi:water-percent
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            name: Office CO₂
+            entities:
+              - entity: sensor.office_carbon_dioxide
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#e67e22"
+            line_width: 2
+            font_size: 75
+          - type: custom:mini-graph-card
+            name: Office VOCs
+            entities:
+              - entity: sensor.office_volatile_organic_compounds
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#9b59b6"
+            line_width: 2
+            font_size: 75
+          - type: custom:mini-graph-card
+            name: Office Humidity
+            entities:
+              - entity: sensor.office_humidity
+            hours_to_show: 24
+            points_per_hour: 2
+            color: "#1abc9c"
+            line_width: 2
+            font_size: 75
+
+      # ── Occupancy ────────────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.bedroom_occupancy
+            name: Bedroom
+            icon: mdi:bed
+            icon_color: >-
+              {% if is_state('binary_sensor.bedroom_occupancy', 'on') %}green{% else %}grey{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.bedroom_1_occupancy
+            name: Bedroom 1
+            icon: mdi:bed
+            icon_color: >-
+              {% if is_state('binary_sensor.bedroom_1_occupancy', 'on') %}green{% else %}grey{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.office_occupancy
+            name: Office
+            icon: mdi:chair-rolling
+            icon_color: >-
+              {% if is_state('binary_sensor.office_occupancy', 'on') %}green{% else %}grey{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.bedroom_2_occupancy
+            name: Bedroom 2
+            icon: mdi:bed
+            icon_color: >-
+              {% if is_state('binary_sensor.bedroom_2_occupancy', 'on') %}green{% else %}grey{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.bedroom_3_occupancy
+            name: Bedroom 3
+            icon: mdi:bed
+            icon_color: >-
+              {% if is_state('binary_sensor.bedroom_3_occupancy', 'on') %}green{% else %}grey{% endif %}
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.bedroom_4_occupancy
+            name: Bedroom 4
+            icon: mdi:bed
+            icon_color: >-
+              {% if is_state('binary_sensor.bedroom_4_occupancy', 'on') %}green{% else %}grey{% endif %}
+
+
+  ##############################################################################
+  # VIEW 3: SECURITY & SAFETY
+  ##############################################################################
+  - title: Security
+    path: security
+    icon: mdi:shield-home
+
+    cards:
+
+      # ── Who's Home ───────────────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-person-card
+            entity: person.louis_alexander
+            name: Louis
+            layout: vertical
+          - type: custom:mushroom-person-card
+            entity: person.lindsay
+            name: Lindsay
+            layout: vertical
+
+      # ── Garage Doors + History ───────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-cover-card
+            entity: cover.left_garage_door_opener_garage_door
+            name: Left Garage
+            show_buttons_control: true
+          - type: custom:mushroom-cover-card
+            entity: cover.right_garage_door_opener_garage_door
+            name: Right Garage
+            show_buttons_control: true
+
+      - type: history-graph
+        title: Garage Door Activity (48h)
+        hours_to_show: 48
+        entities:
+          - entity: cover.left_garage_door_opener_garage_door
+            name: Left Garage
+          - entity: cover.right_garage_door_opener_garage_door
+            name: Right Garage
+
+      # ── Ring Camera ──────────────────────────────────────────────────────────
+      - type: picture-glance
+        title: Garage Cam
+        entity: camera.garage_stickup_cam_1_live_view
+        camera_image: camera.garage_stickup_cam_1_live_view
+        camera_view: auto
+        entities:
+          - entity: sensor.garage_stickup_cam_1_battery
+            name: Battery
+          - entity: sensor.garage_stickup_cam_1_last_activity
+            name: Last Activity
+
+      # ── Leak Sensors ─────────────────────────────────────────────────────────
+      - type: entities
+        title: Leak Sensors
+        show_header_toggle: false
+        entities:
+          - entity: binary_sensor.kitchen_sink_leak_detector
+            name: Kitchen Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.butlers_kitchen_sink
+            name: Butler's Kitchen Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.laundry_room_leak_sensor
+            name: Laundry Room
+            icon: mdi:water-alert
+          - entity: binary_sensor.master_bathroom_left_sink_leak_detector
+            name: Master Bath — Left Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.master_bathroom_right_sink_leak_detector
+            name: Master Bath — Right Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.second_floor_hall_bathroom_left_sink
+            name: 2nd Floor Hall Bath — Left Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+            name: 2nd Floor Hall Bath — Right Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.powder_room_leak_sensor
+            name: Powder Room
+            icon: mdi:water-alert
+          - entity: binary_sensor.office_sink_leak_detector
+            name: Office Sink
+            icon: mdi:water-alert
+          - entity: binary_sensor.bedroom_3_sink_leak_detector
+            name: Bedroom 3 Sink
+            icon: mdi:water-alert
+
+      # ── Leak Sensor Batteries ────────────────────────────────────────────────
+      - type: entities
+        title: Sensor Batteries
+        entities:
+          - entity: sensor.kitchen_sink_leak_detector_battery
+            name: Kitchen Sink
+            icon: mdi:battery
+          - entity: sensor.butlers_kitchen_sink_battery
+            name: Butler's Kitchen Sink
+            icon: mdi:battery
+          - entity: sensor.laundry_room_leak_sensor_battery
+            name: Laundry Room
+            icon: mdi:battery
+          - entity: sensor.master_bathroom_left_sink_leak_detector_battery
+            name: Master Bath Left
+            icon: mdi:battery
+          - entity: sensor.master_bathroom_right_sink_leak_detector_battery
+            name: Master Bath Right
+            icon: mdi:battery
+          - entity: sensor.second_floor_hall_bathroom_left_sink_battery
+            name: 2nd Floor Hall Bath Left
+            icon: mdi:battery
+          - entity: sensor.second_floor_hall_bathroom_right_sink_leak_detector_battery
+            name: 2nd Floor Hall Bath Right
+            icon: mdi:battery
+          - entity: sensor.powder_room_leak_sensor_battery
+            name: Powder Room
+            icon: mdi:battery
+          - entity: sensor.office_sink_leak_detector_battery
+            name: Office Sink
+            icon: mdi:battery
+          - entity: sensor.bedroom_3_sink_leak_detector_battery
+            name: Bedroom 3 Sink
+            icon: mdi:battery
+
+      # ── Network ──────────────────────────────────────────────────────────────
+      - type: entities
+        title: Network
+        entities:
+          - entity: binary_sensor.eero_wan_status
+            name: Internet (eero WAN)
+          - entity: sensor.eero_external_ip
+            name: External IP
+
+
+  ##############################################################################
+  # VIEW 4: ENERGY
+  ##############################################################################
+  - title: Energy
+    path: energy
+    icon: mdi:lightning-bolt
+
+    cards:
+
+      # ── Live Power Draw ──────────────────────────────────────────────────────
+      - type: custom:mini-graph-card
+        name: Live Power Draw (Watts)
+        hours_to_show: 6
+        points_per_hour: 12
+        line_width: 2
+        entities:
+          - entity: sensor.front_room_plug_1_power
+            name: Front Room
+            color: "#e74c3c"
+          - entity: sensor.upstairs_hallway_1_power
+            name: Hallway 1
+            color: "#3498db"
+          - entity: sensor.upstairs_hallway_plug_2_power
+            name: Hallway 2
+            color: "#2ecc71"
+          - entity: sensor.office_plug_1_power
+            name: Louis' Office
+            color: "#f39c12"
+
+      # ── Current Wattage Cards ────────────────────────────────────────────────
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.front_room_plug_1_power
+            name: Front Room
+            icon: mdi:power-plug
+            icon_color: red
+          - type: custom:mushroom-entity-card
+            entity: sensor.upstairs_hallway_1_power
+            name: Hallway 1
+            icon: mdi:power-plug
+            icon_color: blue
+          - type: custom:mushroom-entity-card
+            entity: sensor.upstairs_hallway_plug_2_power
+            name: Hallway 2
+            icon: mdi:power-plug
+            icon_color: green
+          - type: custom:mushroom-entity-card
+            entity: sensor.office_plug_1_power
+            name: Office
+            icon: mdi:power-plug
+            icon_color: orange
+
+      # ── Voltage ──────────────────────────────────────────────────────────────
+      - type: entities
+        title: Voltage & Frequency
+        entities:
+          - entity: sensor.front_room_plug_1_voltage
+            name: Front Room Voltage
+          - entity: sensor.upstairs_hallway_1_voltage
+            name: Hallway 1 Voltage
+          - entity: sensor.upstairs_hallway_plug_2_voltage
+            name: Hallway 2 Voltage
+          - entity: sensor.office_plug_1_voltage
+            name: Office Voltage
+          - entity: sensor.upstairs_hallway_1_ac_frequency
+            name: AC Frequency (Hz)
+
+      # ── Total Energy Consumed ────────────────────────────────────────────────
+      - type: entities
+        title: Total Energy Consumed
+        entities:
+          - entity: sensor.front_room_plug_1_summation_delivered
+            name: Front Room (kWh)
+            icon: mdi:counter
+          - entity: sensor.upstairs_hallway_1_summation_delivered
+            name: Hallway 1 (kWh)
+            icon: mdi:counter
+          - entity: sensor.upstairs_hallway_plug_2_summation_delivered
+            name: Hallway 2 (kWh)
+            icon: mdi:counter
+          - entity: sensor.office_plug_1_summation_delivered
+            name: Office (kWh)
+            icon: mdi:counter
+
+      # ── 24h Power History ────────────────────────────────────────────────────
+      - type: history-graph
+        title: Power Usage — 24 Hours
+        hours_to_show: 24
+        entities:
+          - entity: sensor.front_room_plug_1_power
+            name: Front Room
+          - entity: sensor.upstairs_hallway_1_power
+            name: Hallway 1
+          - entity: sensor.upstairs_hallway_plug_2_power
+            name: Hallway 2
+          - entity: sensor.office_plug_1_power
+            name: Office
+
+      # ── Plug Switches ────────────────────────────────────────────────────────
+      - type: entities
+        title: Plug Controls
+        entities:
+          - entity: switch.front_room_plug_1
+            name: Front Room
+          - entity: switch.upstairs_hallway_1
+            name: Upstairs Hallway 1
+          - entity: switch.upstairs_hallway_plug_2
+            name: Upstairs Hallway 2
+          - entity: switch.office_plug_1
+            name: Louis' Office
+
+
+  ##############################################################################
+  # VIEW 5: MEDIA
+  ##############################################################################
+  - title: Media
+    path: media
+    icon: mdi:speaker-wireless
+
+    cards:
+
+      # ── Sonos Play:5 ─────────────────────────────────────────────────────────
+      - type: media-control
+        entity: media_player.sonos_play_5
+        name: Sonos Play:5
+
+      # ── Master Bedroom Sonos ─────────────────────────────────────────────────
+      - type: media-control
+        entity: media_player.master_bedroom_sonos_one
+        name: Master Bedroom Sonos One
+
+      # ── Apple TV ─────────────────────────────────────────────────────────────
+      - type: media-control
+        entity: media_player.family_room_apple_tv
+        name: Family Room Apple TV
+
+      # ── All Sonos Controls ───────────────────────────────────────────────────
+      - type: entities
+        title: Sonos Settings
+        entities:
+          - entity: switch.sonos_play_5_loudness
+            name: Play:5 Loudness
+          - entity: switch.master_bedroom_sonos_one_loudness
+            name: Bedroom Loudness
+          - entity: switch.sonos_play_5_crossfade
+            name: Play:5 Crossfade
+          - entity: switch.master_bedroom_sonos_one_crossfade
+            name: Bedroom Crossfade
+          - entity: number.sonos_play_5_bass
+            name: Play:5 Bass
+          - entity: number.sonos_play_5_treble
+            name: Play:5 Treble
+          - entity: number.master_bedroom_sonos_one_bass
+            name: Bedroom Bass
+          - entity: number.master_bedroom_sonos_one_treble
+            name: Bedroom Treble
+
+      # ── Echo Do Not Disturb ──────────────────────────────────────────────────
+      - type: entities
+        title: Echo Do Not Disturb
+        entities:
+          - entity: switch.dad_s_new_echo_do_not_disturb
+            name: Master Bedroom Echo
+          - entity: switch.kitchen_echo_show_do_not_disturb
+            name: Kitchen Echo
+          - entity: switch.louis_s_echo_do_not_disturb
+            name: Office Echo
+          - entity: switch.master_bathroom_echo_dot_do_not_disturb
+            name: Master Bathroom Echo
+          - entity: switch.garage_do_not_disturb
+            name: Garage Echo
+          - entity: switch.louis_s_echo_dot_do_not_disturb
+            name: Family Room Echo
+          - entity: switch.reading_room_echo_dot_do_not_disturb
+            name: Front Room Echo

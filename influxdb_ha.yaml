@@ -1,0 +1,47 @@
+##############################################################################
+# InfluxDB integration config — connection settings are managed via the HA UI
+# (Settings → Devices & Services → InfluxDB) as of HA 2026.x.
+#
+# Only tags, exclude, and include remain in YAML.
+##############################################################################
+
+tags:
+  source: HA
+
+tags_attributes:
+  - friendly_name
+  - device_class
+  - unit_of_measurement
+
+default_measurement: state
+
+# Exclude noisy/useless entities
+exclude:
+  domains:
+    - persistent_notification
+    - update
+    - button
+    - number
+    - select
+    - notify
+    - stt
+    - tts
+    - conversation
+    - todo
+  entities:
+    - sun.sun
+    - zone.home
+
+# Include all the good stuff
+include:
+  domains:
+    - sensor
+    - binary_sensor
+    - climate
+    - cover
+    - media_player
+    - weather
+    - switch
+  entities:
+    - person.louis_alexander
+    - person.lindsay

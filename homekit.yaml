@@ -1,0 +1,79 @@
+# HomeKit Bridge — curated device list
+#
+# Strategy:
+#   - Ecobee: pair the thermostat DIRECTLY to Apple Home via its built-in HomeKit
+#             support (Ecobee app → Settings → HomeKit). Do NOT bridge Ecobee here.
+#             The HA Ecobee integration still runs for automations/sensors.
+#   - Ring:   use Ring's own HomeKit support or the Ring app. Do NOT bridge here.
+#             Ring cameras via HA bridge require HA to transcode, which is slow/unreliable.
+#   - ZHA:    only the 10 moisture sensors + 4 smart plugs. No diagnostics, no sirens,
+#             no power monitoring, no opening/tamper sensors, no firmware updates.
+#   - ESPHome garage doors: the only useful covers — exposed as GarageDoorOpener.
+#
+# Whitelist approach: only entities listed under include_entities appear in Apple Home.
+# New devices added to HA will NOT appear until explicitly added here.
+
+- name: "HA Bridge"
+  port: 21063
+  filter:
+    include_entities:
+      # ── Garage doors (ESPHome) ─────────────────────────────────────────────
+      - cover.left_garage_door_opener_garage_door
+      - cover.right_garage_door_opener_garage_door
+
+      # ── Leak sensors (ZHA, moisture class only) ────────────────────────────
+      - binary_sensor.bedroom_3_sink_leak_detector
+      - binary_sensor.butlers_kitchen_sink
+      - binary_sensor.kitchen_sink_leak_detector
+      - binary_sensor.laundry_room_leak_sensor
+      - binary_sensor.master_bathroom_left_sink_leak_detector
+      - binary_sensor.master_bathroom_right_sink_leak_detector
+      - binary_sensor.office_sink_leak_detector
+      - binary_sensor.powder_room_leak_sensor
+      - binary_sensor.second_floor_hall_bathroom_left_sink
+      - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+
+      # ── Smart plugs (ZHA outlet switches only) ─────────────────────────────
+      - switch.front_room_plug_1
+      - switch.office_plug_1
+      - switch.upstairs_hallway_1
+      - switch.upstairs_hallway_plug_2
+
+  entity_config:
+    # Garage doors
+    cover.left_garage_door_opener_garage_door:
+      name: Left Garage Door
+    cover.right_garage_door_opener_garage_door:
+      name: Right Garage Door
+
+    # Leak sensors — shorter names; HomeKit already shows the "Water Sensor" type
+    binary_sensor.bedroom_3_sink_leak_detector:
+      name: Bedroom 3 Sink
+    binary_sensor.butlers_kitchen_sink:
+      name: Butler's Kitchen Sink
+    binary_sensor.kitchen_sink_leak_detector:
+      name: Kitchen Sink
+    binary_sensor.laundry_room_leak_sensor:
+      name: Laundry Room
+    binary_sensor.master_bathroom_left_sink_leak_detector:
+      name: Master Bath Left Sink
+    binary_sensor.master_bathroom_right_sink_leak_detector:
+      name: Master Bath Right Sink
+    binary_sensor.office_sink_leak_detector:
+      name: Office Sink
+    binary_sensor.powder_room_leak_sensor:
+      name: Powder Room
+    binary_sensor.second_floor_hall_bathroom_left_sink:
+      name: 2F Hall Bath Left Sink
+    binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector:
+      name: 2F Hall Bath Right Sink
+
+    # Smart plugs
+    switch.front_room_plug_1:
+      name: Front Room Plug
+    switch.office_plug_1:
+      name: Office Plug
+    switch.upstairs_hallway_1:
+      name: Upstairs Hallway Plug 1
+    switch.upstairs_hallway_plug_2:
+      name: Upstairs Hallway Plug 2

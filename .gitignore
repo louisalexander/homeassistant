@@ -1,8 +1,23 @@
-# HA config files — contain Nabu Casa URL and other sensitive data
-*.yaml
+# Secrets — never commit
+secrets.yaml
+.env
+
+# HA runtime state — managed by HA, not config
+.storage/
+.cloud/
+.cache/
+deps/
+tts/
+home-assistant_v2.db*
+zigbee.db*
+home-assistant.log*
+*.log
+*.fault
+
+# Local artifacts — not from HAOS, not the source of truth
+automation_*.yaml
+configuration_tou_addition.yaml
 *.txt
 
 # macOS
 .DS_Store
-
-# Only publish: PLAN.md, CLAUDE.md, projects/*.md, and markdown guides

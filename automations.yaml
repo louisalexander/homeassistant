@@ -1,0 +1,964 @@
+##############################################################################
+# automations.yaml — Complete Home Assistant Automations
+#
+# Copy the entire contents of this file into your HA automations.yaml, then:
+#   Developer Tools → YAML → Reload Automations
+#
+# Sections:
+#   1.  Leak Detection          (automations 1–2)
+#   2.  Garage Doors            (automations 3–8)
+#   3.  Salt Lamp               (automations 9–10)
+#   4.  Air Quality — Bedroom   (automations 11–14)
+#   5.  Air Quality — Office    (automations 15–18)
+#   6.  Battery Alerts          (automation 19)
+#   7.  Thermostat Presence     (automations 20–22)
+#   8.  Garage Open Too Long    (automations 23–24)
+##############################################################################
+
+
+##############################################################################
+# 1. LEAK DETECTION
+##############################################################################
+
+
+# 1. Leak Detected — Critical Alert
+- alias: "Leak Detected — Critical Alert"
+  id: leak_detected_critical_alert
+  description: >
+    Sends a critical push notification (overrides silent/DND) to Louis and
+    Lindsay whenever any leak sensor reports water. Names the exact location.
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.kitchen_sink_leak_detector
+        - binary_sensor.laundry_room_leak_sensor
+        - binary_sensor.master_bathroom_left_sink_leak_detector
+        - binary_sensor.master_bathroom_right_sink_leak_detector
+        - binary_sensor.powder_room_leak_sensor
+        - binary_sensor.office_sink_leak_detector
+        - binary_sensor.bedroom_3_sink_leak_detector
+        - binary_sensor.second_floor_hall_bathroom_left_sink
+        - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+        - binary_sensor.butlers_kitchen_sink
+      to: "on"
+  conditions: []
+  actions:
+    - variables:
+        room_name: >-
+          {% set names = {
+            'binary_sensor.kitchen_sink_leak_detector':                        'Kitchen Sink',
+            'binary_sensor.laundry_room_leak_sensor':                          'Laundry Room',
+            'binary_sensor.master_bathroom_left_sink_leak_detector':           'Master Bath — Left Sink',
+            'binary_sensor.master_bathroom_right_sink_leak_detector':          'Master Bath — Right Sink',
+            'binary_sensor.powder_room_leak_sensor':                           'Powder Room',
+            'binary_sensor.office_sink_leak_detector':                         'Office Sink',
+            'binary_sensor.bedroom_3_sink_leak_detector':                      'Bedroom 3 Sink',
+            'binary_sensor.second_floor_hall_bathroom_left_sink':              '2nd Floor Hall Bath — Left Sink',
+            'binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector': '2nd Floor Hall Bath — Right Sink',
+            'binary_sensor.butlers_kitchen_sink':                              "Butler's Kitchen Sink"
+          } %}
+          {{ names[trigger.entity_id] | default(trigger.entity_id) }}
+
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "💧 Leak Detected"
+        message: "{{ room_name }} is reporting water. Check immediately."
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: "leak_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+
+    - alias: "Notify Lindsay"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "💧 Leak Detected"
+        message: "{{ room_name }} is reporting water. Check immediately."
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+          tag: "leak_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+
+    - alias: "Persistent HA notification"
+      action: persistent_notification.create
+      data:
+        title: "💧 Leak Detected"
+        message: "{{ room_name }} reported water at {{ now().strftime('%I:%M %p') }}."
+        notification_id: "leak_{{ trigger.entity_id }}"
+
+  mode: parallel
+  max: 7
+
+
+# 2. Leak Cleared — All Clear Notification
+- alias: "Leak Cleared — All Clear Notification"
+  id: leak_cleared_all_clear
+  description: >
+    Sends a follow-up notification when a leak sensor returns to dry.
+    Dismisses the persistent HA notification.
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.kitchen_sink_leak_detector
+        - binary_sensor.laundry_room_leak_sensor
+        - binary_sensor.master_bathroom_left_sink_leak_detector
+        - binary_sensor.master_bathroom_right_sink_leak_detector
+        - binary_sensor.powder_room_leak_sensor
+        - binary_sensor.office_sink_leak_detector
+        - binary_sensor.bedroom_3_sink_leak_detector
+        - binary_sensor.second_floor_hall_bathroom_left_sink
+        - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+        - binary_sensor.butlers_kitchen_sink
+      to: "off"
+      from: "on"
+  conditions: []
+  actions:
+    - variables:
+        room_name: >-
+          {% set names = {
+            'binary_sensor.kitchen_sink_leak_detector':                        'Kitchen Sink',
+            'binary_sensor.laundry_room_leak_sensor':                          'Laundry Room',
+            'binary_sensor.master_bathroom_left_sink_leak_detector':           'Master Bath — Left Sink',
+            'binary_sensor.master_bathroom_right_sink_leak_detector':          'Master Bath — Right Sink',
+            'binary_sensor.powder_room_leak_sensor':                           'Powder Room',
+            'binary_sensor.office_sink_leak_detector':                         'Office Sink',
+            'binary_sensor.bedroom_3_sink_leak_detector':                      'Bedroom 3 Sink',
+            'binary_sensor.second_floor_hall_bathroom_left_sink':              '2nd Floor Hall Bath — Left Sink',
+            'binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector': '2nd Floor Hall Bath — Right Sink',
+            'binary_sensor.butlers_kitchen_sink':                              "Butler's Kitchen Sink"
+          } %}
+          {{ names[trigger.entity_id] | default(trigger.entity_id) }}
+
+    - alias: "Notify Louis — cleared"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ Leak Cleared"
+        message: "{{ room_name }} is now dry."
+        data:
+          tag: "leak_{{ trigger.entity_id }}"
+
+    - alias: "Notify Lindsay — cleared"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "✅ Leak Cleared"
+        message: "{{ room_name }} is now dry."
+        data:
+          tag: "leak_{{ trigger.entity_id }}"
+
+    - alias: "Dismiss HA notification"
+      action: persistent_notification.dismiss
+      data:
+        notification_id: "leak_{{ trigger.entity_id }}"
+
+  mode: parallel
+  max: 7
+
+
+##############################################################################
+# 2. GARAGE DOORS
+##############################################################################
+
+
+# 3. Open left garage when Louis arrives home
+- alias: "Left Garage — Open on Louis Arrival"
+  id: left_garage_open_louis_arrival
+  description: >
+    Opens the left garage door when Louis arrives home.
+    Only fires if the door is already closed, it's between 6am and 11pm, and
+    Louis was genuinely away (not_home for 2+ min — prevents HA restart bounce).
+  triggers:
+    - trigger: state
+      entity_id: person.louis_alexander
+      from: "not_home"
+      to: "home"
+  conditions:
+    - condition: state
+      entity_id: cover.left_garage_door_opener_garage_door
+      state: "closed"
+    - condition: time
+      after: "06:00:00"
+      before: "23:00:00"
+    - condition: template
+      value_template: >
+        {{ (as_timestamp(now()) - as_timestamp(trigger.from_state.last_changed)) > 120 }}
+  actions:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.left_garage_door_opener_garage_door
+  mode: single
+
+
+# 4. Close all garage doors at sunset
+- alias: "Garage Doors — Close at Sunset"
+  id: garage_close_at_sunset
+  description: >
+    Closes both garage doors at sunset. Only acts if at least one is open.
+  triggers:
+    - trigger: sun
+      event: sunset
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: cover.left_garage_door_opener_garage_door
+          state: "open"
+        - condition: state
+          entity_id: cover.right_garage_door_opener_garage_door
+          state: "open"
+  actions:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.left_garage_door_opener_garage_door
+          - cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+# 5. Close both garage doors when last person leaves
+- alias: "Garage Doors — Close When House Empty"
+  id: garage_close_on_louis_departure
+  description: >
+    Closes both garage doors when the last person leaves home (zone.home drops
+    to 0). Waits 1 minute to avoid closing on GPS blips.
+  triggers:
+    - trigger: state
+      entity_id: zone.home
+      to: "0"
+      for:
+        minutes: 1
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: cover.left_garage_door_opener_garage_door
+          state: "open"
+        - condition: state
+          entity_id: cover.right_garage_door_opener_garage_door
+          state: "open"
+  actions:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.left_garage_door_opener_garage_door
+          - cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+# 6. Backup — close garage doors at 11pm if still open
+- alias: "Garage Doors — Backup Close at 11pm"
+  id: garage_close_11pm_backup
+  description: >
+    Failsafe that closes both garage doors at 11pm if either is still open.
+  triggers:
+    - trigger: time
+      at: "23:00:00"
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: cover.left_garage_door_opener_garage_door
+          state: "open"
+        - condition: state
+          entity_id: cover.right_garage_door_opener_garage_door
+          state: "open"
+  actions:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.left_garage_door_opener_garage_door
+          - cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+# 7. Notify when a garage door opens while both away
+- alias: "Garage — Opened While Nobody Home"
+  id: garage_opened_while_away
+  description: >
+    Sends a critical notification to Louis and Lindsay when either garage door
+    opens and both people are away from home.
+  triggers:
+    - trigger: state
+      entity_id:
+        - cover.left_garage_door_opener_garage_door
+        - cover.right_garage_door_opener_garage_door
+      to: "open"
+  conditions:
+    - condition: numeric_state
+      entity_id: zone.home
+      below: 1
+  actions:
+    - variables:
+        door_name: >-
+          {% if trigger.entity_id == 'cover.left_garage_door_opener_garage_door' %}
+            Left Garage Door
+          {% else %}
+            Right Garage Door
+          {% endif %}
+
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "🚨 Garage Opened — Nobody Home"
+        message: "{{ door_name }} was opened while you're both away."
+        data:
+          tag: "garage_away_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+
+    - alias: "Notify Lindsay"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "🚨 Garage Opened — Nobody Home"
+        message: "{{ door_name }} was opened while you're both away."
+        data:
+          tag: "garage_away_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
+
+  mode: parallel
+  max: 2
+
+
+# 8. Notify when a garage door closes while both away
+- alias: "Garage — Closed While Nobody Home"
+  id: garage_closed_while_away
+  description: >
+    Sends a notification to Louis and Lindsay when either garage door closes
+    while both are away from home.
+  triggers:
+    - trigger: state
+      entity_id:
+        - cover.left_garage_door_opener_garage_door
+        - cover.right_garage_door_opener_garage_door
+      to: "closed"
+      from: "open"
+  conditions:
+    - condition: numeric_state
+      entity_id: zone.home
+      below: 1
+  actions:
+    - variables:
+        door_name: >-
+          {% if trigger.entity_id == 'cover.left_garage_door_opener_garage_door' %}
+            Left Garage Door
+          {% else %}
+            Right Garage Door
+          {% endif %}
+
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ Garage Closed — Nobody Home"
+        message: "{{ door_name }} was closed while you're both away."
+        data:
+          tag: "garage_away_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+
+    - alias: "Notify Lindsay"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "✅ Garage Closed — Nobody Home"
+        message: "{{ door_name }} was closed while you're both away."
+        data:
+          tag: "garage_away_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+
+  mode: parallel
+  max: 2
+
+
+##############################################################################
+# 3. SALT LAMP
+##############################################################################
+
+
+# 9. Salt Lamp — On at Sunset
+- alias: "Salt Lamp — On at Sunset"
+  id: salt_lamp_on_at_sunset
+  description: Turns the office salt lamp on at sunset.
+  triggers:
+    - trigger: sun
+      event: sunset
+  conditions: []
+  actions:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.office_plug_1
+  mode: single
+
+
+# 10. Salt Lamp — Off at Midnight
+- alias: "Salt Lamp — Off at Midnight"
+  id: salt_lamp_off_at_midnight
+  description: Turns the office salt lamp off at midnight.
+  triggers:
+    - trigger: time
+      at: "00:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_off
+      target:
+        entity_id: switch.office_plug_1
+  mode: single
+
+
+##############################################################################
+# 4. AIR QUALITY — MASTER BEDROOM
+#
+# CO₂  — alert > 1000 ppm / clear < 800 ppm
+# VOCs — alert > 1000 ppb / clear < 800 ppb
+# 5-min "for" clause on alerts prevents false positives from momentary spikes.
+##############################################################################
+
+
+# 11. Bedroom CO₂ High — Alert
+- alias: "Air Quality — CO₂ High Alert"
+  id: air_quality_co2_high_alert
+  description: >
+    Notifies Louis and Lindsay when bedroom CO₂ has been above 1000 ppm
+    for 5 consecutive minutes.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_carbon_dioxide
+      above: 1000
+      for: "00:05:00"
+  conditions: []
+  actions:
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "😮‍💨 CO₂ High — Bedroom"
+        message: >-
+          CO₂ is {{ states('sensor.bedroom_carbon_dioxide') | int }} ppm.
+          Crack a window or open the bedroom door.
+        data:
+          tag: "air_quality_co2"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Notify Lindsay"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "😮‍💨 CO₂ High — Bedroom"
+        message: >-
+          CO₂ is {{ states('sensor.bedroom_carbon_dioxide') | int }} ppm.
+          Crack a window or open the bedroom door.
+        data:
+          tag: "air_quality_co2"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Persistent HA notification"
+      action: persistent_notification.create
+      data:
+        title: "😮‍💨 CO₂ High — Bedroom"
+        message: >-
+          CO₂ is {{ states('sensor.bedroom_carbon_dioxide') | int }} ppm
+          (threshold: 1000 ppm). Crack a window or open the door.
+        notification_id: "air_quality_co2"
+
+  mode: single
+
+
+# 12. Bedroom CO₂ Cleared
+- alias: "Air Quality — CO₂ Cleared"
+  id: air_quality_co2_cleared
+  description: >
+    Sends an all-clear when bedroom CO₂ drops back below 800 ppm.
+    Uses the same notification tag to replace the alert on both phones.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_carbon_dioxide
+      below: 800
+  conditions: []
+  actions:
+    - alias: "Notify Louis — cleared"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ CO₂ Normal — Bedroom"
+        message: "CO₂ is back to {{ states('sensor.bedroom_carbon_dioxide') | int }} ppm."
+        data:
+          tag: "air_quality_co2"
+
+    - alias: "Notify Lindsay — cleared"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "✅ CO₂ Normal — Bedroom"
+        message: "CO₂ is back to {{ states('sensor.bedroom_carbon_dioxide') | int }} ppm."
+        data:
+          tag: "air_quality_co2"
+
+    - alias: "Dismiss HA notification"
+      action: persistent_notification.dismiss
+      data:
+        notification_id: "air_quality_co2"
+
+  mode: single
+
+
+# 13. Bedroom VOCs High — Alert
+- alias: "Air Quality — VOCs High Alert"
+  id: air_quality_voc_high_alert
+  description: >
+    Notifies Louis and Lindsay when bedroom VOCs have been above 1000 ppb
+    for 5 consecutive minutes.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_volatile_organic_compounds
+      above: 1000
+      for: "00:05:00"
+  conditions: []
+  actions:
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "⚠️ VOCs High — Bedroom"
+        message: >-
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb.
+          Ventilate the room — possible cleaning products or off-gassing.
+        data:
+          tag: "air_quality_voc"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Notify Lindsay"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "⚠️ VOCs High — Bedroom"
+        message: >-
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb.
+          Ventilate the room — possible cleaning products or off-gassing.
+        data:
+          tag: "air_quality_voc"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Persistent HA notification"
+      action: persistent_notification.create
+      data:
+        title: "⚠️ VOCs High — Bedroom"
+        message: >-
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb
+          (threshold: 1000 ppb). Ventilate the room.
+        notification_id: "air_quality_voc"
+
+  mode: single
+
+
+# 14. Bedroom VOCs Cleared
+- alias: "Air Quality — VOCs Cleared"
+  id: air_quality_voc_cleared
+  description: >
+    Sends an all-clear when bedroom VOCs drop back below 800 ppb.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_volatile_organic_compounds
+      below: 800
+  conditions: []
+  actions:
+    - alias: "Notify Louis — cleared"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ VOCs Normal — Bedroom"
+        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb."
+        data:
+          tag: "air_quality_voc"
+
+    - alias: "Notify Lindsay — cleared"
+      action: notify.mobile_app_lindsays_iphone
+      data:
+        title: "✅ VOCs Normal — Bedroom"
+        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb."
+        data:
+          tag: "air_quality_voc"
+
+    - alias: "Dismiss HA notification"
+      action: persistent_notification.dismiss
+      data:
+        notification_id: "air_quality_voc"
+
+  mode: single
+
+
+##############################################################################
+# 5. AIR QUALITY — LOUIS' OFFICE
+##############################################################################
+
+
+# 15. Office CO₂ High — Alert
+- alias: "Air Quality — Office CO₂ High Alert"
+  id: air_quality_office_co2_high_alert
+  description: >
+    Notifies Louis when office CO₂ has been above 1000 ppm for 5 minutes.
+    High CO₂ impairs focus and cognitive performance.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.office_carbon_dioxide
+      above: 1000
+      for: "00:05:00"
+  conditions: []
+  actions:
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "😮‍💨 CO₂ High — Office"
+        message: >-
+          Office CO₂ is {{ states('sensor.office_carbon_dioxide') | int }} ppm.
+          Open a window or door to ventilate.
+        data:
+          tag: "air_quality_office_co2"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Persistent HA notification"
+      action: persistent_notification.create
+      data:
+        title: "😮‍💨 CO₂ High — Office"
+        message: >-
+          Office CO₂ is {{ states('sensor.office_carbon_dioxide') | int }} ppm
+          (threshold: 1000 ppm). Open a window or door.
+        notification_id: "air_quality_office_co2"
+
+  mode: single
+
+
+# 16. Office CO₂ Cleared
+- alias: "Air Quality — Office CO₂ Cleared"
+  id: air_quality_office_co2_cleared
+  description: >
+    Sends an all-clear when office CO₂ drops back below 800 ppm.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.office_carbon_dioxide
+      below: 800
+  conditions: []
+  actions:
+    - alias: "Notify Louis — cleared"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ CO₂ Normal — Office"
+        message: "Office CO₂ is back to {{ states('sensor.office_carbon_dioxide') | int }} ppm."
+        data:
+          tag: "air_quality_office_co2"
+
+    - alias: "Dismiss HA notification"
+      action: persistent_notification.dismiss
+      data:
+        notification_id: "air_quality_office_co2"
+
+  mode: single
+
+
+# 17. Office VOCs High — Alert
+- alias: "Air Quality — Office VOCs High Alert"
+  id: air_quality_office_voc_high_alert
+  description: >
+    Notifies Louis when office VOCs have been above 1000 ppb for 5 minutes.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.office_volatile_organic_compounds
+      above: 1000
+      for: "00:05:00"
+  conditions: []
+  actions:
+    - alias: "Notify Louis"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "⚠️ VOCs High — Office"
+        message: >-
+          Office VOCs are {{ states('sensor.office_volatile_organic_compounds') | int }} ppb.
+          Ventilate — possible cleaning products or off-gassing.
+        data:
+          tag: "air_quality_office_voc"
+          url: !secret nabu_casa_climate_url
+
+    - alias: "Persistent HA notification"
+      action: persistent_notification.create
+      data:
+        title: "⚠️ VOCs High — Office"
+        message: >-
+          Office VOCs are {{ states('sensor.office_volatile_organic_compounds') | int }} ppb
+          (threshold: 1000 ppb). Ventilate the room.
+        notification_id: "air_quality_office_voc"
+
+  mode: single
+
+
+# 18. Office VOCs Cleared
+- alias: "Air Quality — Office VOCs Cleared"
+  id: air_quality_office_voc_cleared
+  description: >
+    Sends an all-clear when office VOCs drop back below 800 ppb.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.office_volatile_organic_compounds
+      below: 800
+  conditions: []
+  actions:
+    - alias: "Notify Louis — cleared"
+      action: notify.mobile_app_louis_iphone
+      data:
+        title: "✅ VOCs Normal — Office"
+        message: "Office VOCs are back to {{ states('sensor.office_volatile_organic_compounds') | int }} ppb."
+        data:
+          tag: "air_quality_office_voc"
+
+    - alias: "Dismiss HA notification"
+      action: persistent_notification.dismiss
+      data:
+        notification_id: "air_quality_office_voc"
+
+  mode: single
+
+
+##############################################################################
+# 6. BATTERY ALERTS
+##############################################################################
+
+
+# 19. Daily Low Battery Check
+- alias: "Battery — Daily Low Battery Check"
+  id: battery_daily_low_check
+  description: >
+    Checks all battery sensors at 9am and notifies Louis if any are below 20%.
+    Dynamically catches every battery-class sensor — no manual list to maintain.
+  triggers:
+    - trigger: time
+      at: "09:00:00"
+  conditions: []
+  actions:
+    - variables:
+        low_batteries: >-
+          {% set threshold = 20 %}
+          {% set ns = namespace(sensors=[]) %}
+          {% for state in states.sensor
+             if state.attributes.device_class == 'battery'
+             and state.state | float(-1) >= 0
+             and state.state | float > -1
+             and state.state not in ['unavailable', 'unknown']
+             and state.state | float < threshold %}
+            {% set ns.sensors = ns.sensors + [state.name ~ ' (' ~ state.state | int ~ '%)'] %}
+          {% endfor %}
+          {{ ns.sensors | join('\n• ') }}
+
+    - condition: template
+      value_template: "{{ low_batteries | length > 0 }}"
+
+    - action: notify.mobile_app_louis_iphone
+      data:
+        title: "🔋 Low Battery Alert"
+        message: "The following sensors need new batteries:\n• {{ low_batteries }}"
+        data:
+          tag: "battery_alert"
+          url: !secret nabu_casa_security_url
+
+  mode: single
+
+
+##############################################################################
+# 7. THERMOSTAT PRESENCE
+##############################################################################
+
+
+# 20. Set Away when last person leaves (only when outside temp < 85°F)
+- alias: "Thermostat — Away When House Empty"
+  id: thermostat_away_when_empty
+  description: >
+    Sets both ecobees to Away preset when zone.home drops to 0 (everyone gone),
+    but only if the outside temperature is below 85°F.
+  triggers:
+    - trigger: state
+      entity_id: zone.home
+      to: "0"
+      for:
+        minutes: 2
+  conditions:
+    - condition: numeric_state
+      entity_id: weather.forecast_home
+      attribute: temperature
+      below: 85
+  actions:
+    - action: climate.set_preset_mode
+      target:
+        entity_id:
+          - climate.bedroom
+          - climate.office
+      data:
+        preset_mode: "away"
+  mode: single
+
+
+# 21. Return to Home when outside temp exceeds 85°F while everyone is away
+- alias: "Thermostat — Home When Too Hot Outside While Away"
+  id: thermostat_home_when_hot_outside
+  description: >
+    If the outside temperature rises above 85°F while the house is empty and
+    the thermostats are in Away mode, switch back to Home preset.
+  triggers:
+    - trigger: numeric_state
+      entity_id: weather.forecast_home
+      attribute: temperature
+      above: 85
+  conditions:
+    - condition: state
+      entity_id: zone.home
+      state: "0"
+    - condition: state
+      entity_id: climate.bedroom
+      attribute: preset_mode
+      state: "away"
+  actions:
+    - action: climate.set_preset_mode
+      target:
+        entity_id:
+          - climate.bedroom
+          - climate.office
+      data:
+        preset_mode: "home"
+  mode: single
+
+
+# 22. Return to Home when someone arrives
+- alias: "Thermostat — Home When Someone Arrives"
+  id: thermostat_home_on_arrival
+  description: >
+    Sets both ecobees back to Home preset when zone.home rises from 0 (first
+    person back). Only fires if a thermostat is currently in Away mode.
+  triggers:
+    - trigger: state
+      entity_id: zone.home
+      from: "0"
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: climate.bedroom
+          attribute: preset_mode
+          state: "away"
+        - condition: state
+          entity_id: climate.office
+          attribute: preset_mode
+          state: "away"
+  actions:
+    - action: climate.set_preset_mode
+      target:
+        entity_id:
+          - climate.bedroom
+          - climate.office
+      data:
+        preset_mode: "home"
+  mode: single
+
+
+##############################################################################
+# 8. GARAGE OPEN TOO LONG
+##############################################################################
+
+
+# 22. Garage Door Open Too Long Reminder
+- alias: "Garage — Open Too Long Reminder"
+  id: garage_open_too_long
+  description: >
+    Sends a notification if either garage door has been open for 30 consecutive
+    minutes between 6am and 11pm. Includes a "Close It" action button.
+  triggers:
+    - trigger: state
+      entity_id: cover.left_garage_door_opener_garage_door
+      to: "open"
+      for: "00:30:00"
+    - trigger: state
+      entity_id: cover.right_garage_door_opener_garage_door
+      to: "open"
+      for: "00:30:00"
+  conditions:
+    - condition: time
+      after: "06:00:00"
+      before: "23:00:00"
+  actions:
+    - variables:
+        door_name: >-
+          {% if trigger.entity_id == 'cover.left_garage_door_opener_garage_door' %}
+            Left Garage
+          {% else %}
+            Right Garage
+          {% endif %}
+
+    - action: notify.mobile_app_louis_iphone
+      data:
+        title: "🚗 Garage Door Open"
+        message: "{{ door_name }} has been open for 30 minutes."
+        data:
+          tag: "garage_open_{{ trigger.entity_id }}"
+          url: !secret nabu_casa_security_url
+          actions:
+            - action: "CLOSE_GARAGE"
+              title: "Close It"
+
+  mode: parallel
+  max: 2
+
+
+# 23. Handle "Close It" tap on the notification
+- alias: "Garage — Close from Notification"
+  id: garage_close_from_notification
+  description: Closes both garage doors when Louis taps "Close It" on the open-too-long alert.
+  triggers:
+    - trigger: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: "CLOSE_GARAGE"
+  conditions: []
+  actions:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.left_garage_door_opener_garage_door
+          - cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+##############################################################################
+# Section: TOU Peak Mode
+##############################################################################
+
+# Toggle peak_mode on when TOU period becomes peak
+- alias: "TOU — Enable Peak Mode"
+  id: tou_enable_peak_mode
+  description: Turns on input_boolean.peak_mode when the TOU period enters peak.
+  triggers:
+    - trigger: state
+      entity_id: sensor.tou_period
+      to: "peak"
+  actions:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.peak_mode
+  mode: single
+
+# Toggle peak_mode off when TOU period leaves peak
+- alias: "TOU — Disable Peak Mode"
+  id: tou_disable_peak_mode
+  description: Turns off input_boolean.peak_mode when the TOU period leaves peak.
+  triggers:
+    - trigger: state
+      entity_id: sensor.tou_period
+      not_to: "peak"
+  actions:
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.peak_mode
+  mode: single
+
+##############################################################################
+

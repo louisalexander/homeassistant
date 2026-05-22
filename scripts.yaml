@@ -1,0 +1,33 @@
+##############################################################################
+# scripts.yaml
+#
+# Add to configuration.yaml:
+#   script: !include scripts.yaml
+#
+# After adding, restart HA, then expose scripts to Alexa via:
+#   Settings → Voice Assistants → Amazon Alexa → expose the script
+##############################################################################
+
+
+# "Alexa, turn on close the garage"
+close_the_garage:
+  alias: "Close the Garage"
+  description: Closes both garage doors if either is open.
+  sequence:
+    - action: cover.close_cover
+      target:
+        entity_id:
+          - cover.left_garage_door_opener_garage_door
+          - cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+# "Alexa, turn on open the garage"
+open_the_garage:
+  alias: "Open the Garage"
+  description: Opens the left garage door.
+  sequence:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.left_garage_door_opener_garage_door
+  mode: single
