@@ -1,0 +1,8 @@
+# HA config files — contain Nabu Casa URL and other sensitive data
+*.yaml
+*.txt
+
+# macOS
+.DS_Store
+
+# Only publish: PLAN.md, CLAUDE.md, projects/*.md, and markdown guides
