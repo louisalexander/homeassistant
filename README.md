@@ -1,6 +1,6 @@
 # Home Assistant Configuration
 
-Personal Home Assistant OS configuration for a 3-floor house in Glen Allen, VA. Runs on HAOS at `192.168.4.93`, remotely accessible via Nabu Casa.
+Personal Home Assistant OS configuration for a 3-floor house. Address and location details are stored in `secrets.yaml` (gitignored). Runs on HAOS at `192.168.4.93`, remotely accessible via Nabu Casa.
 
 ## What's in this repo
 
