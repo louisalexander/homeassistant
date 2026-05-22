@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|---|
 | Ring Video Doorbell Powered 2K | 1 | Outdoor | Color | Hardwired | Ring | Not installed |
 | Ring Outdoor Cam + Solar Panel | 2 | Outdoor | Color | Solar | Ring | Not mounted |
-| Ring Indoor Cam (plug-in) | 1 | Indoor | IR (B&W) | Plug-in | Ring | Garage — active |
+| Ring Indoor Cam (plug-in) | 2 | Indoor | IR (B&W) | Plug-in | Ring | Cam 1: Garage — active; Cam 2: unplaced |
 | Wyze Cam v2 | 2+ | Indoor only | IR (B&W) | Plug-in | Local (post-Thingino) | Not flashed |
 | Wyze Cam v3 | 1+ | Indoor/Outdoor (IP65) | Color Starlight | Plug-in | Local (post-Thingino) | Not flashed |
 
@@ -39,7 +39,8 @@
 | Ring Doorbell Powered 2K | Front door | Primary entrance; hardwired; covers front porch and approach |
 | Ring Outdoor Solar Cam 1 | Driveway / front yard — secondary angle | Different FOV from doorbell; captures vehicles; needs south/east/west downspout with 4+ hrs sun |
 | Ring Outdoor Solar Cam 2 | Rear of house — back door / yard | Covers rear entry point; confirm sun exposure before mounting |
-| Ring Indoor Cam | Garage interior | **Keep as-is** — covers most-used entry point; ESPHome controls doors but no visual without this |
+| Ring Indoor Cam (cam 1) | Garage interior | **Keep as-is** — covers most-used entry point; ESPHome controls doors but no visual without this |
+| Ring Indoor Cam (cam 2) | Personnel door — house side | Covers the chokepoint between garage and house interior; captures faces at entry; complements garage cam which covers the space. Mount on house side of door aimed at anyone walking through. **Confirm outlet exists near door before mounting.** |
 
 ### Wyze — Interior Layer
 

@@ -4,7 +4,8 @@
 
 | Device | Qty | Status |
 |---|---|---|
-| Ring Indoor Cam (plug-in, like garage unit) | 1 | Not placed |
+| Ring Indoor Cam (plug-in) — cam 1 | 1 | Garage interior — active |
+| Ring Indoor Cam (plug-in) — cam 2 | 1 | Not placed — personnel door (house side) |
 | Ring Outdoor Cam + Solar Panel (w/ pole + wall mount) | 2 | Not mounted |
 | Ring Video Doorbell Powered 2K | 1 | Not installed |
 | Ring Doorbell Transformer (upgrade) | 1 | In hand — not yet installed |
@@ -50,12 +51,14 @@ The Powered 2K requires a hardwired connection with sufficient transformer capac
 
 ---
 
-## Indoor Camera — Placement
+## Indoor Cameras — Placement
 
-One plug-in indoor cam (same form factor as the garage unit). Likely candidates:
-- [ ] Mudroom / entry area (monitors who comes in)
-- [ ] 1st floor living area (general interior coverage)
-- [ ] Basement / utility space (if applicable)
+Two plug-in indoor cams (same form factor).
+
+**Cam 1 — Garage interior:** Already active. Covers garage space and garage door mechanism. Keep as-is.
+
+**Cam 2 — Personnel door (house side):** Covers the chokepoint between the garage and the house interior. Captures faces at the most-used entry point. Mounted on the house side of the door, aimed at anyone walking through.
+- [ ] Confirm power outlet exists on house side of personnel door before mounting
 
 ---
 
