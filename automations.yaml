@@ -23,9 +23,9 @@
 
 # 1. Leak Detected — Critical Alert
 - alias: "Leak Detected — Critical Alert"
-  id: leak_detected_critical_alert
+  id: leak_detected_critical_alert  # ID kept for HA history continuity
   description: >
-    Sends a critical push notification (overrides silent/DND) to Louis and
+    Sends a push notification to Louis and
     Lindsay whenever any leak sensor reports water. Names the exact location.
   triggers:
     - trigger: state
@@ -65,11 +65,6 @@
         title: "💧 Leak Detected"
         message: "{{ room_name }} is reporting water. Check immediately."
         data:
-          push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
           tag: "leak_{{ trigger.entity_id }}"
           url: !secret nabu_casa_security_url
 
@@ -79,11 +74,6 @@
         title: "💧 Leak Detected"
         message: "{{ room_name }} is reporting water. Check immediately."
         data:
-          push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
           tag: "leak_{{ trigger.entity_id }}"
           url: !secret nabu_casa_security_url
 
@@ -282,7 +272,7 @@
 - alias: "Garage — Opened While Nobody Home"
   id: garage_opened_while_away
   description: >
-    Sends a critical notification to Louis and Lindsay when either garage door
+    Sends a notification to Louis and Lindsay when either garage door
     opens and both people are away from home.
   triggers:
     - trigger: state
@@ -311,11 +301,6 @@
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
           url: !secret nabu_casa_security_url
-          push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -325,11 +310,6 @@
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
           url: !secret nabu_casa_security_url
-          push:
-            sound:
-              name: default
-              critical: 1
-              volume: 1.0
 
   mode: parallel
   max: 2
