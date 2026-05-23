@@ -8,7 +8,7 @@
 | Cam 2 | Wyze Cam v2 | White | jxf23 | `camera.wyze_2` | Flashed, in HA, on Security tab |
 | Cam 3 | Wyze Cam v2 | White | jxf23 | `camera.wyze_cam_v2_3` | Flashed, in HA, on Security tab |
 | Cam 4 (black) | Wyze Cam v2 | Black (WYZEC2BK) | Unknown | — | **Bricked** — mtd0 corrupt, no LED; needs UART or USB bootrom recovery |
-| Wyze v3 | Wyze Cam v3 | — | — | — | Not yet flashed — next up |
+| Wyze v3 | Wyze Cam v3 | — | gc2053 | `camera.wyze_cam_v3_1` | Flashed (wltechblog installer), in HA |
 
 ---
 
