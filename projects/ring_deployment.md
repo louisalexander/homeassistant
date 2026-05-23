@@ -4,8 +4,8 @@
 
 | Device | Qty | Status |
 |---|---|---|
-| Ring Indoor Cam (plug-in) — cam 1 | 1 | Garage interior — active |
-| Ring Indoor Cam (plug-in) — cam 2 | 1 | Not placed — personnel door (house side) |
+| Ring Indoor Cam (plug-in) — cam 1 | 1 | Garage interior — active (`camera.garage_stickup_cam_1_live_view`) |
+| Ring Indoor Cam (plug-in) — cam 2 | 1 | Personnel door (garage side) — active (`camera.personnel_door_live_view`) |
 | Ring Outdoor Cam + Solar Panel (w/ pole + wall mount) | 2 | Not mounted |
 | Ring Video Doorbell Powered 2K | 1 | Not installed |
 | Ring Doorbell Transformer (upgrade) | 1 | In hand — not yet installed |
