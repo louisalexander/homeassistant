@@ -128,6 +128,6 @@ RTSP URL format: `rtsp://[camera-ip]:554/ch0`
 
 ---
 
-*Last updated: 2026-05-21*
-*Status: Planning — Ring indoor active in garage; all others unplaced/unflashed*
+*Last updated: 2026-05-23*
+*Status: In progress — both Ring indoor cams active; all Wyze flashed + in HA; Ring outdoor cams + Wyze physical placement remain*
 *See also: `projects/ring_deployment.md`, `projects/wyze_cameras.md`*
