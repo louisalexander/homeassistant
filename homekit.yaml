@@ -68,6 +68,8 @@
       name: 2F Hall Bath Left Sink
     binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector:
       name: 2F Hall Bath Right Sink
+    binary_sensor.3rd_floor_furnace_leak_detector:
+      name: 3rd Floor Furnace
 
     # Smart plugs
     switch.front_room_plug_1:
