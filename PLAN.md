@@ -179,12 +179,12 @@ No dependencies (order/install any time):
 - [ ] Verify all new devices appear in HA Ring integration
 
 ### Wyze Cameras
-- [ ] Count exact unit inventory (how many v2, how many v3)
-- [ ] Flash all units with Thingino firmware (micro-SD method)
-- [ ] Enable RTSP on each camera
-- [ ] Add to HA as Generic Camera integration
-- [ ] Add camera cards to HA dashboard
-- [ ] Place v3 units outdoors (IP65), v2 units indoors
+- [x] Count exact unit inventory — 3× v2, 1× v3
+- [x] Flash all units with Thingino firmware (wltechblog installer, micro-SD)
+- [x] Enable RTSP on each camera (Thingino built-in)
+- [x] Add to HA as Generic Camera integration
+- [x] Add camera cards to HA dashboard (Security tab, picture-entity)
+- [ ] Place cameras at assigned locations (v3 → back door/mudroom; v2 → utility/laundry)
 
 ---
 
