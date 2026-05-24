@@ -175,7 +175,7 @@ No dependencies (order/install any time):
 - [ ] Install Ring Doorbell Powered 2K + transformer (both in hand)
 - [ ] Distribute 4× Ring Chime V3s (1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office)
 - [ ] Mount 2× outdoor solar cameras — confirm downspout sun exposure first
-- [ ] Place indoor cam
+- [x] Place indoor cam — Cam 2 at personnel door (house side), active in HA
 - [ ] Verify all new devices appear in HA Ring integration
 
 ### Wyze Cameras
