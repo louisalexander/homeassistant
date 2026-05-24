@@ -32,6 +32,7 @@
       - binary_sensor.powder_room_leak_sensor
       - binary_sensor.second_floor_hall_bathroom_left_sink
       - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
+      - binary_sensor.3rd_floor_furnace_leak_detector
 
       # ── Smart plugs (ZHA outlet switches only) ─────────────────────────────
       - switch.front_room_plug_1
