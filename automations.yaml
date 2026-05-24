@@ -40,6 +40,7 @@
         - binary_sensor.second_floor_hall_bathroom_left_sink
         - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
         - binary_sensor.butlers_kitchen_sink
+        - binary_sensor.3rd_floor_furnace_leak_detector
       to: "on"
   conditions: []
   actions:
