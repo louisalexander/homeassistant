@@ -80,7 +80,7 @@ No dependencies (order/install any time):
 - [ ] **Install Ring Doorbell Powered 2K + transformer** — both in hand; replace existing transformer, install doorbell
 - [ ] **Distribute 4× Ring Chime V3** — 1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office
 - [ ] **Mount 2× Ring outdoor cameras** — downspout brackets in hand; confirm sun exposure + coverage zone first
-- [ ] **Install Ring indoor cam** — decide placement, plug in
+- [x] **Install Ring indoor cam** — Cam 1: garage; Cam 2: personnel door (house side) — both active in HA
 - [x] **Flash Wyze cameras** — 3× v2 + 1× v3 flashed (Thingino), all in HA + Security dashboard
 - [ ] **Install Inovelli outdoor switches** — when batch arrives; 5 single-pole first, then 2 three-way locations
 - [ ] **Install Konnected Alarm Panel Pro** — wire 4 zones + siren; configure Alarmo; Sonos TTS announcements
