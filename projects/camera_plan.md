@@ -6,9 +6,9 @@
 |---|---|---|---|---|---|---|
 | Ring Video Doorbell Powered 2K | 1 | Outdoor | Color | Hardwired | Ring | Not installed |
 | Ring Outdoor Cam + Solar Panel | 2 | Outdoor | Color | Solar | Ring | Not mounted |
-| Ring Indoor Cam (plug-in) | 2 | Indoor | IR (B&W) | Plug-in | Ring | Cam 1: Garage — active; Cam 2: unplaced |
-| Wyze Cam v2 | 2+ | Indoor only | IR (B&W) | Plug-in | Local (post-Thingino) | Not flashed |
-| Wyze Cam v3 | 1+ | Indoor/Outdoor (IP65) | Color Starlight | Plug-in | Local (post-Thingino) | Not flashed |
+| Ring Indoor Cam (plug-in) | 2 | Indoor | IR (B&W) | Plug-in | Ring | Cam 1: Garage — active; Cam 2: Personnel door — active |
+| Wyze Cam v2 | 3 | Indoor only | IR (B&W) | Plug-in | Local (Thingino) | Flashed, in HA — not yet placed |
+| Wyze Cam v3 | 1 | Indoor/Outdoor (IP65) | Color Starlight | Plug-in | Local (Thingino) | Flashed, in HA — not yet placed |
 
 > **Exact Wyze count TBD** — count v2 vs v3 units before finalizing indoor placement assignments.
 
