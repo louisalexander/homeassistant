@@ -56,7 +56,8 @@
             'binary_sensor.bedroom_3_sink_leak_detector':                      'Bedroom 3 Sink',
             'binary_sensor.second_floor_hall_bathroom_left_sink':              '2nd Floor Hall Bath — Left Sink',
             'binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector': '2nd Floor Hall Bath — Right Sink',
-            'binary_sensor.butlers_kitchen_sink':                              "Butler's Kitchen Sink"
+            'binary_sensor.butlers_kitchen_sink':                              "Butler's Kitchen Sink",
+            'binary_sensor.3rd_floor_furnace_leak_detector':                   '3rd Floor Furnace'
           } %}
           {{ names[trigger.entity_id] | default(trigger.entity_id) }}
 
