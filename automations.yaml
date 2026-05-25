@@ -970,3 +970,54 @@
       target:
         entity_id: switch.string_lights
   mode: single
+
+
+##############################################################################
+# 11. Upstairs Hallway — Sunset On / Weeknight 9:30pm Off / Weekend 11pm Off
+##############################################################################
+
+- alias: "Upstairs Hallway — On at Sunset"
+  id: upstairs_hallway_on_at_sunset
+  triggers:
+    - trigger: sun
+      event: sunset
+  actions:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.upstairs_hallway_1
+  mode: single
+
+- alias: "Upstairs Hallway — Off at 9:30pm (Sun–Thu)"
+  id: upstairs_hallway_off_weeknight
+  triggers:
+    - trigger: time
+      at: "21:30:00"
+  conditions:
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+  actions:
+    - action: switch.turn_off
+      target:
+        entity_id: switch.upstairs_hallway_1
+  mode: single
+
+- alias: "Upstairs Hallway — Off at 11pm (Fri–Sat)"
+  id: upstairs_hallway_off_weekend
+  triggers:
+    - trigger: time
+      at: "23:00:00"
+  conditions:
+    - condition: time
+      weekday:
+        - fri
+        - sat
+  actions:
+    - action: switch.turn_off
+      target:
+        entity_id: switch.upstairs_hallway_1
+  mode: single
