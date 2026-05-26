@@ -26,6 +26,11 @@ homeassistant:
 # Mock Door Sensor Buttons — Konnected placeholders
 ##############################################################################
 
+input_boolean:
+  office_cam_privacy:
+    name: "Office Camera Privacy Mode"
+    icon: mdi:camera-off
+
 input_button:
   front_door_test:
     name: "Front Door (Test)"
