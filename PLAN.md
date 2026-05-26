@@ -78,7 +78,7 @@ No dependencies (order/install any time):
 
 - [ ] **Install 1st floor Ecobee** — connect blue wire to York furnace C terminal (crawlspace); add thermostat card + temp tile to dashboard immediately after
 - [ ] **Install Ring Doorbell Powered 2K + transformer** — both in hand; replace existing transformer, install doorbell
-- [ ] **Distribute 4× Ring Chime V3** — 1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office
+- [x] **Distribute 4× Ring Chime V3** — 1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office
 - [ ] **Mount 2× Ring outdoor cameras** — downspout brackets in hand; confirm sun exposure + coverage zone first
 - [x] **Install Ring indoor cam** — Cam 1: garage; Cam 2: personnel door (house side) — both active in HA
 - [x] **Flash Wyze cameras** — 3× v2 flashed (Thingino) but trashed 2026-05-25 (poor image quality); 1× v3 flashed, in HA — placement TBD
