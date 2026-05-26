@@ -1037,6 +1037,11 @@
   triggers:
     - trigger: state
       entity_id: input_button.front_door_test
+  conditions:
+    - condition: template
+      value_template: >
+        {{ this.attributes.last_triggered is none or
+           (now() - this.attributes.last_triggered).total_seconds() > 120 }}
   actions:
     - action: siren.turn_on
       target:
@@ -1054,6 +1059,11 @@
   triggers:
     - trigger: state
       entity_id: input_button.garage_door_test
+  conditions:
+    - condition: template
+      value_template: >
+        {{ this.attributes.last_triggered is none or
+           (now() - this.attributes.last_triggered).total_seconds() > 120 }}
   actions:
     - action: siren.turn_on
       target:
@@ -1071,6 +1081,11 @@
   triggers:
     - trigger: state
       entity_id: input_button.rear_door_test
+  conditions:
+    - condition: template
+      value_template: >
+        {{ this.attributes.last_triggered is none or
+           (now() - this.attributes.last_triggered).total_seconds() > 120 }}
   actions:
     - action: siren.turn_on
       target:
