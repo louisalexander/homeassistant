@@ -1,129 +1,84 @@
-# Climate System
+# Climate & Comfort
 
-## Overview
+## The Thermostats
 
-Two Ecobee thermostats control the house in `heat_cool` mode (dual setpoint). **Ecobee Eco+ TOU is the thermal management system** — HA does not write HVAC setpoints. All pre-conditioning is handled adaptively by Ecobee's learning algorithm.
+There are two active Ecobee thermostats in the house. A third is on hand and will be installed on the first floor soon.
 
----
-
-## Thermostats
-
-| Thermostat | Entity | Zone | Status |
-|---|---|---|---|
-| Master Bedroom | `climate.bedroom` | 2nd floor master bed zone | Active |
-| Louis' Office | `climate.office` | 3rd floor office zone | Active |
-| 1st Floor | TBD | 1st floor zone | **Hardware in hand — not yet installed** |
-
-### 1st Floor Install
-
-The 1st floor Ecobee needs one crawlspace trip:
-
-1. Locate York PS9B12N080DH11B furnace low-voltage terminal block
-2. Land blue wire on **C terminal** (currently unconnected at both ends)
-3. Wire per table: Red→Rc, Blue→C, Green→G, White→W, Yellow→Y
-4. Swap Honeywell thermostat for Ecobee base; configure as **Conventional** system (not heat pump)
-
----
-
-## HVAC Hardware
-
-- **Air handler:** Trane TEM4A0B24S21SBA
-- **System type:** Dual-fuel / hybrid heat pump + gas auxiliary
-- **O/B terminal:** Set to "O" (reversing valve energizes on cooling — correct)
-- **Configuration:** Auto (`heat_cool` mode), min heat/cool delta = 5°F
-
----
-
-## Ecobee Eco+ TOU
-
-Eco+ TOU is enabled in the Ecobee app (not configurable from HA). It uses the utility's TOU rate schedule and the home's learned thermal mass to pre-condition before peak pricing periods.
-
-### How it appears in HA attributes
-
-**Summer (months 5–9):**
-
-| Phase | `target_temp_high` | Description |
-|---|---|---|
-| Pre-cool | ≤ 72°F | Chilling below normal before peak window |
-| Normal | 73–75°F | Following comfort program |
-| Peak coast | ≥ 76°F | HVAC minimal; coasting on stored cool |
-
-**Winter:**
-
-| Phase | `target_temp_low` | Description |
-|---|---|---|
-| Pre-heat | ≥ 71°F | Heating above normal before peak window |
-| Normal | 68–70°F | Following comfort program |
-| Peak coast | ≤ 67°F | Coasting on stored heat |
-
----
-
-## Dashboard — Climate Tab
-
-### Card 1 — Thermostat Controls
-Two `mushroom-climate-card` cards side by side. Tap to open setpoint controls.
-
-### Card 2 — Mode Indicator Row
-Two `button-card` per thermostat showing current Ecobee mode with color-coded background.
-
-| State | Color | Condition |
-|---|---|---|
-| Home | Green | `preset_mode == home`, setpoints at normal |
-| Hold | Orange | Setpoint deviation >1.5°F from normal (Eco+ TOU or manual hold) |
-| Away | Grey | `preset_mode == away` |
-| Vacation | Grey | `preset_mode == away_indefinitely` |
-| Sleep | Dark blue | `preset_mode == sleep` |
-
-**Hold detection:** The HA Ecobee integration doesn't expose hold status. Mode cards infer it from setpoint deviation:
-```javascript
-// Summer: hold if cooling setpoint deviates >1.5°F from normal (75°F bedroom, 73°F office)
-var hold = isSummer
-  ? Math.abs(cool - NORMAL_COOL) > 1.5
-  : Math.abs(heat - NORMAL_HEAT) > 1.5;
-```
-
-### Card 3 — Temperature Tiles
-
-Six `button-card` tiles (one per sensor) colored by deviation from the **live Ecobee setpoint** — automatically adapts when Eco+ shifts setpoints.
-
-| Deviation | Color | Summer meaning |
-|---|---|---|
-| ≤ −3°F | Deep blue | Great — very cool |
-| −3 to −1.5°F | Light blue | Good — below setpoint |
-| −1.5 to +1.5°F | Green | On target |
-| +1.5 to +3°F | Orange | Slightly warm |
-| > +3°F | Red | Too warm |
-
-Labels show: `75.6°F (+0.6°F)` — current temp plus signed deviation.
-
----
-
-## TOU Rate Sensors
-
-Defined in `configuration_tou_addition.yaml`, re-evaluated every minute:
-
-| Entity | Description |
+| Thermostat | Controls |
 |---|---|
-| `sensor.tou_period` | `peak` / `off_peak` / `super_off_peak` |
-| `sensor.tou_rate` | Current rate in $/kWh |
-| `input_boolean.peak_mode` | `true` during TOU peak hours |
+| **Master Bedroom** (2nd floor) | Bedroom wing — master bed, bedrooms 1–4 |
+| **Office** (3rd floor) | Office zone |
+| 1st Floor *(coming soon)* | Main living areas — kitchen, living room, dining room |
 
-**Schedule (Dominion Energy Schedule 1G):**
-
-| Period | Summer (May–Sep) weekdays | Winter weekdays |
-|---|---|---|
-| Peak | 3–6 PM | 6–9 AM and 5–8 PM |
-| Super off-peak | Midnight–5 AM | Midnight–5 AM |
-| Off-peak | All other times | All other times |
-
-Weekends: no peak; only off-peak and super off-peak (midnight–5 AM).
+Each thermostat runs in **auto mode** — it heats and cools as needed to keep the house in the target range.
 
 ---
 
-## VOC Observations
+## What Happens Automatically
 
-Evening VOC spike pattern (suspected cooking from 1st floor distributing via HVAC):
-- Master bedroom: ~1,200–1,300 µg/m³ peak around 8–9 PM
-- Office: ~850 µg/m³ peak around 8 PM
+### When Everyone Leaves
 
-Hypothesis unconfirmed until 1st floor Ecobee sensor is installed — it would show whether kitchen VOC levels peak before rising upstairs.
+As soon as both phones leave the home area, both thermostats switch to **Away mode**. The setpoints relax to save energy — the house won't heat or cool as aggressively while empty.
+
+### When Someone Gets Home
+
+As soon as the first phone enters the home area, both thermostats switch back to **Home mode** and return to normal comfort setpoints.
+
+You don't need to do anything — this is fully automatic based on phone location.
+
+---
+
+## Energy Saving During Peak Hours
+
+Dominion Energy charges significantly more per kilowatt-hour during "peak" hours. The Ecobee Eco+ TOU feature knows the utility's schedule and uses the house's thermal mass to save money automatically.
+
+**What it does:**
+
+- **Before peak hours start:** Pre-cools the house lower than normal (summer) or pre-heats it higher than normal (winter). This stores "cold" or "heat" in the walls and furniture.
+- **During peak hours:** The AC/heat runs as little as possible — the house coasts on what was stored. Your electricity bill is lower.
+- **After peak hours:** Returns to normal setpoints.
+
+**You'll notice** the thermostat setpoints looking slightly different than usual around peak times — that's normal and intentional.
+
+**Peak hours (Dominion Energy Schedule 1G):**
+
+| Season | Peak Hours | Days |
+|---|---|---|
+| Summer (May–Sep) | 3:00 PM – 6:00 PM | Weekdays only |
+| Winter (Oct–Apr) | 6:00 AM – 9:00 AM and 5:00 PM – 8:00 PM | Weekdays only |
+
+Weekends have no peak period — just standard and off-peak rates.
+
+---
+
+## Room Sensors
+
+Each Ecobee has SmartSensors placed in individual bedrooms. These measure the temperature in each room independently, so the thermostat can balance comfort across multiple rooms — not just where the thermostat itself is mounted.
+
+Active sensors: master bedroom, bedrooms 1, 2, 3, 4, and the office.
+
+---
+
+## Controlling the Thermostats
+
+You can adjust temperature from anywhere:
+
+- **Ecobee app** — full control, schedule management, all settings
+- **Apple Home** — both thermostats appear; Siri works ("Hey Siri, set the bedroom to 72")
+- **Alexa** — "Alexa, set the bedroom thermostat to 72"
+- **HA dashboard** — Climate tab has full thermostat controls
+
+Any manual adjustment you make overrides the schedule temporarily (a "hold") and returns to the schedule automatically after the hold period ends.
+
+---
+
+## Air Quality
+
+The master bedroom has sensors that monitor:
+
+- **CO₂** (carbon dioxide) — rises when the space is occupied and ventilation is limited
+- **VOCs** (volatile organic compounds) — can spike from cleaning products, cooking, or off-gassing
+- **Humidity**
+- **Air Quality Index (AQI)**
+
+If CO₂ or VOC levels reach unhealthy thresholds, you'll get a push notification. See [Notifications](notifications.md) for details.
