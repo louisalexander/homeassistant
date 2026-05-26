@@ -116,7 +116,6 @@ Season: months 5–9 = summer. Peak hours: summer 3–6pm weekdays, winter 6–9
 - `weather.forecast_home` — used for outside temperature in thermostat conditions
 
 ### Known Quirks
-- **Garage door entity naming:** `cover.left_garage_door_opener_garage_door` is actually the *right* door in physical terms — naming mismatch from installer. Labels in UI reflect physical reality; entity IDs are inverted.
 - **Zigbee sensor log heartbeats:** Third Reality leak sensors report state every ~60s via ZHA polling (IasZone cluster doesn't support interval config). Normal behavior — filter from logbook if noisy.
 - **Dashboard race condition:** HA overwrites `.storage/lovelace.*` on shutdown. Always `ha core restart` immediately after SCP to minimize the window.
 
