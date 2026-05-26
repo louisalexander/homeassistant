@@ -183,14 +183,17 @@ No dependencies (order/install any time):
 - [x] Place indoor cams — Cam 1: garage, Cam 2: personnel door (house side) — both active in HA
 - [x] Verify Ring devices in HA Ring integration — both indoor cams + chimes appear
 
-### Wyze Cameras
+### Wyze Cameras — On Hold
 - [x] Count exact unit inventory — 3× v2, 1× v3
 - [x] Flash all units with Thingino firmware (wltechblog installer, micro-SD)
 - [x] Enable RTSP on each camera (Thingino built-in)
 - [x] Add to HA as Generic Camera integration
 - [x] All 3× v2 units trashed 2026-05-25 (poor image quality); dashboard cards removed; v3 remains
-- [x] v3 camera card live on dashboard (full-width picture-entity card)
-- [x] Place v3 — deployed in Office (3rd floor) 2026-05-26; dashboard tile renamed "Office Cam"
+- [x] v3 camera card live on dashboard (full-width picture-entity card); tile named "Office Cam"
+- [x] Place v3 — deployed in Office (3rd floor) 2026-05-26
+- [x] MQTT motion binary sensor configured (`binary_sensor.office_cam_motion`, 30s auto-off)
+- [ ] Enable MQTT in Thingino web UI + verify topic (one-time setup step)
+- [ ] **[ON HOLD]** Frigate NVR + Coral USB Accelerator — resume if AI object detection needed
 
 ---
 
