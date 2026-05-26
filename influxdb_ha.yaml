@@ -43,5 +43,5 @@ include:
     - weather
     - switch
   entities:
-    - person.louis_alexander
+    - person.louis
     - person.lindsay
