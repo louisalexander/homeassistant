@@ -219,5 +219,5 @@ Set these names at pairing time in ZHA — much easier than renaming after the f
 
 ---
 
-*Last updated: 2026-05-21*
-*Status: Survey complete — all locations verified. Outdoor batch ordered. Indoor batches ready to order one at a time after outdoor install.*
+*Last updated: 2026-05-26*
+*Status: Outdoor batch arrived 2026-05-26 (10× VZW31-SN + 5× VZW05). Ready to install — 5 single-pole first, then 2 three-way. Indoor batches unlock after outdoor install.*
