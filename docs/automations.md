@@ -114,36 +114,19 @@ Prevents stale thumbnails on Ring camera dashboard tiles during quiet periods (n
 
 ---
 
-## Section 14 — Ring Camera Motion Chime
-
-Replaces Ring's built-in motion notifications (which are repetitive and uncontrollable) with a single chime per event + a 10-minute per-camera cooldown.
-
-| Automation | Trigger | Cooldown | Action |
-|---|---|---|---|
-| Ring Motion — Garage Camera | `sensor.garage_stickup_cam_1_last_activity` changes | 10 minutes | Ring all 4 chimes — `tone: motion` |
-| Ring Motion — Personnel Door | `sensor.personnel_door_last_activity` changes | 10 minutes | Ring all 4 chimes — `tone: motion` |
-
-!!! tip "Disable Ring's own notifications"
-    For this to work cleanly, disable Ring's built-in motion alerts and chime-on-motion in the Ring app for each camera. Otherwise both HA chimes and Ring's chimes fire on motion.
-
-!!! note "No motion binary sensors"
-    The Ring integration doesn't expose `binary_sensor.*_motion` for these camera models. The `last_activity` sensor timestamp change is used as a proxy — it updates immediately when Ring reports motion via its push event stream.
-
----
-
 ## Cooldown Pattern
 
-The 2-minute (mock doors) and 10-minute (Ring motion) cooldowns use this reusable template — no extra helpers required, each automation tracks its own last-triggered timestamp:
+The 2-minute mock door cooldowns use this reusable template — no extra helpers required, each automation tracks its own last-triggered timestamp:
 
 ```yaml
 conditions:
   - condition: template
     value_template: >
       {{ this.attributes.last_triggered is none or
-         (now() - this.attributes.last_triggered).total_seconds() > 600 }}
+         (now() - this.attributes.last_triggered).total_seconds() > 120 }}
 ```
 
-Change `600` to adjust cooldown in seconds.
+Change the seconds value to adjust the cooldown.
 
 ---
 
