@@ -66,14 +66,12 @@ Two plug-in indoor cams (same form factor).
 
 6 chimes total for a 3-floor, 4,800 sq ft house. Recommended placement:
 
-| Chime | Proposed Location | Notes |
-|---|---|---|
-| Chime V3 #1 | 1st floor — kitchen/family room | High-traffic area, heard during most waking hours |
-| Chime V3 #2 | 1st floor — foyer / entry | Near doorbell, catches anyone at the door |
-| Chime V3 #3 | 2nd floor — hallway | Covers bedrooms |
-| Chime V3 #4 | 3rd floor — office | Top floor is furthest from doorbell |
-| ~~Chime Pro~~ | ~~Wi-Fi extender location~~ | **Deprecated** — removed from account |
-| ~~Chime v1~~ | ~~Master bedroom~~ | **Deprecated** — removed from account |
+| Chime | Proposed Location | HA Entity | Status |
+|---|---|---|---|
+| Chime V3 #1 | 1st floor — kitchen/family room | `siren.kitchen_siren` | Registered, awaiting wall mount |
+| Chime V3 #2 | 1st floor — foyer / entry | `siren.hallway_siren` | Registered, awaiting wall mount |
+| Chime V3 #3 | 2nd floor — hallway | `siren.master_bedroom_siren` | Registered, awaiting wall mount |
+| Chime V3 #4 | 3rd floor — office | `siren.office_siren` | Registered, awaiting wall mount |
 
 > **Ring schedule tip:** Set quiet hours per chime in the Ring app — V3 supports per-device schedules. Master bedroom chime can silence 10pm–7am while others stay active.
 
