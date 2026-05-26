@@ -189,7 +189,7 @@ No dependencies (order/install any time):
 - [x] Add to HA as Generic Camera integration
 - [x] All 3× v2 units trashed 2026-05-25 (poor image quality); dashboard cards removed; v3 remains
 - [x] v3 camera card live on dashboard (full-width picture-entity card)
-- [ ] Place v3 at assigned location (back door/mudroom or rear yard — TBD)
+- [x] Place v3 — deployed in Office (3rd floor) 2026-05-26; dashboard tile renamed "Office Cam"
 
 ---
 
