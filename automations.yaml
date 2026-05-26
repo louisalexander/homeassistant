@@ -174,7 +174,7 @@
     Louis was genuinely away (not_home for 2+ min — prevents HA restart bounce).
   triggers:
     - trigger: state
-      entity_id: person.louis_alexander
+      entity_id: person.louis
       from: "not_home"
       to: "home"
   conditions:
