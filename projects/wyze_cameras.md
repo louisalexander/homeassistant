@@ -93,9 +93,9 @@ Or use the **Generic Camera** integration via HA UI (Settings → Integrations �
 
 ## Placement Plan
 
-| Camera | Model | Proposed Location | Notes |
+| Camera | Model | Location | Notes |
 |---|---|---|---|
-| Wyze v3 #1 | v3 | TBD — back door/mudroom or rear yard | IP65-rated; can go outdoor as Ring supplement, or cover mudroom entry |
+| Wyze v3 #1 | v3 | **Office (3rd floor)** — deployed 2026-05-26 | Dashboard tile: "Office Cam" |
 
 > All v2 units trashed 2026-05-25 — image quality too poor. v3 is the only remaining Wyze unit.
 
