@@ -120,5 +120,5 @@ Ring integration is already active (`Ring — cameras + doorbell` in `configurat
 - [ ] Measure existing doorbell wire run — is it already wired or battery-only?
 - [ ] Confirm solar exposure at proposed downspout mounting locations
 
-*Last updated: 2026-05-21*
-*Status: Planning — no hardware installed yet*
+*Last updated: 2026-05-25*
+*Status: In progress — 4× Chime V3 active in HA (not yet mounted); 2× Indoor cams active; Doorbell + outdoor cams not yet installed*
