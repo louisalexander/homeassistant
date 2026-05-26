@@ -46,7 +46,6 @@ template:
 
       # Current rate in $/kWh based on period and season
       - name: "TOU Rate"
-
         unique_id: tou_rate
         unit_of_measurement: "$/kWh"
         state_class: measurement
