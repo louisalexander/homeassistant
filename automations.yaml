@@ -1116,3 +1116,55 @@
           - camera.garage_stickup_cam_1_live_view
           - camera.personnel_door_live_view
   mode: single
+
+##############################################################################
+# Section 14: Ring Camera Motion Chime
+# Rings all chimes once on motion from Ring cameras, with a 10-minute
+# per-camera cooldown to prevent repetitive alerts.
+# To adjust cooldown: change 600 (seconds) below.
+# To disable Ring's own notifications: Ring app → device → Motion Alerts off.
+##############################################################################
+
+- alias: "Ring Motion — Garage Camera Chime"
+  id: ring_motion_garage_chime
+  triggers:
+    - trigger: state
+      entity_id: sensor.garage_stickup_cam_1_last_activity
+  conditions:
+    - condition: template
+      value_template: >
+        {{ this.attributes.last_triggered is none or
+           (now() - this.attributes.last_triggered).total_seconds() > 600 }}
+  actions:
+    - action: siren.turn_on
+      target:
+        entity_id:
+          - siren.hallway_siren
+          - siren.master_bedroom_siren
+          - siren.office_siren
+          - siren.garage_siren
+      data:
+        tone: motion
+  mode: single
+
+- alias: "Ring Motion — Personnel Door Chime"
+  id: ring_motion_personnel_door_chime
+  triggers:
+    - trigger: state
+      entity_id: sensor.personnel_door_last_activity
+  conditions:
+    - condition: template
+      value_template: >
+        {{ this.attributes.last_triggered is none or
+           (now() - this.attributes.last_triggered).total_seconds() > 600 }}
+  actions:
+    - action: siren.turn_on
+      target:
+        entity_id:
+          - siren.hallway_siren
+          - siren.master_bedroom_siren
+          - siren.office_siren
+          - siren.garage_siren
+      data:
+        tone: motion
+  mode: single
