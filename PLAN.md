@@ -83,7 +83,7 @@ No dependencies (order/install any time):
 - [ ] **Mount 2× Ring outdoor cameras** — downspout brackets in hand; confirm sun exposure + coverage zone first
 - [x] **Install Ring indoor cam** — Cam 1: garage; Cam 2: personnel door (house side) — both active in HA
 - [x] **Flash Wyze cameras** — 3× v2 flashed (Thingino) but trashed 2026-05-25 (poor image quality); 1× v3 flashed, in HA — placement TBD
-- [ ] **Install Inovelli outdoor switches** — when batch arrives; 5 single-pole first, then 2 three-way locations
+- [ ] **Install Inovelli outdoor switches** — batch in hand; 5 single-pole first, then 2 three-way locations
 - [ ] **Install Konnected Alarm Panel Pro** — wire 4 zones + siren; configure Alarmo; Sonos TTS announcements
 - [ ] **Install smoke detectors** — order 9× ZCOMBO-G when ready to install same week; replace all at once
 - [ ] **Energy WS1** — Begin 30-day baseline monitoring (passive, no action needed after WS0 setup)
