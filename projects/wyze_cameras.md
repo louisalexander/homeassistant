@@ -8,7 +8,7 @@
 | Cam 2 | Wyze Cam v2 | White | jxf23 | `camera.wyze_2` | **Trashed** — discarded 2026-05-25 |
 | Cam 3 | Wyze Cam v2 | White | jxf23 | `camera.wyze_cam_v2_3` | **Trashed** — discarded 2026-05-25 |
 | Cam 4 (black) | Wyze Cam v2 | Black (WYZEC2BK) | Unknown | — | **Trashed** — was bricked (mtd0 corrupt); discarded 2026-05-25 |
-| Wyze v3 | Wyze Cam v3 | — | gc2053 | `camera.wyze_cam_v3_1` | Flashed (wltechblog installer), in HA — placement TBD |
+| Wyze v3 | Wyze Cam v3 | — | gc2053 | `camera.wyze_cam_v3_1` | **Deployed** — Office (3rd floor), 2026-05-26 |
 
 ---
 
