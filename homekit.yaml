@@ -1,14 +1,14 @@
 # HomeKit Bridge — curated device list
 #
 # Strategy:
-#   - Ecobee: pair the thermostat DIRECTLY to Apple Home via its built-in HomeKit
-#             support (Ecobee app → Settings → HomeKit). Do NOT bridge Ecobee here.
-#             The HA Ecobee integration still runs for automations/sensors.
-#   - Ring:   use Ring's own HomeKit support or the Ring app. Do NOT bridge here.
-#             Ring cameras via HA bridge require HA to transcode, which is slow/unreliable.
-#   - ZHA:    only the 10 moisture sensors + 4 smart plugs. No diagnostics, no sirens,
-#             no power monitoring, no opening/tamper sensors, no firmware updates.
-#   - ESPHome garage doors: the only useful covers — exposed as GarageDoorOpener.
+#   - Ecobee: pair thermostat DIRECTLY to Apple Home via Ecobee app (Ecobee → Settings → HomeKit).
+#             Do NOT bridge Ecobee here; the HA Ecobee integration still runs for automations.
+#   - Ring cameras: bridged via HA proxy. Ring cloud stream → HA → HomeKit.
+#             Expect ~3–5s stream startup latency. If viewing is unacceptably slow, use Ring
+#             app natively instead and remove these from include_entities.
+#   - Wyze (Thingino): bridged via HA proxy. Local RTSP → HomeKit. Fast, local path.
+#   - ZHA: 11 moisture sensors + 4 smart plugs exposed.
+#   - ESPHome garage doors: exposed as GarageDoorOpener.
 #
 # Whitelist approach: only entities listed under include_entities appear in Apple Home.
 # New devices added to HA will NOT appear until explicitly added here.
@@ -17,11 +17,16 @@
   port: 21063
   filter:
     include_entities:
-      # ── Garage doors (ESPHome) ─────────────────────────────────────────────
+      # ── Cameras ───────────────────────────────────────────────────────────────
+      - camera.garage_stickup_cam_1_live_view
+      - camera.personnel_door_live_view
+      - camera.wyze_cam_v3_1
+
+      # ── Garage doors (ESPHome) ────────────────────────────────────────────────
       - cover.left_garage_door_opener_garage_door
       - cover.right_garage_door_opener_garage_door
 
-      # ── Leak sensors (ZHA, moisture class only) ────────────────────────────
+      # ── Leak sensors (ZHA, moisture class only) ────────────────────────────────
       - binary_sensor.bedroom_3_sink_leak_detector
       - binary_sensor.butlers_kitchen_sink
       - binary_sensor.kitchen_sink_leak_detector
@@ -34,13 +39,21 @@
       - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
       - binary_sensor.3rd_floor_furnace_leak_detector
 
-      # ── Smart plugs (ZHA outlet switches only) ─────────────────────────────
+      # ── Smart plugs (ZHA outlet switches only) ─────────────────────────────────
       - switch.front_room_plug_1
       - switch.office_plug_1
       - switch.upstairs_hallway_1
       - switch.upstairs_hallway_plug_2
 
   entity_config:
+    # Cameras
+    camera.garage_stickup_cam_1_live_view:
+      name: Garage Camera
+    camera.personnel_door_live_view:
+      name: Personnel Door Camera
+    camera.wyze_cam_v3_1:
+      name: Office Camera
+
     # Garage doors
     cover.left_garage_door_opener_garage_door:
       name: Left Garage Door
