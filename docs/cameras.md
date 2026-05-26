@@ -14,7 +14,7 @@
 
 ## Motion Alerts — Chimes
 
-When the Garage Cam or Personnel Door Cam detects motion, all four Ring chimes throughout the house play a motion tone:
+When the Garage Cam or Personnel Door Cam detects motion, Ring rings the chimes directly — this is handled natively by Ring, not by Home Assistant. Motion-to-chime is configured per-camera in the Ring app under **Motion Alerts** and per-chime under **Linked Devices**.
 
 | Chime | Location |
 |---|---|
@@ -23,9 +23,7 @@ When the Garage Cam or Personnel Door Cam detects motion, all four Ring chimes t
 | 2nd floor | Master bedroom area |
 | 3rd floor | Office |
 
-**Cooldown:** Each camera has a 10-minute cooldown, so you won't hear constant chiming if something is repeatedly triggering the camera. After 10 minutes, the next motion event will chime again.
-
-The chimes come from Home Assistant — not from Ring's own notification system. Ring's built-in motion alerts are disabled so you only get one alert per event (not one from Ring + one from HA).
+Ring's native chime-on-motion fires in 1–3 seconds. Cooldown and alert frequency are configured in the Ring app per device.
 
 ---
 
