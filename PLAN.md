@@ -172,7 +172,8 @@ No dependencies (order/install any time):
 - [x] Ring transformer in hand (no need to order)
 - [x] Ring Chime v1 + Chime Pro — removed from Ring account 2026-05-21
 - [x] Ring Protect Pro — 1-year subscription purchased 2026-05-21 (renews ~2027-05-21)
-- [ ] Remove deprecated chimes from Ring app
+- [x] Remove deprecated chimes from Ring app — completed 2026-05-21
+- [x] 4× Ring Chime V3 active in HA as siren entities (siren.[name], volume controls available)
 - [ ] Install Ring Doorbell Powered 2K + transformer (both in hand)
 - [ ] Distribute 4× Ring Chime V3s (1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office)
 - [ ] Mount 2× outdoor solar cameras — confirm downspout sun exposure first
