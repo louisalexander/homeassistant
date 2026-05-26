@@ -95,11 +95,9 @@ Or use the **Generic Camera** integration via HA UI (Settings → Integrations �
 
 | Camera | Model | Proposed Location | Notes |
 |---|---|---|---|
-| Wyze v3 #1 | v3 | Outdoor — rear yard / patio area | IP65-rated; supplements Ring outdoor coverage |
-| Wyze v2 #1 | v2 | Indoor — garage interior | Monitors inside garage; plug-in near garage outlet |
-| Wyze v2 #2 | v2 | Indoor — TBD (laundry? mudroom?) | Interior coverage where a plug-in cam is useful |
+| Wyze v3 #1 | v3 | TBD — back door/mudroom or rear yard | IP65-rated; can go outdoor as Ring supplement, or cover mudroom entry |
 
-> Adjust once exact unit count is confirmed. v3 cameras (outdoor-capable) are higher value outdoors than indoors given the Ring cameras already cover indoor spots.
+> All v2 units trashed 2026-05-25 — image quality too poor. v3 is the only remaining Wyze unit.
 
 ---
 
