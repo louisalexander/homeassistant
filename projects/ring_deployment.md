@@ -13,7 +13,7 @@
 | Ring Chime (original / v1) | 1 | **Removed from Ring account 2026-05-21** — retired |
 | Ring Chime Pro (original) | 1 | **Removed from Ring account 2026-05-21** — retired |
 
-> **Chime status:** Ring Chime v1 and Chime Pro completely removed from account 2026-05-21. 4× V3 chimes are the active set, registered in HA, appearing as siren entities. V3 covers all 4 placement zones. Note: chimes are registered in HA but not yet physically mounted on walls.
+> **Chime status:** 4× V3 chimes placed 2026-05-26 (1st floor kitchen, foyer, 2nd floor hall, 3rd floor office). Active in HA as siren entities. Old v1 + Chime Pro removed from account 2026-05-21.
 
 ---
 
