@@ -72,7 +72,7 @@
         message: "{{ room_name }} is reporting water. Check immediately."
         data:
           tag: "leak_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -81,7 +81,7 @@
         message: "{{ room_name }} is reporting water. Check immediately."
         data:
           tag: "leak_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
     - alias: "Persistent HA notification"
       action: persistent_notification.create
@@ -308,7 +308,7 @@
         message: "{{ door_name }} was opened while you're both away."
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -317,7 +317,7 @@
         message: "{{ door_name }} was opened while you're both away."
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
   mode: parallel
   max: 2
@@ -356,7 +356,7 @@
         message: "{{ door_name }} was closed while you're both away."
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -365,7 +365,7 @@
         message: "{{ door_name }} was closed while you're both away."
         data:
           tag: "garage_away_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
   mode: parallel
   max: 2
@@ -749,7 +749,7 @@
         message: "The following sensors need new batteries:\n• {{ low_batteries }}"
         data:
           tag: "battery_alert"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
 
   mode: single
 
@@ -888,7 +888,7 @@
         message: "{{ door_name }} has been open for 30 minutes."
         data:
           tag: "garage_open_{{ trigger.entity_id }}"
-          url: !secret nabu_casa_security_url
+          url: "{{ states('sensor.nabu_casa_security_url') }}"
           actions:
             - action: "CLOSE_GARAGE"
               title: "Close It"
