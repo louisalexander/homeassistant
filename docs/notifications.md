@@ -76,9 +76,7 @@ One of the ~15 Zigbee sensors (leak detectors, SmartSensors, etc.) needs a batte
 
 ### Motion at Garage or Personnel Door Camera
 
-When either Ring camera detects motion, the four Ring chimes throughout the house play a motion tone. This is not a phone notification — it's an audible alert from the physical chimes.
-
-**10-minute cooldown per camera:** Once a camera fires, it won't chime again for 10 minutes. Repeated motion in the same window is silenced.
+When either Ring camera detects motion, Ring rings the chimes directly. This is handled natively by Ring — not by Home Assistant. Cooldown and frequency are configured per-device in the Ring app.
 
 ---
 
