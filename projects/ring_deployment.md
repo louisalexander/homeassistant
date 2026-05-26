@@ -9,7 +9,7 @@
 | Ring Outdoor Cam + Solar Panel (w/ pole + wall mount) | 2 | Not mounted |
 | Ring Video Doorbell Powered 2K | 1 | Not installed |
 | Ring Doorbell Transformer (upgrade) | 1 | In hand — not yet installed |
-| Ring Chime V3 | 4 | Active in HA as siren entities (`siren.hallway_siren`, `siren.master_bedroom_siren`, `siren.office_siren`, `siren.garage_siren`); volume entities available (range 0–11); available tones: ding, motion only; registered but not yet physically placed |
+| Ring Chime V3 | 4 | **Placed 2026-05-26** — 1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office; active in HA as siren entities (`siren.hallway_siren`, `siren.master_bedroom_siren`, `siren.office_siren`, `siren.garage_siren`); volume 0–11; tones: ding, motion |
 | Ring Chime (original / v1) | 1 | **Removed from Ring account 2026-05-21** — retired |
 | Ring Chime Pro (original) | 1 | **Removed from Ring account 2026-05-21** — retired |
 
