@@ -26,8 +26,8 @@ Quick-lookup table of all key entity IDs. Use these in automations, templates, a
 
 | Entity | Description |
 |---|---|
-| `cover.left_garage_door_opener_garage_door` | Physically the **right** door |
-| `cover.right_garage_door_opener_garage_door` | Physically the **left** door |
+| `cover.left_garage_door_opener_garage_door` | Left garage door |
+| `cover.right_garage_door_opener_garage_door` | Right garage door |
 
 ---
 
