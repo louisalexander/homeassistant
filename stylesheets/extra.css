@@ -1,0 +1,21 @@
+/* Home Command — custom styles */
+
+:root {
+  --md-primary-fg-color: #546e7a;
+  --md-accent-fg-color: #29b6f6;
+}
+
+/* Status badge pills */
+.status-active    { background: #2e7d32; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; }
+.status-pending   { background: #e65100; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; }
+.status-hold      { background: #546e7a; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; }
+.status-complete  { background: #1565c0; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; }
+
+/* Tighter table rows */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: .4rem .8rem;
+}
+
+/* Entity ID inline code */
+.entity { font-family: var(--md-code-font-family); font-size: .85em; }
