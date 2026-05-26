@@ -30,12 +30,6 @@ You can close either door from anywhere:
 
 ---
 
-## A Note on Door Names
-
-The garage door opener installer wired the two doors in reverse — what the system internally calls "left" is physically the right door, and vice versa. The **labels in the app and dashboard reflect the physical door** (left means the left door when you're standing inside the garage looking out), so what you see in the UI is correct. This is just a behind-the-scenes quirk.
-
----
-
 ## What's Shown on the Dashboard
 
 The Security tab shows the current state of each door (open or closed) and buttons to open or close either one. You can also see the last activity time for both.
