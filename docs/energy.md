@@ -1,87 +1,62 @@
-# Energy Monitoring
+# Energy & Power
 
-## Strategy
+## Time-of-Use Pricing
 
-Six workstreams, executed in order. Each builds on the previous.
+Dominion Energy charges different rates depending on the time of day. During "peak" hours, electricity costs roughly twice as much per kilowatt-hour as off-peak times.
 
-| Workstream | Name | Status |
+| Period | Summer rate | Winter rate | When |
+|---|---|---|---|
+| **Peak** | $0.30/kWh | $0.26/kWh | Weekday afternoons/mornings (varies by season) |
+| Off-peak | $0.14/kWh | $0.15/kWh | Most of the day |
+| Super off-peak | $0.12/kWh | $0.14/kWh | Midnight – 5 AM daily |
+
+**Peak hours:**
+
+| Season | Peak window | Days |
 |---|---|---|
-| WS0 | Entity setup + baseline discovery | **Blocked — EM16P not yet installed** |
-| WS1 | 30-day passive baseline monitoring | Not started |
-| WS2 | Financial reporting (cost tracking) | Deferred |
-| WS3 | Advanced TOU optimization | Deferred |
-| WS4 | Demand response | Deferred |
-| WS5 | Future loads (EV, solar, battery) | Deferred — no EV or solar yet |
+| Summer (May–Sep) | 3:00 PM – 6:00 PM | Weekdays only |
+| Winter (Oct–Apr) | 6:00 AM – 9:00 AM and 5:00 PM – 8:00 PM | Weekdays only |
+
+No peak periods on weekends — the cheaper off-peak rate applies all day.
 
 ---
 
-## EM16P Whole-Home Energy Monitors
+## How the House Saves Money Automatically
 
-### Status: Hardware in hand — **OVERDUE since May 22**
+### Thermostat Pre-Conditioning (Eco+ TOU)
 
-2× Leviton EM16P dual-panel energy monitors. Cover both electrical panels:
+The Ecobee thermostats know the peak schedule. Before peak hours start, the system pre-cools (summer) or pre-heats (winter) the house so the HVAC runs less during the expensive window.
 
-- Panel 1: Main house
-- Panel 2: TBD
+See [Climate & Comfort](climate.md#energy-saving-during-peak-hours) for more detail on how this works.
 
-After install:
-- HA discovers energy entities for each circuit
-- WS0: identify entities, confirm statistics sensors, build whole-home template sensors
-- WS1 begins automatically — 30 days of passive monitoring
+### Dashboard Peak Indicator
+
+The Climate tab shows whether you're currently in a peak, off-peak, or super off-peak window and the live rate in $/kWh. Useful for deciding when to run appliances (dishwasher, laundry, etc.) — off-peak and super off-peak windows are much cheaper.
 
 ---
 
-## TOU Rate Sensors (Live)
+## What's Being Monitored Now
 
-Dominion Energy Schedule 1G — Virginia. Re-evaluated every minute.
+Four smart plugs throughout the house track live power draw and cumulative energy use:
 
-| Entity | Current value | Description |
-|---|---|---|
-| `sensor.tou_period` | `peak` / `off_peak` / `super_off_peak` | Current billing period |
-| `sensor.tou_rate` | $/kWh | Current rate |
-| `input_boolean.peak_mode` | `on` / `off` | True during peak hours — used by dashboard |
+| Location | What's plugged in |
+|---|---|
+| Front room | — |
+| Upstairs hallway | — |
+| Upstairs hallway (2nd plug) | — |
+| Office | — |
 
-### Rate Schedule
-
-| Period | Summer rate | Winter rate |
-|---|---|---|
-| Super off-peak (midnight–5AM) | $0.1247/kWh | $0.1408/kWh |
-| Off-peak | $0.1426/kWh | $0.1470/kWh |
-| Peak | $0.3016/kWh | $0.2622/kWh |
-
-Peak hours: Summer 3–6 PM weekdays · Winter 6–9 AM + 5–8 PM weekdays · No peak on weekends.
+These report live wattage and total kilowatt-hours to the dashboard and are logged to Grafana for historical trending.
 
 ---
 
-## Plug-Level Monitoring (Live)
+## Whole-Home Energy Monitoring — Coming Soon
 
-4 smart plugs with power metering active:
+Two **Leviton EM16P** dual-panel energy monitors are in hand, waiting to be installed in the electrical panels. Once installed:
 
-| Location | Power (live) | Energy (cumulative) |
-|---|---|---|
-| Front room | `sensor.front_room_plug_1_power` | `sensor.front_room_plug_1_summation_delivered` |
-| Upstairs hallway | `sensor.upstairs_hallway_1_power` | `sensor.upstairs_hallway_1_summation_delivered` |
-| Upstairs hallway #2 | `sensor.upstairs_hallway_plug_2_power` | `sensor.upstairs_hallway_plug_2_summation_delivered` |
-| Office | `sensor.office_plug_1_power` | `sensor.office_plug_1_summation_delivered` |
+- Every circuit in the house gets its own energy sensor
+- Total house consumption is visible in real time
+- Historical usage is logged and viewable in Grafana
+- This data feeds into more advanced TOU optimization
 
-!!! note
-    Inovelli switches do **not** report power consumption — smart plugs remain the primary sub-circuit monitoring layer until EM16P whole-panel monitoring is live.
-
----
-
-## Grafana Analytics
-
-InfluxDB 1.x receives all HA state changes. Grafana (running as HA add-on) provides time-series dashboards using **InfluxQL** queries.
-
-Active panels:
-- Temperature by zone (line chart)
-- CO₂, VOC, AQI air quality (line chart)
-- Humidity (line chart)
-- Live power draw per plug (line chart)
-- kWh totals per plug (stat panels)
-- Garage door activity timeline
-- Presence — who's home timeline
-- Leak sensor history timeline
-- Phone battery levels
-
-See `grafana_queries.md` / `GRAFANA_SETUP.md` in the repo for query reference.
+This is the single highest-ROI pending install — it unlocks detailed understanding of where the house's energy is going.
