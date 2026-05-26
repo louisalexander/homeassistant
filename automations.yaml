@@ -437,7 +437,7 @@
           Crack a window or open the bedroom door.
         data:
           tag: "air_quality_co2"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -448,7 +448,7 @@
           Crack a window or open the bedroom door.
         data:
           tag: "air_quality_co2"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Persistent HA notification"
       action: persistent_notification.create
@@ -520,7 +520,7 @@
           Ventilate the room — possible cleaning products or off-gassing.
         data:
           tag: "air_quality_voc"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Notify Lindsay"
       action: notify.mobile_app_lindsays_iphone
@@ -531,7 +531,7 @@
           Ventilate the room — possible cleaning products or off-gassing.
         data:
           tag: "air_quality_voc"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Persistent HA notification"
       action: persistent_notification.create
@@ -607,7 +607,7 @@
           Open a window or door to ventilate.
         data:
           tag: "air_quality_office_co2"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Persistent HA notification"
       action: persistent_notification.create
@@ -669,7 +669,7 @@
           Ventilate — possible cleaning products or off-gassing.
         data:
           tag: "air_quality_office_voc"
-          url: !secret nabu_casa_climate_url
+          url: "{{ states('sensor.nabu_casa_climate_url') }}"
 
     - alias: "Persistent HA notification"
       action: persistent_notification.create
