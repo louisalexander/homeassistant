@@ -11,9 +11,9 @@
 **Ordering policy:** Don't order new hardware while uninstalled inventory sits on hand, unless the order is a hard blocker for an install step (not just project completion). Goal: minimize outstanding inventory and overspend.
 
 **Top 3 priorities right now:**
-1. **EM16P install** — was scheduled May 22; unblocks all energy monitoring
+1. **EM16P install** — **overdue** (was May 22); still blocks all energy monitoring and WS0 baseline setup
 2. **Install 1st floor Ecobee** — hardware in hand, one crawlspace trip (connect blue wire to York C terminal), largest single ROI improvement
-3. **Ring outdoor cams** — walk exterior for sun exposure at downspout locations; then mount both solar cams
+3. **Konnected Alarm Panel Pro install** — hardware in hand, mock automations already wired (Section 12 placeholders), ready to deploy
 
 ---
 
