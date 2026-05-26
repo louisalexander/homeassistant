@@ -68,8 +68,8 @@ No dependencies (order/install any time):
 
 ### This Week (May 21–25)
 
-- [ ] **May 22** — Install 2× EM16P energy monitors (both panels)
-- [ ] **May 22–23** — Run Energy WS0 in HA: discover entities, confirm statistics, build whole-home template sensors
+- [ ] **May 22 (OVERDUE)** — Install 2× EM16P energy monitors (both panels)
+- [ ] **May 22–23 (BLOCKED)** — Run Energy WS0 in HA: discover entities, confirm statistics, build whole-home template sensors
 - [x] **Walk the house** — Smoke detector count (9 confirmed, all 3-wire); Inovelli survey complete (29/30 verified)
 - [x] **Order Inovelli outdoor batch** — 10× VZW31-SN + 5× VZW05 ordered (all 7 outdoor locations + extras)
 - [x] **Check Ring account** — Chime v1 + Chime Pro removed from account 2026-05-21; 4× V3 chimes are the active set
