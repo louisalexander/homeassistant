@@ -115,4 +115,4 @@ Ring Protect Pro's professional monitoring is activated by the base station. Ala
 - `projects/smoke_detectors.md` — smoke sensor integration will feed into Alarmo once installed
 - Ring cameras active in HA for visual verification on alarm events
 
-*Last updated: 2026-05-21*
+*Last updated: 2026-05-25*
