@@ -117,32 +117,32 @@ After adding cameras, add to dashboard:
 
 ---
 
-## Motion Detection — Current Setup
+## Motion Detection — Optional Future Enhancement
 
-Basic motion detection via Thingino's built-in pixel-difference detector, published over MQTT.
+Not currently needed. Infrastructure is in place if this becomes useful later.
 
-**HA entity:** `binary_sensor.office_cam_motion` (device class: motion, 30s auto-off)
-**MQTT topic:** `thingino/ing-wyze-cam3-3a32/motion` (verify after enabling MQTT in Thingino UI)
+**What's already wired up (just needs Thingino config):**
+- HA entity `binary_sensor.office_cam_motion` defined in `configuration.yaml` (30s auto-off)
+- MQTT topic assumed: `thingino/ing-wyze-cam3-3a32/motion` — **needs verification**
+- To verify: Developer Tools → MQTT → Listen to topic → enter `#` → walk in front of camera → note exact topic + payload, update `state_topic` in `configuration.yaml` if different
 
-**Thingino MQTT setup (one-time):**
-1. Open Thingino web UI (find camera IP in router DHCP)
-2. Go to MQTT settings → set broker to HA's local IP, port 1883
-3. Enable motion detection + MQTT publish
-4. Verify topic: `mosquitto_sub -h localhost -t '#'` then walk in front of camera
+**If/when motion detection is actually wanted:**
+1. Open Thingino web UI (camera IP from router DHCP list)
+2. Find MQTT settings (under Services or Notifications)
+3. Set broker to HA's local IP, port 1883; enable motion detection + MQTT publish
+4. Verify topic as above; update `configuration.yaml` if needed
+5. Reload configuration
 
 ---
 
-## Future: Frigate NVR + Coral TPU (On Hold)
+## Future: Frigate NVR + Coral TPU (Deferred Indefinitely)
 
-Upgrade path if AI object detection is needed (person vs. animal vs. vehicle rather than generic pixel motion):
+Only relevant if AI object detection is ever needed (person vs. animal vs. vehicle).
 
-**Software:** [Frigate](https://frigate.video) NVR — HA add-on, consumes RTSP streams, runs local inference
-**Hardware:** Coral USB Accelerator (G950-01456-01, ~$60) — plugs into Mini S13 USB 3.0 port; check Mouser/DigiKey for stock at MSRP
+**Hardware:** Coral USB Accelerator (G950-01456-01, ~$60) — plugs into Mini S13 USB 3.0 port; check Mouser/DigiKey for MSRP stock
+**Software:** Frigate NVR HA add-on — consumes RTSP streams, runs local inference; with Coral handles 10+ cameras efficiently
 
-Without Coral: Frigate runs on CPU only — works for 1–3 cameras but taxes the S13.
-With Coral: handles 10+ streams efficiently; enables per-object automations (notify only on person, not on animal).
-
-**Trigger to activate:** specific need for person detection, package detection, or vehicle classification. Current pixel-diff motion via Thingino MQTT is sufficient for basic "something moved" alerts.
+Not worth pursuing until there's a concrete use case (e.g. "notify only when a person is in the garage, not when a car pulls in").
 
 *Last updated: 2026-05-26*
-*Status: v3 deployed in office; basic MQTT motion sensor configured; project on hold pending decision on AI motion expansion (Frigate + Coral)*
+*Status: **Project complete** — v3 deployed in office, RTSP stream live in dashboard. Motion detection and AI expansion deferred; revisit only if a concrete need arises.*
