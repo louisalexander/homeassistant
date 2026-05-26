@@ -71,16 +71,21 @@ plugins:
 
 nav:
   - Home: index.md
-  - Architecture: architecture.md
-  - Hardware: hardware.md
-  - Automations: automations.md
-  - Systems:
-    - Climate: climate.md
+  - Features:
+    - Climate & Comfort: climate.md
     - Cameras: cameras.md
+    - Garage Doors: garage.md
+    - Leak Detection: leaks.md
     - Lighting: lighting.md
-    - Security & Alarm: security.md
-    - Energy: energy.md
+    - Energy & Power: energy.md
+  - Using the Smart Home:
+    - Voice Control: voice.md
+    - Notifications & Alerts: notifications.md
+  - Technical Reference:
+    - Architecture: architecture.md
     - Network: network.md
-  - Reference:
+    - Hardware Inventory: hardware.md
+    - Automations Reference: automations.md
+    - Security & Alarm: security.md
     - Entity IDs: entities.md
     - Setup Guide: setup.md
