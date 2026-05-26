@@ -141,8 +141,9 @@ No dependencies (order/install any time):
 - [x] Protocol confirmed: ZHA (not Z2M)
 - [x] Shopping totals confirmed: 29× VZW31-SN, 3× VZW36, 3× VZM35-SN, 18× VZW05
 - [x] Order outdoor batch: 10× VZW31-SN + 5× VZW05 ordered
-- [ ] **Install outdoor switches — batch in hand (arrived 2026-05-26)**; 5 single-pole first, then 2 three-way
-- [ ] Order indoor batches one at a time after outdoor batch is installed
+- [x] Outdoor batch arrived 2026-05-26
+- [ ] **Install outdoor switches — batch in hand**; 5 single-pole first (Front Hanging Light, Flood Lights, Patio Door, High Flood, Personnel Door), then 2 three-way (Outside Garage Lights, Garage Lights)
+- [ ] Order indoor Batch 2 (Master Bedroom can lights: 1× VZW31-SN dimmer) after outdoor install complete
 - [ ] Family Room Fan (Batch 6): confirm neutral at wall box + canopy before ordering VZW36 + VZM35-SN
 
 ### Alarm System (Konnected + Ring Alarm base station)
