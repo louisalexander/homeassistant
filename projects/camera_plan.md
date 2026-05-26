@@ -44,11 +44,9 @@
 
 | Camera | Location | Rationale |
 |---|---|---|
-| Wyze v3 | Back door interior / mudroom | Color night vision useful at entries; IP65 means it survives a drafty mudroom; covers secondary entry that Ring outdoor cam #2 covers from outside |
-| Wyze v2 | Mechanical/utility room | Pairs with leak sensors — when a sensor fires, pull up the feed to assess severity before reacting; covers water heater, HVAC, main shutoffs |
-| Wyze v2 (additional units) | TBD — based on count | Candidates: laundry room (leak sensor present), basement if applicable, kid room baby monitor use |
+| Wyze v3 | TBD — back door/mudroom or rear yard | Color night vision + IP65; good at a drafty mudroom entry or as an outdoor supplement behind the house |
 
-> **v2 vs v3 rule:** v3 goes where color night vision matters (entries, outdoor-adjacent spaces). v2 is fine for utility spaces where you just need to see what's happening.
+> All v2 units trashed 2026-05-25. One v3 remains — placement decision pending.
 
 ---
 
