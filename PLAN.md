@@ -184,7 +184,8 @@ No dependencies (order/install any time):
 - [x] Enable RTSP on each camera (Thingino built-in)
 - [x] Add to HA as Generic Camera integration
 - [x] Add camera cards to HA dashboard (Security tab, picture-entity)
-- [ ] Place cameras at assigned locations (v3 → back door/mudroom; v2 → utility/laundry)
+- [x] ~~v2 units~~ — all 3× v2 trashed 2026-05-25 (poor image quality); removed from dashboard
+- [ ] Place v3 at assigned location (back door/mudroom or rear yard — TBD)
 
 ---
 
