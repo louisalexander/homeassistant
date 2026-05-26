@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-10 active projects across security, energy, lighting, cameras, and climate. Three hardware items already in the house are blocking multiple project chains — install the 1st floor Ecobee, EM16P monitors (May 22), and walk the house to count smoke detectors. Two projects (Gosund SL2, Govee Lamp) are on hold pending locating the hardware.
+10 active projects across security, energy, lighting, cameras, and climate. Three hardware items already in the house are blocking multiple project chains — install the 1st floor Ecobee, EM16P monitors (overdue since May 22), and Konnected Alarm Panel Pro. Ring Chime V3 units are now active in HA as siren entities. Wyze v2 cameras trashed (poor image quality); v3 remains. Two projects (Gosund SL2, Govee Lamp) are on hold pending locating the hardware.
 
 **Ordering policy:** Don't order new hardware while uninstalled inventory sits on hand, unless the order is a hard blocker for an install step (not just project completion). Goal: minimize outstanding inventory and overspend.
 
