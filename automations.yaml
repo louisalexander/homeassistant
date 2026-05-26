@@ -13,6 +13,10 @@
 #   6.  Battery Alerts          (automation 19)
 #   7.  Thermostat Presence     (automations 20–22)
 #   8.  Garage Open Too Long    (automations 23–24)
+#   9.  TOU Peak Mode           (automations 25–26)
+#  10.  String Lights           (automations 27–28)
+#  11.  Upstairs Hallway        (automations 29–31)
+#  12.  Mock Door Sensors       (automations 32–34) — placeholders for Konnected zones
 ##############################################################################
 
 
