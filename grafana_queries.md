@@ -119,7 +119,7 @@ from(bucket: "homeassistant")
   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
   |> filter(fn: (r) => r._measurement == "state")
   |> filter(fn: (r) =>
-      r.entity_id == "person.louis_alexander" or
+      r.entity_id == "person.louis" or
       r.entity_id == "person.lindsay"
   )
   |> filter(fn: (r) => r._field == "value")
