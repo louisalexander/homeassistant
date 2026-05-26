@@ -1097,3 +1097,22 @@
       data:
         tone: motion
   mode: single
+
+##############################################################################
+# Section 13: Ring Camera Snapshot Refresh
+# Forces a fresh snapshot from Ring every 2 minutes so dashboard tiles
+# don't show stale images during quiet periods between motion events.
+##############################################################################
+
+- alias: "Ring Camera Snapshot Refresh"
+  id: ring_camera_snapshot_refresh
+  triggers:
+    - trigger: time_pattern
+      minutes: "/2"
+  actions:
+    - action: homeassistant.update_entity
+      target:
+        entity_id:
+          - camera.garage_stickup_cam_1_live_view
+          - camera.personnel_door_live_view
+  mode: single
