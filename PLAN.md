@@ -150,6 +150,7 @@ No dependencies (order/install any time):
 - [x] GE Concord Express 60-806 existing panel documented (4 zones)
 - [x] Ring Protect Pro active — professional monitoring funded
 - [x] Noonlight decision resolved — Ring base station + ring-mqtt bridges Alarmo → Ring Pro monitoring; no separate Noonlight subscription needed
+- [x] **Mock door automations live** — Section 12 in automations.yaml: 3 input_button helpers (front/garage/rear door test) + 3 automations that ring all 4 chimes with ding tone on button press; replace with Konnected binary_sensor entities when wired
 - [ ] **Order Ring Alarm Gen 2 Base Station** (~$60–100) — unlocks Ring Pro monitoring for Alarmo
 - [ ] Install ring-mqtt HACS add-on in HA
 - [ ] *Install smoke detectors before Konnected*
