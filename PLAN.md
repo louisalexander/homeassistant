@@ -23,7 +23,7 @@
 |---|---|---|---|
 | House Energy — EM16P | **Active** | Install monitors May 22 | Scheduled |
 | Climate System — 1st floor Ecobee | **Ready — hw in hand** | Crawlspace trip: connect blue wire to York C terminal, then install | Nothing |
-| Camera Plan (Ring + Wyze) | **In Progress** | Mount 2× Ring outdoor solar cams (sun walk first); place Wyze cameras at assigned locations | Sun exposure walk |
+| Camera Plan (Ring + Wyze) | **In Progress** | Mount 2× Ring outdoor solar cams (sun walk first); place 1× Wyze v3 | Sun exposure walk |
 | Alarm System (Konnected) | **Ready — hw in hand** | Wire 4 zones + siren; configure Alarmo | Nothing |
 | Inovelli Lighting — Outdoor Batch | **Ordered** | Install when arrives — 5 single-pole first, then 2 three-way | Awaiting delivery |
 | Smoke Detectors | **Ready to order** | Order 9× ZCOMBO-G when ready to install same week | Ordering policy |
