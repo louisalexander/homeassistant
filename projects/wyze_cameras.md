@@ -117,9 +117,32 @@ After adding cameras, add to dashboard:
 
 ---
 
-## Future: Frigate NVR (Optional, Deferred)
+## Motion Detection — Current Setup
 
-If local AI object detection becomes useful (person detection, vehicle detection), [Frigate](https://frigate.video) is the standard HA add-on. It consumes the RTSP streams from all cameras (Ring + Wyze) and runs local inference. Requires a Coral Edge TPU or beefy CPU. Not needed initially — standard camera cards + Ring motion sensors are sufficient for now.
+Basic motion detection via Thingino's built-in pixel-difference detector, published over MQTT.
+
+**HA entity:** `binary_sensor.office_cam_motion` (device class: motion, 30s auto-off)
+**MQTT topic:** `thingino/ing-wyze-cam3-3a32/motion` (verify after enabling MQTT in Thingino UI)
+
+**Thingino MQTT setup (one-time):**
+1. Open Thingino web UI (find camera IP in router DHCP)
+2. Go to MQTT settings → set broker to HA's local IP, port 1883
+3. Enable motion detection + MQTT publish
+4. Verify topic: `mosquitto_sub -h localhost -t '#'` then walk in front of camera
+
+---
+
+## Future: Frigate NVR + Coral TPU (On Hold)
+
+Upgrade path if AI object detection is needed (person vs. animal vs. vehicle rather than generic pixel motion):
+
+**Software:** [Frigate](https://frigate.video) NVR — HA add-on, consumes RTSP streams, runs local inference
+**Hardware:** Coral USB Accelerator (G950-01456-01, ~$60) — plugs into Mini S13 USB 3.0 port; check Mouser/DigiKey for stock at MSRP
+
+Without Coral: Frigate runs on CPU only — works for 1–3 cameras but taxes the S13.
+With Coral: handles 10+ streams efficiently; enables per-object automations (notify only on person, not on animal).
+
+**Trigger to activate:** specific need for person detection, package detection, or vehicle classification. Current pixel-diff motion via Thingino MQTT is sufficient for basic "something moved" alerts.
 
 *Last updated: 2026-05-26*
-*Status: All v2 units trashed (image quality); 1× v3 deployed in office (3rd floor)*
+*Status: v3 deployed in office; basic MQTT motion sensor configured; project on hold pending decision on AI motion expansion (Frigate + Coral)*
