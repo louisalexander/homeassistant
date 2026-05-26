@@ -1,0 +1,86 @@
+site_name: Home Command — Smart Home Manual
+site_description: Complete reference for the Home Assistant smart home system
+site_url: https://louisalexander.github.io/homeassistant/
+repo_url: https://github.com/louisalexander/homeassistant
+repo_name: louisalexander/homeassistant
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Hardware: hardware.md
+  - Automations: automations.md
+  - Systems:
+    - Climate: climate.md
+    - Cameras: cameras.md
+    - Lighting: lighting.md
+    - Security & Alarm: security.md
+    - Energy: energy.md
+    - Network: network.md
+  - Reference:
+    - Entity IDs: entities.md
+    - Setup Guide: setup.md
