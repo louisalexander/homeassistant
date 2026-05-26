@@ -9,6 +9,7 @@ input_boolean:
     icon: mdi:lightning-bolt
 
 template:
+  # Triggered sensors — re-evaluate every minute and on HA start
   - trigger:
       - trigger: time_pattern
         minutes: "/1"
@@ -76,18 +77,16 @@ template:
             {% else %}0.146795{% endif %}
           {% endif %}
 
-##############################################################################
-# Notification deep-link URL sensors
-# Stored here (not in automations.yaml) so the !secret directive stays in a
-# config file whose YAML loader supports it. Automations reference these via
-# states('sensor.nabu_casa_*_url') — the automation editor handles templates.
-##############################################################################
-
-template:
+  ##############################################################################
+  # Notification deep-link URL sensors
+  # Stored here (not in automations.yaml) so the !secret directive stays in a
+  # config file whose YAML loader supports it. Automations reference these via
+  # states('sensor.nabu_casa_*_url') — the automation editor handles templates.
+  ##############################################################################
   - sensor:
-    - name: "Nabu Casa Security URL"
-      unique_id: nabu_casa_security_url
-      state: !secret nabu_casa_security_url
-    - name: "Nabu Casa Climate URL"
-      unique_id: nabu_casa_climate_url
-      state: !secret nabu_casa_climate_url
+      - name: "Nabu Casa Security URL"
+        unique_id: nabu_casa_security_url
+        state: !secret nabu_casa_security_url
+      - name: "Nabu Casa Climate URL"
+        unique_id: nabu_casa_climate_url
+        state: !secret nabu_casa_climate_url
