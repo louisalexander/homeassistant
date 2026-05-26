@@ -1,99 +1,61 @@
 # Home Command
 
-**Complete smart home manual — Home Assistant on HAOS**
+Your complete guide to the smart home system.
 
 ---
 
-## The House
+## What Your Home Can Do
 
-3-floor, ~4,800 sq ft, built 2006. Home Assistant OS running on a local Mini S13 PC, remotely accessible via Nabu Casa cloud. All config is version-controlled in this repository.
-
----
-
-## System at a Glance
-
-| Layer | What's running |
-|---|---|
-| **Hub** | Home Assistant OS 2026.5 — local network + Nabu Casa remote |
-| **Zigbee** | ZHA with ZBT-2 USB dongle (channel 25) — ~15 devices |
-| **Z-Wave** | Z-Wave JS — smoke detectors (planned), smart locks (planned) |
-| **Climate** | 2× Ecobee thermostats (2nd + 3rd floor active; 1st floor pending install) |
-| **Cameras** | 2× Ring Indoor + 2× Ring Outdoor Solar (pending) + 1× Wyze v3 (office) |
-| **Security** | Konnected Alarm Panel Pro (purchased, not yet installed) |
-| **Lighting** | Inovelli Blue Series Zigbee rollout in progress — outdoor batch installed |
-| **Energy** | EM16P dual-panel monitors (pending install) + plug-level monitoring |
-| **Voice** | Alexa (primary) + Apple Home (secondary via HomeKit Bridge) |
-| **Automations** | 27+ automations across leak detection, presence, TOU energy, security |
+- **Climate adjusts automatically** — thermostats switch to energy-saving mode when everyone leaves, back to comfort when someone gets home
+- **Energy costs less during peak hours** — the system pre-cools or pre-heats before expensive electricity windows so the AC runs less when rates are highest
+- **Leak alerts that wake you up** — 7 sensors under sinks and in wet areas; if any detect water, both phones get an emergency alert that bypasses silent mode
+- **Garage door monitoring** — notifications when doors open or close; actionable "Close It" button if a door is left open while everyone's away or for 30+ minutes
+- **Motion-activated chimes** — cameras at the garage and personnel door ring the Ring chimes throughout the house when they detect motion (once per 10 minutes)
+- **Air quality monitoring** — CO₂ and VOC levels tracked in the bedroom and office; alerts if levels get unhealthy
+- **Voice control** — Alexa throughout the house; thermostats also in Apple Home
 
 ---
 
-## Quick Navigation
+## Find What You Need
 
 <div class="grid cards" markdown>
 
--   :material-floor-plan: **[Architecture](architecture.md)**
+-   :material-thermometer: **[Climate & Comfort](climate.md)**
 
-    System topology, integrations, protocols, and how everything connects.
-
--   :material-devices: **[Hardware](hardware.md)**
-
-    Complete inventory of every device — installed, pending, and on-hand.
-
--   :material-robot: **[Automations](automations.md)**
-
-    All 27+ automations documented — triggers, conditions, actions.
-
--   :material-thermometer: **[Climate](climate.md)**
-
-    Ecobee thermostats, Eco+ TOU pre-conditioning, dashboard cards.
+    How the thermostats work, automatic presence adjustments, and energy-saving pre-conditioning.
 
 -   :material-cctv: **[Cameras](cameras.md)**
 
-    Ring perimeter layer + Wyze interior layer — streams, motion, dashboard.
+    Where cameras are, how motion chimes work, and how to watch live footage.
 
--   :material-lightning-bolt: **[Lighting](lighting.md)**
+-   :material-garage: **[Garage Doors](garage.md)**
 
-    Inovelli Blue Series Zigbee switch rollout — phases, locations, status.
+    Notifications, remote closing, and what "left" and "right" mean on the app.
 
--   :material-shield-home: **[Security & Alarm](security.md)**
+-   :material-water-alert: **[Leak Detection](leaks.md)**
 
-    Konnected panel, leak sensors, mock door automations, smoke detectors.
+    Where sensors are installed and what happens when one detects water.
 
--   :material-meter-electric: **[Energy](energy.md)**
+-   :material-lightbulb: **[Lighting](lighting.md)**
 
-    EM16P monitors, TOU rate sensors, plug-level power tracking.
+    Smart switches — what's installed and what's coming.
 
--   :material-router-network: **[Network](network.md)**
+-   :material-meter-electric: **[Energy & Power](energy.md)**
 
-    Eero mesh, TP-Link switch, MoCA backbone, Zigbee coordinator placement.
+    Time-of-use pricing, how the house saves money, and what's being monitored.
 
--   :material-format-list-bulleted: **[Entity Reference](entities.md)**
+-   :material-microphone: **[Voice Control](voice.md)**
 
-    Quick-lookup table of all key entity IDs by domain.
+    Alexa commands and what's available in Apple Home.
+
+-   :material-bell: **[Notifications & Alerts](notifications.md)**
+
+    Every notification you might receive, what it means, and what to do.
 
 </div>
 
 ---
 
-## Project Status
-
-See [`PLAN.md`](https://github.com/louisalexander/homeassistant/blob/main/PLAN.md) for the live execution plan. High-level:
-
-| Project | Status |
-|---|---|
-| House Energy — EM16P | Active — **overdue install** |
-| Climate — 1st floor Ecobee | Ready — hardware in hand |
-| Cameras (Ring + Wyze) | In progress |
-| Alarm System (Konnected) | Ready — hardware in hand |
-| Inovelli Lighting — Outdoor | **In hand — ready to install** |
-| Inovelli Lighting — Indoor | Ordered one batch at a time after outdoor done |
-| Smoke Detectors | Ready to order |
-| Smart Locks | On hold — clear backlog first |
-| Wyze Cameras | Complete |
-| Gas Fireplace | Deferred — seasonal |
-
----
-
-!!! tip "Keeping this manual current"
-    This documentation is auto-deployed from the `main` branch on every push.
-    Whenever a project advances or config changes, the relevant page here is updated in the same commit.
+!!! tip "Need help?"
+    Something not working as expected? Check the relevant page above or ask Louis.
+    This manual is kept current — whenever the system changes, this documentation is updated in the same commit.
