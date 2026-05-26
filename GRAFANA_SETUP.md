@@ -113,7 +113,7 @@ AND $timeFilter
 **Presence — Who's Home (State timeline)**
 ```sql
 SELECT "value" FROM "state"
-WHERE ("entity_id" =~ /person.louis_alexander|person.lindsay/)
+WHERE ("entity_id" =~ /person.louis|person.lindsay/)
 AND $timeFilter
 ```
 
