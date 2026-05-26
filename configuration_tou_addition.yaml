@@ -1,0 +1,77 @@
+
+##############################################################################
+# TOU — Time-of-Use (Dominion Energy Schedule 1G)
+##############################################################################
+
+input_boolean:
+  peak_mode:
+    name: "Peak Mode Active"
+    icon: mdi:lightning-bolt
+
+template:
+  - trigger:
+      - trigger: time_pattern
+        minutes: "/1"
+      - trigger: homeassistant
+        event: start
+    sensor:
+      # Current TOU period: peak | off_peak | super_off_peak
+      - name: "TOU Period"
+        unique_id: tou_period
+        icon: >
+          {% if this.state == 'peak' %}mdi:lightning-bolt
+          {% elif this.state == 'super_off_peak' %}mdi:sleep
+          {% else %}mdi:clock-outline{% endif %}
+        state: >
+          {% set h = now().hour %}
+          {% set m = now().month %}
+          {% set dow = now().weekday() %}
+          {% set summer = m >= 5 and m <= 9 %}
+          {% set weekend = dow >= 5 %}
+          {% if weekend %}
+            {% if h < 5 %}super_off_peak{% else %}off_peak{% endif %}
+          {% elif summer %}
+            {% if h < 5 %}super_off_peak
+            {% elif h < 15 %}off_peak
+            {% elif h < 18 %}peak
+            {% else %}off_peak{% endif %}
+          {% else %}
+            {% if h < 5 %}super_off_peak
+            {% elif h < 6 %}off_peak
+            {% elif h < 9 %}peak
+            {% elif h < 17 %}off_peak
+            {% elif h < 20 %}peak
+            {% else %}off_peak{% endif %}
+          {% endif %}
+
+      # Current rate in $/kWh based on period and season
+      - name: "TOU Rate"
+        unique_id: tou_rate
+        unit_of_measurement: "$/kWh"
+        state_class: measurement
+        icon: mdi:currency-usd
+        state: >
+          {% set h = now().hour %}
+          {% set m = now().month %}
+          {% set dow = now().weekday() %}
+          {% set summer = m >= 5 and m <= 9 %}
+          {% set weekend = dow >= 5 %}
+          {% if weekend %}
+            {% if h < 5 %}
+              {{ 0.124709 if summer else 0.140752 }}
+            {% else %}
+              {{ 0.142590 if summer else 0.146975 }}
+            {% endif %}
+          {% elif summer %}
+            {% if h < 5 %}0.124709
+            {% elif h < 15 %}0.142590
+            {% elif h < 18 %}0.301638
+            {% else %}0.142590{% endif %}
+          {% else %}
+            {% if h < 5 %}0.140752
+            {% elif h < 6 %}0.146795
+            {% elif h < 9 %}0.262161
+            {% elif h < 17 %}0.146795
+            {% elif h < 20 %}0.262161
+            {% else %}0.146795{% endif %}
+          {% endif %}
