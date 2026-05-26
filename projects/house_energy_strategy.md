@@ -628,5 +628,5 @@ Run this at the start of every Claude Code session before writing any code or co
 
 ---
 
-*Last updated: 2026-05-21*
-*Next review: after EM16P hardware installed (Thursday 2026-05-22)*
+*Last updated: 2026-05-25*
+*Status: EM16P install overdue (was scheduled 2026-05-22); WS0 cannot proceed until hardware is installed and online*
