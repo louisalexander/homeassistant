@@ -111,9 +111,8 @@ After adding cameras, add to dashboard:
 
 ## Open Questions
 
-- [ ] Confirm exact unit count: how many v2, how many v3?
-- [ ] Check if any cameras still have Wyze stock firmware and whether they're currently in use
-- [ ] Confirm Wi-Fi coverage at each proposed location (Wyze cameras are 2.4 GHz only)
+- [ ] Decide placement for v3: back door/mudroom interior, or outdoor rear yard
+- [ ] Confirm outlet/power at chosen v3 location
 - [ ] Decide on motion detection approach: Thingino local motion, or pipe RTSP into HA Frigate/MotionEye (more complex, defer for now)
 
 ---
