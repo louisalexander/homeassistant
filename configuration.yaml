@@ -36,3 +36,22 @@ input_button:
   rear_door_test:
     name: "Rear Door (Test)"
     icon: mdi:door-open
+
+##############################################################################
+# MQTT binary sensors
+# Thingino setup required first: Thingino web UI → MQTT → set broker to
+# HA's local IP, port 1883. Verify exact topic with:
+#   mosquitto_sub -h localhost -t '#' then trigger motion on camera.
+# Hostname "ing-wyze-cam3-3a32" taken from camera overlay.
+# off_delay: sensor auto-clears 30s after trigger (camera sends on-events only).
+##############################################################################
+
+mqtt:
+  binary_sensor:
+    - name: "Office Cam Motion"
+      unique_id: office_cam_motion
+      state_topic: "thingino/ing-wyze-cam3-3a32/motion"
+      payload_on: "on"
+      payload_off: "off"
+      off_delay: 30
+      device_class: motion
