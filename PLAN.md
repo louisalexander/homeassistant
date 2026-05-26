@@ -59,7 +59,7 @@ No dependencies (order/install any time):
   - Smart Lock (front door)
   - Ring Doorbell 2K + transformer
   - Ring Chimes (place and register)
-  - Wyze Camera flash (once unit count confirmed)
+  - Wyze v3 placement (v2 units trashed; v3 only)
 ```
 
 ---
