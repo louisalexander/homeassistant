@@ -75,3 +75,19 @@ template:
             {% elif h < 20 %}0.262161
             {% else %}0.146795{% endif %}
           {% endif %}
+
+##############################################################################
+# Notification deep-link URL sensors
+# Stored here (not in automations.yaml) so the !secret directive stays in a
+# config file whose YAML loader supports it. Automations reference these via
+# states('sensor.nabu_casa_*_url') — the automation editor handles templates.
+##############################################################################
+
+template:
+  - sensor:
+    - name: "Nabu Casa Security URL"
+      unique_id: nabu_casa_security_url
+      state: !secret nabu_casa_security_url
+    - name: "Nabu Casa Climate URL"
+      unique_id: nabu_casa_climate_url
+      state: !secret nabu_casa_climate_url
