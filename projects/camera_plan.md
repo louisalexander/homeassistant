@@ -44,9 +44,7 @@
 
 | Camera | Location | Rationale |
 |---|---|---|
-| Wyze v3 | TBD — back door/mudroom or rear yard | Color night vision + IP65; good at a drafty mudroom entry or as an outdoor supplement behind the house |
-
-> All v2 units trashed 2026-05-25. One v3 remains — placement decision pending.
+| Wyze v3 | **Office (3rd floor)** — deployed 2026-05-26 | Interior coverage; dashboard tile "Office Cam"; local RTSP stream |
 
 ---
 
