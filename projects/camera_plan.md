@@ -8,7 +8,7 @@
 | Ring Outdoor Cam + Solar Panel | 2 | Outdoor | Color | Solar | Ring | Not mounted |
 | Ring Indoor Cam (plug-in) | 2 | Indoor | IR (B&W) | Plug-in | Ring | Cam 1: Garage — active; Cam 2: Personnel door — active |
 | Wyze Cam v2 | 0 | — | — | — | — | **Trashed** — all units discarded 2026-05-25 (poor image quality) |
-| Wyze Cam v3 | 1 | Indoor/Outdoor (IP65) | Color Starlight | Plug-in | Local (Thingino) | Flashed, in HA — placement TBD |
+| Wyze Cam v3 | 1 | Indoor/Outdoor (IP65) | Color Starlight | Plug-in | Local (Thingino) | **Deployed — Office (3rd floor), 2026-05-26** |
 
 ---
 
