@@ -185,8 +185,8 @@ No dependencies (order/install any time):
 - [x] Flash all units with Thingino firmware (wltechblog installer, micro-SD)
 - [x] Enable RTSP on each camera (Thingino built-in)
 - [x] Add to HA as Generic Camera integration
-- [x] Add camera cards to HA dashboard (Security tab, picture-entity)
-- [x] ~~v2 units~~ — all 3× v2 trashed 2026-05-25 (poor image quality); removed from dashboard
+- [x] All 3× v2 units trashed 2026-05-25 (poor image quality); dashboard cards removed; v3 remains
+- [x] v3 camera card live on dashboard (full-width picture-entity card)
 - [ ] Place v3 at assigned location (back door/mudroom or rear yard — TBD)
 
 ---
