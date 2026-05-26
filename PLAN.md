@@ -23,7 +23,8 @@
 |---|---|---|---|
 | House Energy — EM16P | **Active** | Install monitors — **OVERDUE** (was May 22) | Scheduled |
 | Climate System — 1st floor Ecobee | **Ready — hw in hand** | Crawlspace trip: connect blue wire to York C terminal, then install | Nothing |
-| Camera Plan (Ring + Wyze) | **In Progress** | Mount 2× Ring outdoor solar cams (sun walk first); place 1× Wyze v3 | Sun exposure walk |
+| Camera Plan (Ring + Wyze) | **In Progress** | Mount 2× Ring outdoor solar cams (sun walk first); install Ring doorbell 2K | Sun exposure walk |
+| Wyze Cameras | **On Hold** | Resume if/when AI motion detection (Frigate + Coral) becomes a priority | Decision on Frigate |
 | Alarm System (Konnected) | **Ready — hw in hand** | Wire 4 zones + siren; configure Alarmo | Nothing |
 | Inovelli Lighting — Outdoor Batch | **In hand — ready to install** | 5 single-pole first (no aux), then 2 three-way | Nothing |
 | Smoke Detectors | **Ready to order** | Order 9× ZCOMBO-G when ready to install same week | Ordering policy |
