@@ -12,8 +12,8 @@
 
 **Top 3 priorities right now:**
 1. **EM16P install** — **overdue** (was May 22); still blocks all energy monitoring and WS0 baseline setup
-2. **Install 1st floor Ecobee** — hardware in hand, one crawlspace trip (connect blue wire to York C terminal), largest single ROI improvement
-3. **Konnected Alarm Panel Pro install** — hardware in hand, mock automations already wired (Section 12 placeholders), ready to deploy
+2. **Inovelli outdoor switches** — batch arrived 2026-05-26; 5 single-pole installs first (Front Hanging Light, Flood Lights, Patio Door, High Flood, Personnel Door exterior), no aux complexity; unlocks indoor batch ordering
+3. **Install 1st floor Ecobee** — hardware in hand, one crawlspace trip (connect blue wire to York C terminal), largest single ROI improvement
 
 ---
 
