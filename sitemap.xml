@@ -49,11 +49,19 @@
          <lastmod>2026-05-26</lastmod>
     </url>
     <url>
+         <loc>https://louisalexander.github.io/homeassistant/notifications/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
          <loc>https://louisalexander.github.io/homeassistant/security/</loc>
          <lastmod>2026-05-26</lastmod>
     </url>
     <url>
          <loc>https://louisalexander.github.io/homeassistant/setup/</loc>
+         <lastmod>2026-05-26</lastmod>
+    </url>
+    <url>
+         <loc>https://louisalexander.github.io/homeassistant/voice/</loc>
          <lastmod>2026-05-26</lastmod>
     </url>
 </urlset>
