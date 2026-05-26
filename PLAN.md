@@ -25,7 +25,7 @@
 | Climate System — 1st floor Ecobee | **Ready — hw in hand** | Crawlspace trip: connect blue wire to York C terminal, then install | Nothing |
 | Camera Plan (Ring + Wyze) | **In Progress** | Mount 2× Ring outdoor solar cams (sun walk first); place 1× Wyze v3 | Sun exposure walk |
 | Alarm System (Konnected) | **Ready — hw in hand** | Wire 4 zones + siren; configure Alarmo | Nothing |
-| Inovelli Lighting — Outdoor Batch | **Ordered** | Install when arrives — 5 single-pole first, then 2 three-way | Awaiting delivery |
+| Inovelli Lighting — Outdoor Batch | **In hand — ready to install** | 5 single-pole first (no aux), then 2 three-way | Nothing |
 | Smoke Detectors | **Ready to order** | Order 9× ZCOMBO-G when ready to install same week | Ordering policy |
 | Inovelli Lighting — Indoor Batches | **Ready to order** | Order Batch 2 (Master Bedroom) after outdoor installed | Ordering policy |
 | Smart Locks | **Hold** | Order Schlage BE469ZP after hardware backlog clears | Inventory policy |
