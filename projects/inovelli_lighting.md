@@ -165,7 +165,15 @@ Don't order everything at once. Order one room group, install, confirm it works 
 | **10 — Remaining** | Upstairs Hallway, Garage Lights, 3rd Floor Stairs, Front Room | 4× VZW31-SN, 6× VZW05 | Upstairs Hallway has 4 aux switches (5-position run confirmed) |
 
 ### Phase 4 — Install & Commission
-For each room:
+
+**Outdoor batch in hand (arrived 2026-05-26): 10× VZW31-SN + 5× VZW05**
+
+Install order:
+1. **5 single-pole first** (no aux complexity): Front Hanging Light, Flood Lights, Patio Door, High Flood, Personnel Door (exterior)
+2. **2 three-way after**: Outside Garage Lights (1 aux), Garage Lights (1 aux)
+3. **3× VZW31-SN + 3× VZW05 carry forward** to first indoor batch
+
+Per-switch checklist:
 1. Cut power at breaker
 2. Install VZW31-SN or VZW36 at smart switch location
 3. Install VZW05 aux switches at all secondary locations in the same run
