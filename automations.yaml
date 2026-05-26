@@ -1025,3 +1025,60 @@
       target:
         entity_id: switch.upstairs_hallway_1
   mode: single
+
+
+##############################################################################
+# 12. MOCK DOOR SENSORS — Konnected placeholders (replace triggers with
+#     binary_sensor.[door]_contact state → on when Konnected is wired)
+##############################################################################
+
+- alias: "Mock — Front Door Open"
+  id: mock_front_door_open
+  triggers:
+    - trigger: state
+      entity_id: input_button.front_door_test
+  actions:
+    - action: siren.turn_on
+      target:
+        entity_id:
+          - siren.hallway_siren
+          - siren.master_bedroom_siren
+          - siren.office_siren
+          - siren.garage_siren
+      data:
+        tone: ding
+  mode: single
+
+- alias: "Mock — Garage Door Open"
+  id: mock_garage_door_open
+  triggers:
+    - trigger: state
+      entity_id: input_button.garage_door_test
+  actions:
+    - action: siren.turn_on
+      target:
+        entity_id:
+          - siren.hallway_siren
+          - siren.master_bedroom_siren
+          - siren.office_siren
+          - siren.garage_siren
+      data:
+        tone: ding
+  mode: single
+
+- alias: "Mock — Rear Door Open"
+  id: mock_rear_door_open
+  triggers:
+    - trigger: state
+      entity_id: input_button.rear_door_test
+  actions:
+    - action: siren.turn_on
+      target:
+        entity_id:
+          - siren.hallway_siren
+          - siren.master_bedroom_siren
+          - siren.office_siren
+          - siren.garage_siren
+      data:
+        tone: ding
+  mode: single
