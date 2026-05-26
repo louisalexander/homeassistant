@@ -19,6 +19,7 @@ Legacy wired alarm panel, active but not integrated with HA.
 - **Status:** Purchased, board on hand, not yet installed
 - **Plan:** Replaces GE motherboard, reuses all existing sensor wiring → integrates into HA natively
 - All 4 zones + siren carry over to Konnected with no re-wiring of sensors
+- **Mock automations live (Section 12 in automations.yaml):** 3 input_button helpers + 3 automations for testing; will replace button triggers with Konnected binary_sensor entities when hardware is wired
 
 ---
 
