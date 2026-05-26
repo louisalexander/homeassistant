@@ -72,6 +72,7 @@ No dependencies (order/install any time):
 - [ ] **May 22–23 (BLOCKED)** — Run Energy WS0 in HA: discover entities, confirm statistics, build whole-home template sensors
 - [x] **Walk the house** — Smoke detector count (9 confirmed, all 3-wire); Inovelli survey complete (29/30 verified)
 - [x] **Order Inovelli outdoor batch** — 10× VZW31-SN + 5× VZW05 ordered (all 7 outdoor locations + extras)
+- [x] **Inovelli outdoor batch arrived** 2026-05-26 — ready to install
 - [x] **Check Ring account** — Chime v1 + Chime Pro removed from account 2026-05-21; 4× V3 chimes registered and active in HA as siren entities
 
 ### Next 30 Days (May 25 – Jun 21)
