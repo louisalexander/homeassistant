@@ -107,7 +107,7 @@ No dependencies (order/install any time):
 | Gas Fireplace Automation | Fall/winter — confirmed millivolt switch; need blower motor wattage before ordering |
 | Gosund SL2 | Device located |
 | Govee Floor Lamp | Power plug located |
-| Frigate NVR (AI camera detection) | Current camera setup insufficient; Coral TPU available |
+| Frigate NVR + Coral TPU | Wyze v3 MQTT motion sufficient for now; revisit if person/object detection needed |
 | Additional smart locks | Front door workflow validated; clear use case per door |
 | Alarmo → Noonlight | Professional monitoring decision made |
 
