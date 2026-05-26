@@ -232,13 +232,13 @@ The standard HA Ecobee integration does not expose hold status. The setpoint dev
 
 ```bash
 # Pull fresh copy from HAOS before any edit
-ssh root@192.168.4.93 "cat /config/.storage/lovelace.home_command_dashboard" > /tmp/lovelace_dashboard.json
+ssh root@192.168.x.x "cat /config/.storage/lovelace.home_command_dashboard" > /tmp/lovelace_dashboard.json
 
 # Edit via Python script, then push
-scp /tmp/lovelace_dashboard.json root@192.168.4.93:/config/.storage/lovelace.home_command_dashboard
+scp /tmp/lovelace_dashboard.json root@192.168.x.x:/config/.storage/lovelace.home_command_dashboard
 
 # Restart to load (JSON is read at startup; in-memory state overwrites if HA is running)
-ssh root@192.168.4.93 "ha core restart"
+ssh root@192.168.x.x "ha core restart"
 ```
 
 **Race condition note:** If HA is running when you SCP, HA may overwrite the file on shutdown. Always run `ha core restart` immediately after SCP to minimize the window. Pull fresh before every edit session.
