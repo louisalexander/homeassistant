@@ -16,7 +16,6 @@ home-assistant.log*
 
 # Local artifacts — not from HAOS, not the source of truth
 automation_*.yaml
-configuration_tou_addition.yaml
 *.txt
 
 # macOS
