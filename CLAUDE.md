@@ -42,7 +42,7 @@ ssh root@192.168.4.93 "ha core logs --lines 20"
 | File | Role | How to apply |
 |---|---|---|
 | `automations.yaml` | **Single source of truth** for all automations | SCP → Reload Automations |
-| `configuration_tou_addition.yaml` | TOU rate/period template sensors + `input_boolean.peak_mode` | SCP to `/config/`, add `!include` in `configuration.yaml`, restart |
+| `configuration_tou_addition.yaml` | TOU rate/period template sensors + `input_boolean.peak_mode` — loaded via `homeassistant.packages.tou` in `configuration.yaml` | SCP to `/config/`, restart |
 | `influxdb_ha.yaml` | InfluxDB domain/entity include-exclude list | SCP to `/config/`, restart |
 | `homekit.yaml` | HomeKit bridge entity whitelist | SCP to `/config/`, restart |
 | `scripts.yaml` | Alexa-invocable garage scripts | SCP to `/config/`, restart |
