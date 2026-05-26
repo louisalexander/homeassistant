@@ -197,8 +197,8 @@ No dependencies (order/install any time):
 
 | Item | Qty | Order Trigger | Est. Cost |
 |---|---|---|---|
-| Inovelli VZW31-SN (outdoor batch) | 10 (2× 5-pack) | **Ordered** — arriving soon | ~$600 |
-| Inovelli VZW05 (aux, outdoor batch) | 5 (1× 5-pack) | **Ordered** — 3 extras carry forward | ~$125 |
+| Inovelli VZW31-SN (outdoor batch) | 10 | **Arrived 2026-05-26** — 7 outdoor + 3 carry to indoor | ~$600 |
+| Inovelli VZW05 (aux, outdoor batch) | 5 | **Arrived 2026-05-26** — 2 outdoor + 3 carry to indoor | ~$125 |
 | Downspout mount brackets (Ring) | 2 | **In hand** | ~$15 ea |
 | First Alert Z-Wave ZCOMBO-G | 9 | Order when ready to install (not before) | ~$45–55 ea (~$405–495 total) |
 | Schlage BE469ZP | 1 | Order when existing hardware backlog is cleared | ~$160 |
