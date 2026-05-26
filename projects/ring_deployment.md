@@ -9,11 +9,11 @@
 | Ring Outdoor Cam + Solar Panel (w/ pole + wall mount) | 2 | Not mounted |
 | Ring Video Doorbell Powered 2K | 1 | Not installed |
 | Ring Doorbell Transformer (upgrade) | 1 | In hand — not yet installed |
-| Ring Chime V3 | 4 | Not placed |
+| Ring Chime V3 | 4 | Active in HA as siren entities (`siren.hallway_siren`, `siren.master_bedroom_siren`, `siren.office_siren`, `siren.garage_siren`); volume entities available (range 0–11); available tones: ding, motion only; registered but not yet physically placed |
 | Ring Chime (original / v1) | 1 | **Removed from Ring account 2026-05-21** — retired |
 | Ring Chime Pro (original) | 1 | **Removed from Ring account 2026-05-21** — retired |
 
-> **Chime status:** Ring Chime v1 and Chime Pro are registered in account but unplugged. **Deprecate both** — remove from Ring app, replace with 4× V3 chimes. V3 covers all 4 placement zones; no need to keep legacy units.
+> **Chime status:** Ring Chime v1 and Chime Pro completely removed from account 2026-05-21. 4× V3 chimes are the active set, registered in HA, appearing as siren entities. V3 covers all 4 placement zones. Note: chimes are registered in HA but not yet physically mounted on walls.
 
 ---
 
