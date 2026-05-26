@@ -121,5 +121,5 @@ After adding cameras, add to dashboard:
 
 If local AI object detection becomes useful (person detection, vehicle detection), [Frigate](https://frigate.video) is the standard HA add-on. It consumes the RTSP streams from all cameras (Ring + Wyze) and runs local inference. Requires a Coral Edge TPU or beefy CPU. Not needed initially — standard camera cards + Ring motion sensors are sufficient for now.
 
-*Last updated: 2026-05-23*
-*Status: 3× v2 + 1× v3 flashed and in HA; Cam 4 (black v2) bricked — deferred; fleet complete*
+*Last updated: 2026-05-25*
+*Status: All v2 units trashed (image quality); 1× v3 in HA, placement TBD*
