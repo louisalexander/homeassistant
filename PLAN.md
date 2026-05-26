@@ -175,10 +175,10 @@ No dependencies (order/install any time):
 - [x] Remove deprecated chimes from Ring app — completed 2026-05-21
 - [x] 4× Ring Chime V3 active in HA as siren entities (siren.[name], volume controls available)
 - [ ] Install Ring Doorbell Powered 2K + transformer (both in hand)
-- [ ] Distribute 4× Ring Chime V3s (1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office)
+- [ ] Physically distribute and mount 4× Ring Chime V3s (1st floor kitchen, 1st floor foyer, 2nd floor hall, 3rd floor office) — registered in HA but not yet installed on walls
 - [ ] Mount 2× outdoor solar cameras — confirm downspout sun exposure first
-- [x] Place indoor cam — Cam 2 at personnel door (house side), active in HA
-- [ ] Verify all new devices appear in HA Ring integration
+- [x] Place indoor cams — Cam 1: garage, Cam 2: personnel door (house side) — both active in HA
+- [x] Verify Ring devices in HA Ring integration — both indoor cams + chimes appear
 
 ### Wyze Cameras
 - [x] Count exact unit inventory — 3× v2, 1× v3
