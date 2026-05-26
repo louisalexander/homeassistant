@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Is
 
-A local working copy of Home Assistant configuration files. The live HA instance runs on HAOS at `192.168.4.93` (also reachable via Nabu Casa — see memory for URL). Files are edited here, then pushed to HAOS manually. There is no build system, CI, or test runner.
+A local working copy of Home Assistant configuration files. The live HA instance runs on HAOS at `192.168.x.x` (also reachable via Nabu Casa — see memory for URL). Files are edited here, then pushed to HAOS manually. There is no build system, CI, or test runner.
 
 ## Pushing Changes to HAOS
 
 ### Automations (most common)
 ```bash
-scp automations.yaml root@192.168.4.93:/config/automations.yaml
+scp automations.yaml root@192.168.x.x:/config/automations.yaml
 # Then in HA: Developer Tools → YAML → Reload Automations
 # (No restart needed — automation reload is hot)
 ```
@@ -18,23 +18,23 @@ scp automations.yaml root@192.168.4.93:/config/automations.yaml
 ### Dashboard (Lovelace)
 ```bash
 # Always pull fresh before editing to avoid stale state
-ssh root@192.168.4.93 "cat /config/.storage/lovelace.home_command_dashboard" > /tmp/lovelace_dashboard.json
+ssh root@192.168.x.x "cat /config/.storage/lovelace.home_command_dashboard" > /tmp/lovelace_dashboard.json
 
 # Edit /tmp/lovelace_dashboard.json (usually via a Python script in /tmp/)
-scp /tmp/lovelace_dashboard.json root@192.168.4.93:/config/.storage/lovelace.home_command_dashboard
-ssh root@192.168.4.93 "ha core restart"
+scp /tmp/lovelace_dashboard.json root@192.168.x.x:/config/.storage/lovelace.home_command_dashboard
+ssh root@192.168.x.x "ha core restart"
 # Race condition: HA may overwrite the file on shutdown. Always restart immediately after SCP.
 ```
 
 ### Other YAML config files
 ```bash
-scp <file>.yaml root@192.168.4.93:/config/<file>.yaml
-ssh root@192.168.4.93 "ha core restart"
+scp <file>.yaml root@192.168.x.x:/config/<file>.yaml
+ssh root@192.168.x.x "ha core restart"
 ```
 
 ### Verify HA is up after restart
 ```bash
-ssh root@192.168.4.93 "ha core logs --lines 20"
+ssh root@192.168.x.x "ha core logs --lines 20"
 ```
 
 ## File Roles
