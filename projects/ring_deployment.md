@@ -100,7 +100,7 @@ Ring integration is already active (`Ring — cameras + doorbell` in `configurat
 
 **Existing automation pattern:** `last_activity` triggers → notification. New cameras follow the same pattern automatically once entities appear.
 
-**Chimes:** Not surfaced as HA entities — they work through Ring's own doorbell/chime pairing. No HA automation needed for basic doorbell chime function.
+**Chimes:** Ring Chime V3 units now appear as siren entities in HA (`siren.[location]_siren`). Each siren has a volume control entity (`number.[location]_siren_volume`, range 0–11). Available tones: `ding` and `motion` only (hard ceiling from Ring API). Can be triggered via automation (e.g. test buttons on dashboard, or triggered by Konnected zone events).
 
 ---
 
