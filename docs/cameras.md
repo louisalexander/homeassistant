@@ -44,7 +44,9 @@ Open the Ring app to watch live footage from the Ring cameras, review recorded c
 
 ### From Apple Home
 
-The Ring cameras are not currently bridged to Apple Home.
+All three cameras appear in the Home app via the HA bridge (**Garage Camera**, **Personnel Door Camera**, **Office Camera**). Tap a camera tile to start a live stream.
+
+Ring cameras stream via the cloud — expect 3–5 seconds of startup latency. The Office Camera (Wyze/Thingino) streams locally and should be nearly instant.
 
 ---
 
