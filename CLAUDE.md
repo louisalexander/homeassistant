@@ -110,7 +110,7 @@ Season: months 5–9 = summer. Peak hours: summer 3–6pm weekdays, winter 6–9
 
 ### Key Entities
 - `zone.home` — person count in the Home zone (use this for presence, not individual person entities)
-- `person.louis_alexander`, `person.lindsay` — the two residents (`person.lindsay_saady` does NOT exist)
+- `person.louis`, `person.lindsay` — the two residents (`person.lindsay_saady` does NOT exist)
 - `input_boolean.peak_mode` — true during TOU peak hours
 - `sensor.tou_period` — current TOU period string
 - `weather.forecast_home` — used for outside temperature in thermostat conditions
