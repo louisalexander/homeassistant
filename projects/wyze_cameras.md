@@ -111,8 +111,8 @@ After adding cameras, add to dashboard:
 
 ## Open Questions
 
-- [ ] Decide placement for v3: back door/mudroom interior, or outdoor rear yard
-- [ ] Confirm outlet/power at chosen v3 location
+- [x] Decide placement for v3 — **Office (3rd floor), deployed 2026-05-26**
+- [x] Confirm outlet/power at chosen v3 location
 - [ ] Decide on motion detection approach: Thingino local motion, or pipe RTSP into HA Frigate/MotionEye (more complex, defer for now)
 
 ---
