@@ -1046,7 +1046,7 @@
           - siren.office_siren
           - siren.garage_siren
       data:
-        tone: ding
+        tone: motion
   mode: single
 
 - alias: "Mock — Garage Door Open"
@@ -1063,7 +1063,7 @@
           - siren.office_siren
           - siren.garage_siren
       data:
-        tone: ding
+        tone: motion
   mode: single
 
 - alias: "Mock — Rear Door Open"
@@ -1080,5 +1080,5 @@
           - siren.office_siren
           - siren.garage_siren
       data:
-        tone: ding
+        tone: motion
   mode: single
