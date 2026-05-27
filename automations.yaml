@@ -507,7 +507,7 @@
 - alias: "Air Quality — VOCs High Alert"
   id: air_quality_voc_high_alert
   description: >
-    Notifies Louis and Lindsay when bedroom VOCs have been above 1000 ppb
+    Notifies Louis and Lindsay when bedroom VOCs have been above 1000 µg/m³
     for 5 consecutive minutes.
   triggers:
     - trigger: numeric_state
