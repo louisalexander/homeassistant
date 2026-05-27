@@ -94,7 +94,7 @@
         notification_id: "leak_{{ trigger.entity_id }}"
 
   mode: parallel
-  max: 7
+  max: 12
 
 
 # 2. Leak Cleared — All Clear Notification
@@ -162,7 +162,7 @@
         notification_id: "leak_{{ trigger.entity_id }}"
 
   mode: parallel
-  max: 7
+  max: 12
 
 
 ##############################################################################
