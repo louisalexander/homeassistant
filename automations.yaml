@@ -415,7 +415,7 @@
 # 4. AIR QUALITY — MASTER BEDROOM
 #
 # CO₂  — alert > 1000 ppm / clear < 800 ppm
-# VOCs — alert > 1000 ppb / clear < 800 ppb
+# VOCs — alert > 1000 µg/m³ / clear < 800 µg/m³
 # 5-min "for" clause on alerts prevents false positives from momentary spikes.
 ##############################################################################
 
