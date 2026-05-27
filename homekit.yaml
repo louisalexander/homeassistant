@@ -84,6 +84,8 @@
       name: 2F Hall Bath Right Sink
     binary_sensor.3rd_floor_furnace_leak_detector:
       name: 3rd Floor Furnace
+    binary_sensor.attic_air_handler_leak_detector:
+      name: Attic Air Handler
 
     # Smart plugs
     switch.front_room_plug_1:
