@@ -36,7 +36,7 @@ The following devices are available in the Apple Home app and work with Siri:
 |---|---|
 | Both Ecobee thermostats | Paired directly to Ecobee — full control |
 | Garage doors (×2) | Open/close, status |
-| Leak sensors (×11) | Status visible — alerts not routed through Home |
+| Leak sensors (×12) | Status visible — alerts not routed through Home |
 | Smart plugs (×4) | On/off control |
 | Garage Camera | Via HA bridge — 3–5s stream startup (Ring cloud) |
 | Personnel Door Camera | Via HA bridge — 3–5s stream startup (Ring cloud) |
