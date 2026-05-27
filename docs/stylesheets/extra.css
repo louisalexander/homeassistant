@@ -19,3 +19,20 @@
 
 /* Entity ID inline code */
 .entity { font-family: var(--md-code-font-family); font-size: .85em; }
+
+/* Hero banner */
+.banner {
+  width: calc(100% + 2 * var(--md-content-padding, 1.2rem));
+  margin: -1.2rem calc(-1 * var(--md-content-padding, 1.2rem)) 1.8rem;
+  display: block;
+  height: 280px;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .banner { height: 200px; }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .banner { height: 140px; }
