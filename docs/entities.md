@@ -59,12 +59,17 @@ Quick-lookup table of all key entity IDs. Use these in automations, templates, a
 | Entity | Location |
 |---|---|
 | `binary_sensor.kitchen_sink_leak_detector` | Kitchen sink |
+| `binary_sensor.butlers_kitchen_sink` | Butler's kitchen sink |
 | `binary_sensor.laundry_room_leak_sensor` | Laundry room |
-| `binary_sensor.master_bathroom_left_sink_leak_detector` | Master bath left sink |
-| `binary_sensor.master_bathroom_right_sink_leak_detector` | Master bath right sink |
 | `binary_sensor.powder_room_leak_sensor` | Powder room |
-| `binary_sensor.office_sink_leak_detector` | Office sink |
+| `binary_sensor.master_bathroom_left_sink_leak_detector` | Master bath — left sink |
+| `binary_sensor.master_bathroom_right_sink_leak_detector` | Master bath — right sink |
+| `binary_sensor.second_floor_hall_bathroom_left_sink` | 2nd floor hall bath — left sink |
+| `binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector` | 2nd floor hall bath — right sink |
 | `binary_sensor.bedroom_3_sink_leak_detector` | Bedroom 3 sink |
+| `binary_sensor.office_sink_leak_detector` | Office sink |
+| `binary_sensor.3rd_floor_furnace_leak_detector` | 3rd floor furnace |
+| `binary_sensor.attic_air_handler_leak_detector` | Attic air handler |
 
 ---
 
