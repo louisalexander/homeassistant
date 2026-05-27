@@ -46,6 +46,7 @@
         - binary_sensor.second_floor_hall_bathroom_right_sink_leak_detector
         - binary_sensor.butlers_kitchen_sink
         - binary_sensor.3rd_floor_furnace_leak_detector
+        - binary_sensor.attic_air_handler_leak_detector
       to: "on"
   conditions: []
   actions:
@@ -1116,4 +1117,41 @@
         entity_id:
           - camera.garage_stickup_cam_1_live_view
           - camera.personnel_door_live_view
+  mode: single
+
+##############################################################################
+# Section 14: Office Camera Privacy Mode — Webhook triggers
+# Called by Apple Shortcuts via HTTP POST.
+# On URL: POST https://[nabu-casa]/api/webhook/office_cam_privacy_on
+# Off URL: POST https://[nabu-casa]/api/webhook/office_cam_privacy_off
+##############################################################################
+
+- alias: "Office Cam — Privacy Mode On"
+  id: office_cam_privacy_on
+  triggers:
+    - trigger: webhook
+      webhook_id: office_cam_privacy_on
+      allowed_methods:
+        - POST
+        - GET
+      local_only: false
+  actions:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.office_cam_privacy
+  mode: single
+
+- alias: "Office Cam — Privacy Mode Off"
+  id: office_cam_privacy_off
+  triggers:
+    - trigger: webhook
+      webhook_id: office_cam_privacy_off
+      allowed_methods:
+        - POST
+        - GET
+      local_only: false
+  actions:
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.office_cam_privacy
   mode: single
