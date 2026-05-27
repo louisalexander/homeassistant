@@ -17,7 +17,7 @@ Twelve leak sensors are installed under sinks and near HVAC equipment throughout
 | 2nd floor hall bathroom — left sink | 2 |
 | 2nd floor hall bathroom — right sink | 2 |
 | Bedroom 3 — under the sink | 2 |
-| Office — under the sink | 2 |
+| Office — under the sink | 3 |
 | 3rd floor furnace | 3 |
 | Attic air handler | Attic |
 
