@@ -1,5 +1,7 @@
 # Home Command
 
+<img src="assets/banner.png" class="banner" alt="Home Command">
+
 Your complete guide to the smart home system.
 
 ---
