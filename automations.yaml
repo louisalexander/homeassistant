@@ -543,8 +543,8 @@
       data:
         title: "⚠️ VOCs High — Bedroom"
         message: >-
-          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb
-          (threshold: 1000 ppb). Ventilate the room.
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} µg/m³
+          (threshold: 1000 µg/m³). Ventilate the room.
         notification_id: "air_quality_voc"
 
   mode: single
