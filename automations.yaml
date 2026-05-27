@@ -554,7 +554,7 @@
 - alias: "Air Quality — VOCs Cleared"
   id: air_quality_voc_cleared
   description: >
-    Sends an all-clear when bedroom VOCs drop back below 800 ppb.
+    Sends an all-clear when bedroom VOCs drop back below 800 µg/m³.
   triggers:
     - trigger: numeric_state
       entity_id: sensor.bedroom_volatile_organic_compounds
