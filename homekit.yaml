@@ -7,7 +7,7 @@
 #             Expect ~3–5s stream startup latency. If viewing is unacceptably slow, use Ring
 #             app natively instead and remove these from include_entities.
 #   - Wyze (Thingino): bridged via HA proxy. Local RTSP → HomeKit. Fast, local path.
-#   - ZHA: 11 moisture sensors + 4 smart plugs exposed.
+#   - ZHA: 12 moisture sensors + 4 smart plugs exposed.
 #   - ESPHome garage doors: exposed as GarageDoorOpener.
 #
 # Whitelist approach: only entities listed under include_entities appear in Apple Home.
