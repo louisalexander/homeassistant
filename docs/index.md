@@ -10,7 +10,7 @@ Your complete guide to the smart home system.
 
 - **Climate adjusts automatically** — thermostats switch to energy-saving mode when everyone leaves, back to comfort when someone gets home
 - **Energy costs less during peak hours** — the system pre-cools or pre-heats before expensive electricity windows so the AC runs less when rates are highest
-- **Leak alerts that wake you up** — 7 sensors under sinks and in wet areas; if any detect water, both phones get an emergency alert that bypasses silent mode
+- **Leak alerts that wake you up** — 12 sensors under sinks and near HVAC equipment; if any detect water, both phones get an emergency alert that bypasses silent mode
 - **Garage door monitoring** — notifications when doors open or close; actionable "Close It" button if a door is left open while everyone's away or for 30+ minutes
 - **Motion-activated chimes** — cameras at the garage and personnel door ring the Ring chimes throughout the house when they detect motion (once per 10 minutes)
 - **Air quality monitoring** — CO₂ and VOC levels tracked in the bedroom and office; alerts if levels get unhealthy
