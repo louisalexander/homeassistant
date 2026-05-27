@@ -565,7 +565,7 @@
       action: notify.mobile_app_louis_iphone
       data:
         title: "✅ VOCs Normal — Bedroom"
-        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb."
+        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} µg/m³."
         data:
           tag: "air_quality_voc"
 
@@ -573,7 +573,7 @@
       action: notify.mobile_app_lindsays_iphone
       data:
         title: "✅ VOCs Normal — Bedroom"
-        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb."
+        message: "VOCs are back to {{ states('sensor.bedroom_volatile_organic_compounds') | int }} µg/m³."
         data:
           tag: "air_quality_voc"
 
