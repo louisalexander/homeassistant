@@ -31,3 +31,25 @@ open_the_garage:
       target:
         entity_id: cover.left_garage_door_opener_garage_door
   mode: single
+
+
+# "Alexa, turn on open the right garage"
+open_right_garage:
+  alias: "Open the Right Garage"
+  description: Opens the right garage door.
+  sequence:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.right_garage_door_opener_garage_door
+  mode: single
+
+
+# "Alexa, turn on open the left garage"
+open_left_garage:
+  alias: "Open the Left Garage"
+  description: Opens the left garage door.
+  sequence:
+    - action: cover.open_cover
+      target:
+        entity_id: cover.left_garage_door_opener_garage_door
+  mode: single
