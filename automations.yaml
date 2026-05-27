@@ -521,7 +521,7 @@
       data:
         title: "⚠️ VOCs High — Bedroom"
         message: >-
-          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb.
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} µg/m³.
           Ventilate the room — possible cleaning products or off-gassing.
         data:
           tag: "air_quality_voc"
@@ -532,7 +532,7 @@
       data:
         title: "⚠️ VOCs High — Bedroom"
         message: >-
-          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} ppb.
+          VOCs are {{ states('sensor.bedroom_volatile_organic_compounds') | int }} µg/m³.
           Ventilate the room — possible cleaning products or off-gassing.
         data:
           tag: "air_quality_voc"
