@@ -140,6 +140,7 @@ Detailed design docs for ongoing projects live in `projects/`:
 - `projects/wyze_cameras.md` — Wyze v2/v3 fleet flash with Thingino → local RTSP → HA (hardware detail)
 - `projects/gosund_sl2.md` — Gosund SL2 LED strip (on hold, device not located)
 - `projects/fireplace_automation.md` — Gas fireplace on/off + blower speed automation (investigation phase)
+- `projects/rtlsdr_utility_monitoring.md` — RTL-SDR (NooElec NESDR SMArt v5) → real-time gas + electric meter readings via Itron ERT/AMR on 915 MHz → MQTT → HA Energy dashboard
 
 **Keep these docs current** whenever the systems they document change.
 
