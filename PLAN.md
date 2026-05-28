@@ -184,6 +184,14 @@ No dependencies (order/install any time):
 - [x] Place indoor cams — Cam 1: garage, Cam 2: personnel door (house side) — both active in HA
 - [x] Verify Ring devices in HA Ring integration — both indoor cams + chimes appear
 
+### RTL-SDR Utility Monitoring
+- [ ] Install RTL-SDR add-on in HAOS (USB passthrough for dongle)
+- [ ] Run Phase 1 passive scan — capture Meter IDs for electric + gas meters
+- [ ] Install + configure rtlamr2mqtt add-on (custom repository)
+- [ ] Wire `sensor.electric_meter` and `sensor.gas_meter` into HA Energy dashboard
+- [ ] Add gas ft³ → therms template sensor to `configuration.yaml`
+- [ ] Phase 4: gas anomaly + monthly cost summary automations
+
 ### Wyze Cameras — Complete
 - [x] Count exact unit inventory — 3× v2, 1× v3
 - [x] Flash all units with Thingino firmware (wltechblog installer, micro-SD)
