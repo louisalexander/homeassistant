@@ -141,6 +141,7 @@ Detailed design docs for ongoing projects live in `projects/`:
 - `projects/gosund_sl2.md` — Gosund SL2 LED strip (on hold, device not located)
 - `projects/fireplace_automation.md` — Gas fireplace on/off + blower speed automation (investigation phase)
 - `projects/rtlsdr_utility_monitoring.md` — RTL-SDR (NooElec NESDR SMArt v5) → real-time gas + electric meter readings via Itron ERT/AMR on 915 MHz → MQTT → HA Energy dashboard
+- `projects/plant_garden_dashboard.md` — Lindsay's Garden tab: indoor moisture sensors (ThirdReality Zigbee), Ecowitt WS90 weather station, Rachio 3 irrigation, GPS-anchored yard map, outdoor plant care automations keyed to Yard Care Guide
 
 **Keep these docs current** whenever the systems they document change.
 
