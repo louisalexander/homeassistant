@@ -60,3 +60,17 @@ Two **Leviton EM16P** dual-panel energy monitors are in hand, waiting to be inst
 - This data feeds into more advanced TOU optimization
 
 This is the single highest-ROI pending install — it unlocks detailed understanding of where the house's energy is going.
+
+---
+
+## Utility Meter Monitoring — Coming Soon
+
+A **NooElec NESDR SMArt v5** RTL-SDR radio dongle will read the Dominion Energy electric meter and Columbia Gas of Virginia gas meter directly. Both meters broadcast their readings wirelessly on 915 MHz every 30–60 seconds using the Itron ERT/AMR protocol.
+
+Once configured:
+- Live gas and electric meter readings will appear in the HA Energy dashboard
+- Gas consumption will be tracked in cubic feet and converted to therms for cost calculations
+- Anomaly alerts will fire if gas usage spikes unexpectedly while the HVAC is off (potential leak indicator)
+- A monthly gas cost summary will be sent on the 1st of each month
+
+No additional hardware is required beyond the dongle already in hand. Setup involves installing the rtlamr2mqtt add-on in HAOS and running a one-time passive scan to identify both meter IDs.
