@@ -71,7 +71,7 @@ These notifications fire automatically at the right time each season:
 
 ## Weather Station
 
-An **Ecowitt WS90** all-in-one weather station is installed on the property. It measures temperature, humidity, wind speed, UV index, and rainfall using an ultrasonic sensor and haptic rain detector — no moving parts to clog or wear out.
+An **Ecowitt WS90** all-in-one weather station is planned for the property. It measures temperature, humidity, wind speed, UV index, and rainfall using an ultrasonic sensor and haptic rain detector — no moving parts to clog or wear out.
 
 The station pushes readings locally to Home Assistant every 60 seconds over your home network. No cloud account is required.
 
