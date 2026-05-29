@@ -86,8 +86,8 @@ The Garden tab shows:
 
 The WS90 is also connected to Weather Underground (WU), which feeds directly into Rachio's **Weather Intelligence+** scheduling. Rachio reads your actual on-property rainfall and calculates daily evapotranspiration (how much water the soil loses from sun and wind). It automatically skips zones after enough rain and adjusts zone run times based on recent weather — rather than running on a fixed schedule regardless of conditions.
 
-!!! note "Integration pending"
-    The Ecowitt HA integration has not yet been configured. Setup requires installing the Ecowitt integration via HACS and pointing the Ecowitt app to your HAOS IP.
+!!! note "Hardware and integration pending"
+    The Ecowitt WS90 has not yet been ordered. Once on hand, setup requires installing the Ecowitt integration via HACS and pointing the Ecowitt app to your HAOS IP.
 
 ---
 
