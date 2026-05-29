@@ -2,6 +2,9 @@
 
 Lindsay's dedicated dashboard for monitoring indoor plants and managing the outdoor landscape. Integrates soil moisture sensors, a personal weather station, smart irrigation, and a seasonal care calendar into one place.
 
+!!! tip "Yard Map Tool"
+    The GPS-anchored yard mapping tool (sprinkler heads + plant positions) lives here: [Yard Map Tool](https://claude.ai/public/artifacts/5db34a62-c401-4ee7-9e1a-6612241c9d9a)
+
 ---
 
 ## Indoor Plants
