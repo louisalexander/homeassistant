@@ -642,7 +642,46 @@
 
 
 ##############################################################################
-# 5. AIR QUALITY — LOUIS' OFFICE
+# 5. BEDROOM AIR PURIFIER — PLASMAWAVE SCHEDULE
+##############################################################################
+
+
+# 18. PlasmaWave Off at Bedtime
+- alias: "Air Purifier — PlasmaWave Off at Bedtime"
+  id: air_purifier_plasmawave_off_bedtime
+  description: >
+    Turns off PlasmaWave at 10 PM to avoid trace ozone buildup in a closed
+    bedroom overnight. Adjust time to match actual bedtime.
+  triggers:
+    - trigger: time
+      at: "22:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_off
+      target:
+        entity_id: switch.bedroom_air_purifier_plasma
+  mode: single
+
+
+# 19. PlasmaWave On in Morning
+- alias: "Air Purifier — PlasmaWave On in Morning"
+  id: air_purifier_plasmawave_on_morning
+  description: >
+    Re-enables PlasmaWave at 7 AM when the bedroom is unoccupied during the day.
+    Adjust time to match actual wake time.
+  triggers:
+    - trigger: time
+      at: "07:00:00"
+  conditions: []
+  actions:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.bedroom_air_purifier_plasma
+  mode: single
+
+
+##############################################################################
+# 6. AIR QUALITY — LOUIS' OFFICE
 ##############################################################################
 
 
