@@ -599,12 +599,13 @@
       for: "00:02:00"
   conditions: []
   actions:
-    - alias: "Switch to Manual mode"
+    - alias: "Switch to Manual mode (preserve PlasmaWave state)"
       action: fan.set_preset_mode
       target:
         entity_id: fan.bedroom_air_purifier
       data:
-        preset_mode: "Manual"
+        preset_mode: >-
+          {% if is_state('switch.bedroom_air_purifier_plasma', 'on') %}Manual{% else %}Manual (PlasmaWave off){% endif %}
     - alias: "Set to 75% (high speed)"
       action: fan.set_percentage
       target:
