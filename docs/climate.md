@@ -82,3 +82,31 @@ The master bedroom has sensors that monitor:
 - **Air Quality Index (AQI)**
 
 If CO₂ or VOC levels reach unhealthy thresholds, you'll get a push notification. See [Notifications](notifications.md) for details.
+
+---
+
+## Bedroom Air Purifier
+
+A **Winix air purifier** in the master bedroom runs automatically and integrates with the air quality sensors.
+
+### Automatic VOC Response
+
+When bedroom VOCs rise above 500 µg/m³ (Grade C on the Health tab) for more than 2 minutes, the purifier automatically switches to **Manual mode at high speed** to clear the air faster than its built-in Auto mode would. Once VOCs have been below 250 µg/m³ for 10 minutes, it returns to Auto.
+
+### PlasmaWave Schedule
+
+The purifier's **PlasmaWave** ionizer feature breaks down bacteria, odors, and chemical vapors but can produce trace ozone — not ideal in a closed bedroom overnight. It turns off automatically at **10 PM** and back on at **7 AM**.
+
+The VOC boost automation respects this schedule: if it kicks in overnight while PlasmaWave is off, it will not re-enable it.
+
+### Dashboard
+
+The purifier tile on the Climate tab shows the current mode and airflow level. The icon color indicates status:
+
+| Color | Meaning |
+|---|---|
+| Green | Auto mode — normal operation |
+| Orange | Manual · High — boosted by VOC automation |
+| Yellow | Manual at lower speed |
+| Blue | Sleep mode |
+| Grey | Off |
