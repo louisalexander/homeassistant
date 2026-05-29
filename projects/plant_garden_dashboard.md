@@ -70,7 +70,7 @@ Build a dedicated "Garden" tab on the Home Command Dashboard that Lindsay can us
 
 A geometrically accurate SVG/HTML yard mapping tool was built in a parallel session. It uses the certified lot survey as its geometric foundation.
 
-**Tool:** Claude artifact — URL shared separately (not committed to repo; contains property details)
+**Tool:** https://claude.ai/public/artifacts/5db34a62-c401-4ee7-9e1a-6612241c9d9a
 
 **Features:**
 - Two map layers: 💧 Sprinkler Heads (circles, colored by zone) and 🌿 Plants (hexagons, colored by species)
