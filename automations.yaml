@@ -627,17 +627,17 @@
       below: 250
       for: "00:10:00"
   conditions:
-    - condition: state
-      entity_id: fan.bedroom_air_purifier
-      attribute: preset_mode
-      state: "Manual"
+    - condition: template
+      value_template: >-
+        {{ state_attr('fan.bedroom_air_purifier', 'preset_mode') in ['Manual', 'Manual (PlasmaWave off)'] }}
   actions:
-    - alias: "Return to Auto mode"
+    - alias: "Return to Auto mode (preserve PlasmaWave state)"
       action: fan.set_preset_mode
       target:
         entity_id: fan.bedroom_air_purifier
       data:
-        preset_mode: "Auto"
+        preset_mode: >-
+          {% if is_state('switch.bedroom_air_purifier_plasma', 'on') %}Auto{% else %}Auto (PlasmaWave off){% endif %}
   mode: single
 
 
