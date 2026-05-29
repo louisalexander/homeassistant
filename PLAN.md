@@ -194,8 +194,9 @@ No dependencies (order/install any time):
 - [ ] Phase 4: gas anomaly + monthly cost summary automations
 
 ### Plant & Garden Dashboard
-- [ ] Purchase Rachio 3 6-zone controller (~$200) — replaces Orbit B-Hyve
-- [ ] Configure Ecowitt HA integration (HACS) — WS90 already on property
+- [ ] Install Rachio 3 6-zone controller (ordered) — replaces Orbit B-Hyve
+- [ ] Order Ecowitt WS90 (planned — not yet ordered)
+- [ ] Configure Ecowitt HA integration (HACS) after WS90 arrives
 - [ ] Set up Ecowitt → Weather Underground upload; point Rachio Weather Intelligence at WU station ID
 - [ ] Pair 2× outdoor ThirdReality soil moisture sensors to ZHA; verify entity IDs
 - [ ] Run yard field session: GPS anchor at Power Box → map all 6 zone heads + plant species
