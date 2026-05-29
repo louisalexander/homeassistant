@@ -585,6 +585,61 @@
   mode: single
 
 
+# 16. Bedroom VOC High — Boost Air Purifier
+- alias: "Air Quality — Bedroom VOC Boost Purifier"
+  id: air_quality_bedroom_voc_boost_purifier
+  description: >
+    When bedroom VOCs have been above 500 µg/m³ for 2 minutes, switch the
+    Winix to Manual mode at 75% (high) to clear the air faster than Auto would.
+    Triggers at Grade C threshold — where the Health tab turns orange.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_volatile_organic_compounds
+      above: 500
+      for: "00:02:00"
+  conditions: []
+  actions:
+    - alias: "Switch to Manual mode"
+      action: fan.set_preset_mode
+      target:
+        entity_id: fan.bedroom_air_purifier
+      data:
+        preset_mode: "Manual"
+    - alias: "Set to 75% (high speed)"
+      action: fan.set_percentage
+      target:
+        entity_id: fan.bedroom_air_purifier
+      data:
+        percentage: 75
+  mode: single
+
+
+# 17. Bedroom VOC Cleared — Return Purifier to Auto
+- alias: "Air Quality — Bedroom VOC Purifier Return to Auto"
+  id: air_quality_bedroom_voc_purifier_auto
+  description: >
+    When bedroom VOCs have been below 250 µg/m³ for 10 minutes after a boost
+    event, return the Winix to Auto mode.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_volatile_organic_compounds
+      below: 250
+      for: "00:10:00"
+  conditions:
+    - condition: state
+      entity_id: fan.bedroom_air_purifier
+      attribute: preset_mode
+      state: "Manual"
+  actions:
+    - alias: "Return to Auto mode"
+      action: fan.set_preset_mode
+      target:
+        entity_id: fan.bedroom_air_purifier
+      data:
+        preset_mode: "Auto"
+  mode: single
+
+
 ##############################################################################
 # 5. AIR QUALITY — LOUIS' OFFICE
 ##############################################################################
