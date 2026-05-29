@@ -869,7 +869,7 @@
             {
               "key": "entity_id",
               "operator": "=",
-              "value": "sensor.bedroom_purifier_speed"
+              "value": "bedroom_purifier_speed"
             }
           ],
           "groupBy": [
