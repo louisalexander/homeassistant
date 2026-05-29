@@ -110,3 +110,9 @@ The purifier tile on the Climate tab shows the current mode and airflow level. T
 | Yellow | Manual at lower speed |
 | Blue | Sleep mode |
 | Grey | Off |
+
+### Grafana — VOC vs Purifier Response
+
+The **Home Intelligence** Grafana dashboard has a panel called **Bedroom — VOC vs Air Purifier Response** that charts VOC levels (orange, left axis) against purifier speed (blue step line, right axis, scale 0–3) over time. This lets you see whether the purifier is actually driving VOC levels down after it boosts.
+
+Speed scale: 0 = off, 1 = low/sleep, 2 = medium, 3 = high.
