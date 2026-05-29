@@ -43,6 +43,29 @@ input_button:
     icon: mdi:door-open
 
 ##############################################################################
+# Template sensors
+##############################################################################
+
+template:
+  - sensor:
+      # Maps Winix airflow attribute → numeric scale for InfluxDB/Grafana trending.
+      # 0=off, 1=low/sleep, 2=medium, 3=high — reflects actual airflow regardless of mode.
+      - name: "Bedroom Purifier Speed"
+        unique_id: bedroom_purifier_speed
+        unit_of_measurement: ""
+        state_class: measurement
+        state: >
+          {% if is_state('fan.bedroom_air_purifier', 'off') %}0
+          {% else %}
+            {% set flow = state_attr('fan.bedroom_air_purifier', 'airflow') %}
+            {% if flow == 'high' %}3
+            {% elif flow == 'medium' %}2
+            {% elif flow in ['low', 'sleep'] %}1
+            {% else %}0
+            {% endif %}
+          {% endif %}
+
+##############################################################################
 # MQTT binary sensors
 # Thingino setup required first: Thingino web UI → MQTT → set broker to
 # HA's local IP, port 1883. Verify exact topic with:
