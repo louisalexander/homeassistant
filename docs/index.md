@@ -46,6 +46,10 @@ Your complete guide to the smart home system.
 
     Time-of-use pricing, how the house saves money, and what's being monitored.
 
+-   :material-sprout: **[Garden & Plants](garden.md)**
+
+    Lindsay's plant care dashboard — moisture alerts, outdoor care calendar, irrigation controls, and weather-driven watering.
+
 -   :material-microphone: **[Voice Control](voice.md)**
 
     Alexa commands and what's available in Apple Home.
