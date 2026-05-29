@@ -123,7 +123,7 @@ Two outdoor soil moisture sensors (front yard and rear yard) prevent irrigation 
 If wind speed exceeds 15 mph, any running Rachio zone is automatically paused to prevent spray drift wasting water on the pavement.
 
 !!! note "Hardware pending"
-    Rachio 3 purchase is pending. Current controller is Orbit B-Hyve. Until Rachio is installed, dashboard controls and smart gating are not active. Outdoor soil sensors are deployed in the yard and will pair to ZHA when the full integration is configured.
+    Rachio 3 has been ordered and is not yet installed. Current controller is Orbit B-Hyve. Until Rachio is installed, dashboard controls and smart gating are not active. Outdoor soil sensors are deployed in the yard and will pair to ZHA when the full integration is configured.
 
 ---
 
