@@ -193,6 +193,16 @@ No dependencies (order/install any time):
 - [ ] Add gas ft³ → therms template sensor to `configuration.yaml`
 - [ ] Phase 4: gas anomaly + monthly cost summary automations
 
+### Plant & Garden Dashboard
+- [ ] Purchase Rachio 3 6-zone controller (~$200) — replaces Orbit B-Hyve
+- [ ] Configure Ecowitt HA integration (HACS) — WS90 already on property
+- [ ] Set up Ecowitt → Weather Underground upload; point Rachio Weather Intelligence at WU station ID
+- [ ] Pair 2× outdoor ThirdReality soil moisture sensors to ZHA; verify entity IDs
+- [ ] Run yard field session: GPS anchor at Power Box → map all 6 zone heads + plant species
+- [ ] Create Garden tab on Home Command Dashboard (Indoor + Outdoor care + Irrigation sections)
+- [ ] Pair 3× indoor ThirdReality Gen2 sensors (on order) to ZHA; assign to FLF plants
+- [ ] Build all 13 garden/irrigation automations (FLF alerts, Dogwood drought, pruning calendar, etc.)
+
 ### Wyze Cameras — Complete
 - [x] Count exact unit inventory — 3× v2, 1× v3
 - [x] Flash all units with Thingino firmware (wltechblog installer, micro-SD)
