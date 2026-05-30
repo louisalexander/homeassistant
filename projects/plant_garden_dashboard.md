@@ -22,9 +22,9 @@ Build a dedicated "Garden" tab on the Home Command Dashboard that Lindsay can us
 
 | Friendly Name | Location | Sensor | Notes |
 |---|---|---|---|
-| Maury River Fiddle Leaf | Kitchen | ThirdReality (on order) | FLF — most moisture-sensitive |
-| Fiddle Leaf Fig — [Room TBD] | TBD | ThirdReality (on order) | FLF #2 |
-| Fiddle Leaf Fig — [Room TBD] | TBD | ThirdReality (on order) | FLF #3 |
+| Maury River Fiddle Leaf | Kitchen | `sensor.soil_sensor_1_moisture` ✅ | FLF — most moisture-sensitive; reading 8.76% on 2026-05-30 |
+| Fiddle Leaf Fig — [Room TBD] | TBD | ThirdReality (pending) | FLF #2 — will be `sensor.soil_sensor_2_moisture` |
+| Fiddle Leaf Fig — [Room TBD] | TBD | ThirdReality (pending) | FLF #3 — will be `sensor.soil_sensor_3_moisture` |
 | Louis' Monstera | Kitchen | Last-watered tracking | Monstera — forgiving |
 | Bird of Paradise | Kitchen | Last-watered tracking | Single specimen |
 | Monstera — [Room TBD] | TBD | Last-watered tracking | Monstera #2 |
