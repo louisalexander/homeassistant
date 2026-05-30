@@ -197,7 +197,7 @@ No dependencies (order/install any time):
 - [ ] Phase 4: gas anomaly + monthly cost summary automations
 
 ### Plant & Garden Dashboard
-- [ ] Install Rachio 3 6-zone controller (ordered) — replaces Orbit B-Hyve
+- [ ] Install Rachio 3 6-zone controller (in hand) — replaces Orbit B-Hyve
 - [ ] Order Ecowitt WS90 (planned — not yet ordered)
 - [ ] Configure Ecowitt HA integration (HACS) after WS90 arrives
 - [ ] Set up Ecowitt → Weather Underground upload; point Rachio Weather Intelligence at WU station ID
