@@ -236,8 +236,8 @@ template:
 | Phase | Status | Notes |
 |---|---|---|
 | Phase 1 — Passive scan | **Complete** | Meter ID 12868632 confirmed via consumption match + detection frequency |
-| Phase 2 — rtlamr2mqtt | **Complete** | Filtering for 12868632 (SCM); `sensor.gas_meter` live in HA |
-| Phase 3 — Energy dashboard | **Complete** | `sensor.gas_meter` wired in; `sensor.gas_consumption_therms` template sensor live |
+| Phase 2 — rtlamr2mqtt | **Complete** | Filtering for 12868632 (SCM); `sensor.gas_meter_reading` live in HA |
+| Phase 3 — Energy dashboard | **Complete** | `sensor.gas_meter_reading` wired in; utility_meter + CCF template sensors live |
 | Phase 4 — Automations | Not started | Waiting on first bill to confirm meter ID + get Columbia Gas rate |
 
 ---
