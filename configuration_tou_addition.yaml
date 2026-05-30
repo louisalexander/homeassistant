@@ -84,11 +84,11 @@ template:
   - sensor:
       - name: "Gas Consumption Therms"
         unique_id: gas_consumption_therms
-        unit_of_measurement: "therm"
+        unit_of_measurement: "CCF"
         device_class: gas
         state_class: total_increasing
         icon: mdi:fire
-        state: "{{ (states('sensor.gas_meter') | float(0)) * 0.01020 }}"
+        state: "{{ (states('sensor.gas_meter') | float(0)) / 100 }}"
 
   ##############################################################################
   # Notification deep-link URL sensors
