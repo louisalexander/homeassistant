@@ -31,7 +31,7 @@
 | Inovelli Lighting — Indoor Batches | **Ready to order** | Order Batch 2 (Master Bedroom) after outdoor installed | Ordering policy |
 | Smart Locks | **Hold** | Order Schlage BE469ZP after hardware backlog clears | Inventory policy |
 | Gas Fireplace Automation | **Deferred** | Revisit fall/winter — millivolt confirmed; need blower wattage | Seasonal |
-| RTL-SDR Utility Monitoring | **Not started** | Phase 1: install RTL-SDR add-on, run passive scan, find meter IDs | Nothing |
+| RTL-SDR Utility Monitoring | **In Progress** | Dongle connected; electric meter confirmed AMI (no AMR); gas meter ERT ID TBD | Nothing |
 | Plant & Garden Dashboard | **In Progress** | Install Rachio 3 (ordered); order + configure Ecowitt WS90 | Nothing |
 | Gosund SL2 | **On Hold** | Locate device | Can't find hardware |
 | Govee Floor Lamp | **On Hold** | Locate power plug | Plug missing |
