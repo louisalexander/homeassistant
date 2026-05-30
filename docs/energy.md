@@ -63,14 +63,21 @@ This is the single highest-ROI pending install — it unlocks detailed understan
 
 ---
 
-## Utility Meter Monitoring — Coming Soon
+## Utility Meter Monitoring
 
-A **NooElec NESDR SMArt v5** RTL-SDR radio dongle will read the Dominion Energy electric meter and Columbia Gas of Virginia gas meter directly. Both meters broadcast their readings wirelessly on 915 MHz every 30–60 seconds using the Itron ERT/AMR protocol.
+A **NooElec NESDR SMArt v5** RTL-SDR dongle is connected to the HAOS machine and actively scanning 915 MHz for Itron ERT/AMR meter broadcasts.
 
-Once configured:
-- Live gas and electric meter readings will appear in the HA Energy dashboard
-- Gas consumption will be tracked in cubic feet and converted to therms for cost calculations
-- Anomaly alerts will fire if gas usage spikes unexpectedly while the HVAC is off (potential leak indicator)
-- A monthly gas cost summary will be sent on the 1st of each month
+### Electric Meter — Not Available
 
-No additional hardware is required beyond the dongle already in hand. Setup involves installing the rtlamr2mqtt add-on in HAOS and running a one-time passive scan to identify both meter IDs.
+The Dominion Energy electric meter uses **AMI** (Advanced Metering Infrastructure) — a two-way cellular/mesh network that does not broadcast continuously on 915 MHz. The RTL-SDR cannot read it. Electric sub-metering will come from the EM16P clamp monitors once those are installed on the electrical panels.
+
+### Gas Meter — Setup In Progress
+
+Columbia Gas of Virginia uses the older one-way **AMR** system, which does broadcast on 915 MHz every 30–60 seconds. The rtlamr2mqtt add-on is installed and scanning. Sixteen meters were detected in the neighborhood; the Columbia Gas meter ID is being confirmed against the bill or the ERT module sticker on the physical meter.
+
+Once the gas meter ID is confirmed:
+
+- Live gas consumption (in ft³) will appear in the HA Energy dashboard
+- Readings will be converted to therms for cost tracking against your Columbia Gas rate
+- An anomaly alert will fire if gas usage spikes unexpectedly while the HVAC is off
+- A monthly gas cost summary notification will be sent on the 1st of each month
