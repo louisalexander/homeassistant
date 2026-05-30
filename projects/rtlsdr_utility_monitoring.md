@@ -186,20 +186,35 @@ Settings → Energy → Gas consumption → Add gas source → select `sensor.ga
 
 Enter the gas rate from your Columbia Gas bill (in $/therm or $/ft³ — convert as needed).
 
-### Template Sensors to Add to `configuration.yaml`
+### Template Sensors and Utility Meters in `configuration_tou_addition.yaml`
 
 ```yaml
 template:
   - sensor:
-      # Convert gas ft³ → therms (for cost calculation)
-      # BTU content varies; Columbia Gas VA ~1.020 therms/CCF is typical — confirm from bill
-      - name: "Gas Consumption Therms"
-        unique_id: gas_consumption_therms
-        unit_of_measurement: "therm"
+      # Convert gas ft³ → CCF (1 CCF = 100 ft³)
+      - name: "Gas Consumption CCF"
+        unique_id: gas_consumption_ccf
+        unit_of_measurement: "CCF"
         device_class: gas
         state_class: total_increasing
-        state: "{{ (states('sensor.gas_meter') | float(0)) * 0.01020 }}"
+        state: "{{ (states('sensor.gas_meter_reading') | float(0)) / 100 }}"
+
+utility_meter:
+  gas_daily:
+    source: sensor.gas_meter_reading
+    name: "Gas Daily"
+    cycle: daily
+  gas_monthly:
+    source: sensor.gas_meter_reading
+    name: "Gas Monthly"
+    cycle: monthly
 ```
+
+Live entities:
+- `sensor.gas_meter_reading` — raw ft³ (MQTT auto-discovery, rtlamr2mqtt)
+- `sensor.gas_consumption_ccf` — cumulative CCF (template)
+- `sensor.gas_daily` — today's ft³ usage (resets midnight)
+- `sensor.gas_monthly` — this month's ft³ usage (resets 1st of month)
 
 ---
 
