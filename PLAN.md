@@ -108,7 +108,7 @@ No dependencies (order/install any time):
 | Energy WS2–WS5 (financial reporting, advanced TOU) | High-value controllable load added (EV, solar, battery) |
 | Gas Fireplace Automation | Fall/winter — confirmed millivolt switch; need blower motor wattage before ordering |
 | Gosund SL2 | Device located |
-| Govee Floor Lamp | Power plug located |
+| Govee Floor Lamp | Power plug found 2026-05-30 — ready to integrate |
 | Frigate NVR + Coral TPU | Wyze v3 MQTT motion sufficient for now; revisit if person/object detection needed |
 | Additional smart locks | Front door workflow validated; clear use case per door |
 | Alarmo → Noonlight | Professional monitoring decision made |
