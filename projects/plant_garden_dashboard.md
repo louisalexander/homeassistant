@@ -242,4 +242,4 @@ Full detailed care guide: `docs/yard_care_guide.md` *(to create)*
 ---
 
 *Last updated: 2026-05-30*
-*Status: Phase 1 in progress — Rachio 3 in hand (not yet installed); Ecowitt WS90 planned (not yet ordered)*
+*Status: Phase 1 in progress — Rachio 3 in hand (not yet installed); Ecowitt WS90 on property (not yet integrated). Soil Sensor 1 (Maury River FLF) paired to ZHA — 8.76% moisture on first reading.*
