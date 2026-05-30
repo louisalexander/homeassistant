@@ -1286,3 +1286,22 @@
       target:
         entity_id: input_boolean.office_cam_privacy
   mode: single
+
+##############################################################################
+# Section 15: RTL-SDR / Gas Meter — Startup
+# rtlamr2mqtt MQTT messages are not retained; sensor.gas_meter_reading goes
+# "unknown" whenever HA restarts. Restarting the add-on 30 s after HA starts
+# forces an immediate re-publish so the entity populates on every boot.
+##############################################################################
+
+- alias: "Gas Meter — Restart rtlamr2mqtt on HA Start"
+  id: gas_meter_restart_rtlamr_on_start
+  triggers:
+    - trigger: homeassistant
+      event: start
+  actions:
+    - delay: "00:00:30"
+    - action: hassio.addon_restart
+      data:
+        addon: 6713e36e_rtlamr2mqtt
+  mode: single
