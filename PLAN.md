@@ -186,10 +186,13 @@ No dependencies (order/install any time):
 - [x] Verify Ring devices in HA Ring integration — both indoor cams + chimes appear
 
 ### RTL-SDR Utility Monitoring
-- [ ] Install RTL-SDR add-on in HAOS (USB passthrough for dongle)
-- [ ] Run Phase 1 passive scan — capture Meter IDs for electric + gas meters
-- [ ] Install + configure rtlamr2mqtt add-on (custom repository)
-- [ ] Wire `sensor.electric_meter` and `sensor.gas_meter` into HA Energy dashboard
+- [x] Connect NooElec NESDR SMArt v5 dongle to HAOS machine
+- [x] Install rtlamr2mqtt add-on (custom repo `6713e36e`, v2026.5.9)
+- [x] Run Phase 1 passive scan — 16 meters detected in neighborhood
+- [x] Confirmed: Dominion electric meter is AMI — no AMR broadcast, RTL-SDR cannot read it
+- [ ] Identify gas meter ERT endpoint ID (check module sticker or Columbia Gas bill)
+- [ ] Configure rtlamr2mqtt with confirmed gas meter ID (disable listen_mode)
+- [ ] Wire `sensor.gas_meter` into HA Energy dashboard
 - [ ] Add gas ft³ → therms template sensor to `configuration.yaml`
 - [ ] Phase 4: gas anomaly + monthly cost summary automations
 
