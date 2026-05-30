@@ -238,5 +238,5 @@ Full detailed care guide: `docs/yard_care_guide.md` *(to create)*
 
 ---
 
-*Last updated: 2026-05-29*
-*Status: Phase 1 in progress — Rachio 3 ordered (not yet installed); Ecowitt WS90 planned (not yet ordered)*
+*Last updated: 2026-05-30*
+*Status: Phase 1 in progress — Rachio 3 in hand (not yet installed); Ecowitt WS90 planned (not yet ordered)*
