@@ -190,11 +190,11 @@ No dependencies (order/install any time):
 - [x] Install rtlamr2mqtt add-on (custom repo `6713e36e`, v2026.5.9)
 - [x] Run Phase 1 passive scan — 16 meters detected in neighborhood
 - [x] Confirmed: Dominion electric meter is AMI — no AMR broadcast, RTL-SDR cannot read it
-- [ ] Identify gas meter ERT endpoint ID (check module sticker or Columbia Gas bill)
-- [ ] Configure rtlamr2mqtt with confirmed gas meter ID (disable listen_mode)
-- [ ] Wire `sensor.gas_meter` into HA Energy dashboard
-- [ ] Add gas ft³ → therms template sensor to `configuration.yaml`
-- [ ] Phase 4: gas anomaly + monthly cost summary automations
+- [x] Identify gas meter ERT endpoint ID — confirmed 12868632 via consumption match
+- [x] Configure rtlamr2mqtt with gas meter ID (listen_mode disabled)
+- [x] Wire `sensor.gas_meter` into HA Energy dashboard
+- [x] Add gas ft³ → therms template sensor (`sensor.gas_consumption_therms`)
+- [ ] Phase 4: gas anomaly + monthly cost summary automations (pending first bill to confirm rate)
 
 ### Plant & Garden Dashboard
 - [ ] Install Rachio 3 6-zone controller (in hand) — replaces Orbit B-Hyve
