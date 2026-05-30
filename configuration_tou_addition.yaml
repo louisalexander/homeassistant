@@ -78,6 +78,19 @@ template:
           {% endif %}
 
   ##############################################################################
+  # Gas meter — ft³ to therms conversion
+  # Columbia Gas VA typical BTU content ~1.020 therms/CCF — confirm from bill
+  ##############################################################################
+  - sensor:
+      - name: "Gas Consumption Therms"
+        unique_id: gas_consumption_therms
+        unit_of_measurement: "therm"
+        device_class: gas
+        state_class: total_increasing
+        icon: mdi:fire
+        state: "{{ (states('sensor.gas_meter') | float(0)) * 0.01020 }}"
+
+  ##############################################################################
   # Notification deep-link URL sensors
   # Stored here (not in automations.yaml) so the !secret directive stays in a
   # config file whose YAML loader supports it. Automations reference these via
