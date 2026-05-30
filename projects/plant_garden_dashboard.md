@@ -32,10 +32,13 @@ Build a dedicated "Garden" tab on the Home Command Dashboard that Lindsay can us
 
 **Sensor allocation rationale:** FLFs are the most notoriously finicky (punish both over and underwatering). All 3 sensors go there first. Order a second 3-pack when ready — Bird of Paradise and one Monstera are next priority.
 
-**Expected indoor sensor entities (pair via ZHA, then check Developer Tools):**
-- `sensor.maury_river_fiddle_leaf_moisture`
-- `sensor.fiddle_leaf_fig_2_moisture`
-- `sensor.fiddle_leaf_fig_3_moisture`
+**Indoor sensor entities (confirmed via ZHA pairing):**
+
+| # | Entity (primary) | Also | Temperature | Battery | Plant |
+|---|---|---|---|---|---|
+| 1 | `sensor.soil_sensor_1_moisture` | `sensor.soil_sensor_1_soil_moisture` | `sensor.soil_sensor_1_temperature` | `sensor.soil_sensor_1_battery` | Maury River Fiddle Leaf |
+| 2 | `sensor.soil_sensor_2_moisture` *(predicted)* | — | — | — | FLF #2 (pair when ready) |
+| 3 | `sensor.soil_sensor_3_moisture` *(predicted)* | — | — | — | FLF #3 (pair when ready) |
 
 **Last-watered helpers to create:**
 - `input_datetime.last_watered_louismonster`
