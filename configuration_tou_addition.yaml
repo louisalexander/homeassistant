@@ -78,12 +78,12 @@ template:
           {% endif %}
 
   ##############################################################################
-  # Gas meter — ft³ to therms conversion
-  # Columbia Gas VA typical BTU content ~1.020 therms/CCF — confirm from bill
+  # Gas meter — ft³ to CCF conversion (1 CCF = 100 ft³)
+  # Columbia Gas VA ~1.020 therms/CCF — confirm multiplier from bill
   ##############################################################################
   - sensor:
-      - name: "Gas Consumption Therms"
-        unique_id: gas_consumption_therms
+      - name: "Gas Consumption CCF"
+        unique_id: gas_consumption_ccf
         unit_of_measurement: "CCF"
         device_class: gas
         state_class: total_increasing
