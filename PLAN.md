@@ -204,6 +204,8 @@ No dependencies (order/install any time):
 - [ ] Order Ecowitt WS90 (planned — not yet ordered)
 - [ ] Configure Ecowitt HA integration (HACS) after WS90 arrives
 - [ ] Set up Ecowitt → Weather Underground upload; point Rachio Weather Intelligence at WU station ID
+- [x] **Soil Sensor 1 paired** (2026-05-30) — `sensor.soil_sensor_1_moisture` → Maury River Fiddle Leaf; 8.76% on first reading
+- [ ] Pair sensors 2 + 3 (indoor FLFs) to ZHA
 - [ ] Pair 2× outdoor ThirdReality soil moisture sensors to ZHA; verify entity IDs
 - [ ] Run yard field session: GPS anchor at Power Box → map all 6 zone heads + plant species
 - [ ] Create Garden tab on Home Command Dashboard (Indoor + Outdoor care + Irrigation sections)
