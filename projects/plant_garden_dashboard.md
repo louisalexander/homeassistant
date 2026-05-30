@@ -190,7 +190,7 @@ Full detailed care guide: `docs/yard_care_guide.md` *(to create)*
 ## Phases
 
 ### Phase 1 — Irrigation Hardware (do first)
-- [ ] Purchase Rachio 3 6-zone controller (~$200)
+- [x] Purchase Rachio 3 6-zone controller (~$200) — **arrived 2026-05-30**
 - [ ] Purchase Ecowitt WS90 if not yet on property (confirmed on property)
 - [ ] Install Rachio, remove B-Hyve
 - [ ] Configure Rachio HA integration
