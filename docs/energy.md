@@ -71,13 +71,15 @@ A **NooElec NESDR SMArt v5** RTL-SDR dongle is connected to the HAOS machine and
 
 The Dominion Energy electric meter uses **AMI** (Advanced Metering Infrastructure) — a two-way cellular/mesh network that does not broadcast continuously on 915 MHz. The RTL-SDR cannot read it. Electric sub-metering will come from the EM16P clamp monitors once those are installed on the electrical panels.
 
-### Gas Meter — Setup In Progress
+### Gas Meter — Live
 
-Columbia Gas of Virginia uses the older one-way **AMR** system, which does broadcast on 915 MHz every 30–60 seconds. The rtlamr2mqtt add-on is installed and scanning. Sixteen meters were detected in the neighborhood; the Columbia Gas meter ID is being confirmed against the bill or the ERT module sticker on the physical meter.
+Columbia Gas of Virginia uses the older one-way **AMR** system, which broadcasts on 915 MHz every 30–60 seconds. The rtlamr2mqtt add-on is running, filtering for meter ID **12868632** (Itron ERT module on a Sensus R-275 meter body).
 
-Once the gas meter ID is confirmed:
+- **`sensor.gas_meter`** — live cumulative ft³ reading, published to MQTT and auto-discovered by HA
+- **`sensor.gas_consumption_therms`** — derived sensor converting ft³ → therms (1 therm ≈ 100 ft³; Columbia Gas VA conversion factor 0.01020)
+- Both sensors are wired into the HA Energy dashboard under Gas Consumption
+- Meter ID confidence: high — consumption (~860,000 ft³) matches the physical register reading and it's the most frequently detected ID in neighborhood scans
 
-- Live gas consumption (in ft³) will appear in the HA Energy dashboard
-- Readings will be converted to therms for cost tracking against your Columbia Gas rate
-- An anomaly alert will fire if gas usage spikes unexpectedly while the HVAC is off
-- A monthly gas cost summary notification will be sent on the 1st of each month
+**To add to HA Energy dashboard:** Settings → Energy → Gas consumption → Add gas source → select `sensor.gas_meter`. Enter your Columbia Gas rate from your bill ($/therm or $/ft³).
+
+**Pending:** Gas anomaly alert and monthly cost summary automations (Phase 4 — blocked on first bill to confirm meter ID and get rate).
