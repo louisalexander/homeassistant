@@ -75,11 +75,16 @@ The Dominion Energy electric meter uses **AMI** (Advanced Metering Infrastructur
 
 Columbia Gas of Virginia uses the older one-way **AMR** system, which broadcasts on 915 MHz every 30–60 seconds. The rtlamr2mqtt add-on is running, filtering for meter ID **12868632** (Itron ERT module on a Sensus R-275 meter body).
 
-- **`sensor.gas_meter`** — live cumulative ft³ reading, published to MQTT and auto-discovered by HA
-- **`sensor.gas_consumption_therms`** — derived sensor converting ft³ → therms (1 therm ≈ 100 ft³; Columbia Gas VA conversion factor 0.01020)
-- Both sensors are wired into the HA Energy dashboard under Gas Consumption
-- Meter ID confidence: high — consumption (~860,000 ft³) matches the physical register reading and it's the most frequently detected ID in neighborhood scans
+| Entity | Description |
+|---|---|
+| `sensor.gas_meter_reading` | Live cumulative ft³ reading, published to MQTT via rtlamr2mqtt auto-discovery |
+| `sensor.gas_consumption_ccf` | Derived template sensor: ft³ ÷ 100 = CCF (same cumulative total, different unit) |
+| `sensor.gas_daily` | Daily delta — resets to 0 at midnight; shows today's ft³ usage |
+| `sensor.gas_monthly` | Monthly delta — resets on the 1st; shows this month's ft³ usage |
 
-**To add to HA Energy dashboard:** Settings → Energy → Gas consumption → Add gas source → select `sensor.gas_meter`. Enter your Columbia Gas rate from your bill ($/therm or $/ft³).
+- All four sensors are live in HA
+- `sensor.gas_meter_reading` and `sensor.gas_consumption_ccf` are wired into the HA Energy dashboard under Gas Consumption
+- Meter ID confidence: high — consumption (~860,000 ft³) matches the physical register reading and it's the most frequently detected ID in neighborhood scans
+- An automation (`gas_meter_restart_rtlamr_on_start`) restarts rtlamr2mqtt 30 s after every HA start to force a fresh MQTT publish (workaround for MQTT retain not being available in the add-on schema)
 
 **Pending:** Gas anomaly alert and monthly cost summary automations (Phase 4 — blocked on first bill to confirm meter ID and get rate).
