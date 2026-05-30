@@ -235,20 +235,49 @@ template:
 
 | Phase | Status | Notes |
 |---|---|---|
-| Phase 1 — Passive scan | Not started | Need to install RTL-SDR add-on and run scan |
-| Phase 2 — rtlamr2mqtt | Not started | Blocked on Phase 1 meter IDs |
+| Phase 1 — Passive scan | **In progress** | Dongle connected; rtlamr2mqtt running in listen_mode; electric confirmed AMI; gas meter ID TBD |
+| Phase 2 — rtlamr2mqtt | Not started | Blocked on gas meter ID confirmation |
 | Phase 3 — Energy dashboard | Not started | Blocked on Phase 2 |
 | Phase 4 — Automations | Not started | Blocked on Phase 3 |
 
 ---
 
-## Known Unknowns
+## Phase 1 Findings
 
-- Whether Dominion VA electric meter broadcasts AMR or is AMI-only — confirmed by Phase 1 scan
-- Actual gas unit/multiplier for Columbia Gas VA — pull from bill (should show therms and CCF)
-- Whether Mosquitto is already installed with auth configured
-- USB port availability on HAOS machine (Mini S13 has multiple USB-A ports)
+### Dongle
+NooElec NESDR SMArt v5 recognized on Bus 003 Device 012 (`0bda:2838`). rtlamr2mqtt v2026.5.9 installed from custom repository (`6713e36e`). Currently running in `listen_mode: true`.
+
+### Electric Meter — Confirmed AMI
+Dominion Energy meter number `0200125181` did not appear in any scan. **The Dominion electric meter is AMI** (advanced mesh network, no continuous 915 MHz broadcast). RTL-SDR cannot read it. Electric monitoring must come from another source (e.g., EM16P clamp meters on the panel).
+
+### Gas Meter — ID Not Yet Confirmed
+Physical meter body shows `08 31837167`. That ID has not appeared in scans — `08` is likely a display prefix (commodity/route code), and `31837167` is probably the meter serial, not the ERT endpoint ID. The ERT endpoint ID is on a separate small plastic module attached to the meter body.
+
+16 meters detected in the neighborhood scan. Based on sequential ID patterns, the Columbia Gas meters are almost certainly in the `1286xxxx` / `1287xxxx` cluster:
+
+| ID | Consumption (ft³) |
+|---|---|
+| 12869308 | 780,810 |
+| 12869292 | 172,740 |
+| 12868950 | 542,488 |
+| 12868818 | 276,552 |
+| 12868632 | 860,194 |
+| 12869424 | 109,096 |
+| 12869676 | 895,748 |
+| 12868622 | 171,002 |
+| 12868584 | 182,266 |
+| 12869506 | 147,224 |
+
+**To identify the correct ID:** Look for a sticker on the small ERT module clipped to the gas meter (separate from the meter body). The 8-digit number there is the broadcast ID. Alternatively, check the Columbia Gas bill for "Meter Number" or "Meter Serial."
 
 ---
 
-*Last updated: 2026-05-28*
+## Known Unknowns
+
+- Gas meter ERT endpoint ID — check ERT module sticker or Columbia Gas bill
+- Actual gas unit/multiplier for Columbia Gas VA — pull from bill (should show therms and CCF)
+- Mosquitto auth credentials — check if username/password is configured
+
+---
+
+*Last updated: 2026-05-29*
