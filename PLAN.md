@@ -192,8 +192,11 @@ No dependencies (order/install any time):
 - [x] Confirmed: Dominion electric meter is AMI — no AMR broadcast, RTL-SDR cannot read it
 - [x] Identify gas meter ERT endpoint ID — confirmed 12868632 via consumption match
 - [x] Configure rtlamr2mqtt with gas meter ID (listen_mode disabled)
-- [x] Wire `sensor.gas_meter` into HA Energy dashboard
-- [x] Add gas ft³ → therms template sensor (`sensor.gas_consumption_therms`)
+- [x] Wire `sensor.gas_meter_reading` into HA Energy dashboard
+- [x] Add gas ft³ → CCF template sensor (`sensor.gas_consumption_ccf`)
+- [x] Add `utility_meter` helpers: `sensor.gas_daily` + `sensor.gas_monthly` (daily/monthly delta)
+- [x] Add Energy tab dashboard: Gas Today / Gas This Month / Register tiles + 30-day bar chart
+- [x] Add startup automation to restart rtlamr2mqtt 30s after HA boot (MQTT retain workaround)
 - [ ] Phase 4: gas anomaly + monthly cost summary automations (pending first bill to confirm rate)
 
 ### Plant & Garden Dashboard
