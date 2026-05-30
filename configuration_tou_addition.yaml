@@ -103,3 +103,19 @@ template:
       - name: "Nabu Casa Climate URL"
         unique_id: nabu_casa_climate_url
         state: !secret nabu_casa_climate_url
+
+##############################################################################
+# Gas utility meters — daily and monthly delta tracking
+# Source: sensor.gas_meter_reading (ft³, total_increasing from rtlamr2mqtt)
+# Creates sensor.gas_daily and sensor.gas_monthly, both in ft³
+##############################################################################
+
+utility_meter:
+  gas_daily:
+    source: sensor.gas_meter_reading
+    name: "Gas Daily"
+    cycle: daily
+  gas_monthly:
+    source: sensor.gas_meter_reading
+    name: "Gas Monthly"
+    cycle: monthly
