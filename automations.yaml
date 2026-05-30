@@ -586,18 +586,50 @@
   mode: single
 
 
-# 16. Bedroom VOC High — Boost Air Purifier
-- alias: "Air Quality — Bedroom VOC Boost Purifier"
-  id: air_quality_bedroom_voc_boost_purifier
+# 16. Bedroom VOC Elevated — Boost Purifier to Medium
+- alias: "Air Quality — Bedroom VOC Boost Purifier Medium"
+  id: air_quality_bedroom_voc_boost_purifier_medium
   description: >
-    When bedroom VOCs have been above 500 µg/m³ for 2 minutes, switch the
-    Winix to Manual mode at 75% (high) to clear the air faster than Auto would.
-    Triggers at Grade C threshold — where the Health tab turns orange.
+    When bedroom VOCs have been above 400 µg/m³ for 1 minute, switch the
+    Winix to Manual mode at 50% (medium) to start clearing the air. A second
+    automation escalates to high if VOCs keep climbing above 700 µg/m³.
   triggers:
     - trigger: numeric_state
       entity_id: sensor.bedroom_volatile_organic_compounds
-      above: 500
-      for: "00:02:00"
+      above: 400
+      for: "00:01:00"
+  conditions:
+    - condition: template
+      value_template: >-
+        {{ state_attr('fan.bedroom_air_purifier', 'preset_mode') not in ['Manual', 'Manual (PlasmaWave off)'] }}
+  actions:
+    - alias: "Switch to Manual mode (preserve PlasmaWave state)"
+      action: fan.set_preset_mode
+      target:
+        entity_id: fan.bedroom_air_purifier
+      data:
+        preset_mode: >-
+          {% if is_state('switch.bedroom_air_purifier_plasma', 'on') %}Manual{% else %}Manual (PlasmaWave off){% endif %}
+    - alias: "Set to 50% (medium speed)"
+      action: fan.set_percentage
+      target:
+        entity_id: fan.bedroom_air_purifier
+      data:
+        percentage: 50
+  mode: single
+
+
+# 16b. Bedroom VOC High — Escalate Purifier to High
+- alias: "Air Quality — Bedroom VOC Boost Purifier High"
+  id: air_quality_bedroom_voc_boost_purifier_high
+  description: >
+    When bedroom VOCs have been above 700 µg/m³ for 1 minute, escalate the
+    Winix to 75% (high speed) regardless of current speed.
+  triggers:
+    - trigger: numeric_state
+      entity_id: sensor.bedroom_volatile_organic_compounds
+      above: 700
+      for: "00:01:00"
   conditions: []
   actions:
     - alias: "Switch to Manual mode (preserve PlasmaWave state)"
@@ -620,12 +652,12 @@
 - alias: "Air Quality — Bedroom VOC Purifier Return to Auto"
   id: air_quality_bedroom_voc_purifier_auto
   description: >
-    When bedroom VOCs have been below 250 µg/m³ for 10 minutes after a boost
+    When bedroom VOCs have been below 400 µg/m³ for 10 minutes after a boost
     event, return the Winix to Auto mode.
   triggers:
     - trigger: numeric_state
       entity_id: sensor.bedroom_volatile_organic_compounds
-      below: 250
+      below: 400
       for: "00:10:00"
   conditions:
     - condition: template
