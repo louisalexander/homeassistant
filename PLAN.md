@@ -32,7 +32,7 @@
 | Smart Locks | **Hold** | Order Schlage BE469ZP after hardware backlog clears | Inventory policy |
 | Gas Fireplace Automation | **Deferred** | Revisit fall/winter — millivolt confirmed; need blower wattage | Seasonal |
 | RTL-SDR Utility Monitoring | **In Progress** | Dongle connected; electric meter confirmed AMI (no AMR); gas meter ERT ID TBD | Nothing |
-| Plant & Garden Dashboard | **In Progress** | Install Rachio 3 (ordered); order + configure Ecowitt WS90 | Nothing |
+| Plant & Garden Dashboard | **In Progress** | Install Rachio 3 (in hand); order + configure Ecowitt WS90 | Nothing |
 | Gosund SL2 | **On Hold** | Locate device | Can't find hardware |
 | Govee Floor Lamp | **On Hold** | Locate power plug | Plug missing |
 | Fan Smart Control | **Closed** | Merged into Inovelli Batch 6 | — |
