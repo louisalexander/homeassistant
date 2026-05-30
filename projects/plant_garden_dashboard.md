@@ -10,7 +10,7 @@ Build a dedicated "Garden" tab on the Home Command Dashboard that Lindsay can us
 
 | Device | Qty | Status | Location |
 |---|---|---|---|
-| ThirdReality Smart Soil Moisture Sensor Gen2 (Zigbee) | 3 | **On order** | Indoor — 3× Fiddle Leaf Figs |
+| ThirdReality Smart Soil Moisture Sensor Gen2 (Zigbee) | 3 | **1 paired, 2 pending** | Indoor — 3× Fiddle Leaf Figs |
 | ThirdReality Smart Soil Moisture Sensor (Zigbee) | 2+ | **Deployed in yard** | Outdoor — front yard + rear yard (pair to ZHA) |
 | Ecowitt WS90 all-in-one weather station | 1 | **Planned — not yet ordered** | Outdoor pole |
 | Rachio 3 (6-zone) | 1 | **In hand — not yet installed** | Replaces Orbit B-Hyve |
