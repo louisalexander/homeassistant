@@ -88,7 +88,7 @@ template:
         device_class: gas
         state_class: total_increasing
         icon: mdi:fire
-        state: "{{ (states('sensor.gas_meter') | float(0)) / 100 }}"
+        state: "{{ (states('sensor.gas_meter_reading') | float(0)) / 100 }}"
 
   ##############################################################################
   # Notification deep-link URL sensors
