@@ -295,4 +295,4 @@ Physical meter body shows `08 31837167`. That ID has not appeared in scans — `
 
 ---
 
-*Last updated: 2026-05-30*
+*Last updated: 2026-05-30 — Phase 3 complete; entity ID is sensor.gas_meter_reading (MQTT auto-discovery); utility_meter helpers + CCF template sensor live; startup automation restarts rtlamr2mqtt 30s after HA boot.*
