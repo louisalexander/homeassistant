@@ -34,7 +34,7 @@
 | RTL-SDR Utility Monitoring | **In Progress** | Dongle connected; electric meter confirmed AMI (no AMR); gas meter ERT ID TBD | Nothing |
 | Plant & Garden Dashboard | **In Progress** | Install Rachio 3 (in hand); order + configure Ecowitt WS90 | Nothing |
 | Gosund SL2 | **On Hold** | Locate device | Can't find hardware |
-| Govee Floor Lamp | **On Hold** | Locate power plug | Plug missing |
+| Govee Floor Lamp | **Ready** | Plug in + integrate via govee2mqtt | Nothing |
 | Fan Smart Control | **Closed** | Merged into Inovelli Batch 6 | — |
 
 ---
